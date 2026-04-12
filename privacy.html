@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Security SPY | RORE Tech</title>
+  <meta name="description" content="Privacy Policy for Security SPY by RORE Tech. All data is stored locally on your device. No data is transmitted to any server.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #080B10;
+      --bg2:     #0D1117;
+      --surface: #111820;
+      --border:  rgba(255,255,255,0.07);
+      --accent:  #00C2FF;
+      --text:    #E8EDF3;
+      --muted:   #6B7A8D;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      background: rgba(8,11,16,0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0;
+      z-index: 10;
+      backdrop-filter: blur(20px);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    nav a.back {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    nav a.back:hover { color: var(--text); }
+
+    /* LAYOUT */
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 32px 100px;
+    }
+
+    /* HEADER */
+    .policy-header {
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      margin-bottom: 28px;
+    }
+    .app-badge-icon {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, #0047CC, #00C2FF);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .app-badge-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 5vw, 48px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .meta {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .meta strong { color: var(--text); font-weight: 500; }
+
+    /* SUMMARY CARD */
+    .summary-card {
+      background: linear-gradient(135deg, rgba(0,118,255,0.08), rgba(0,194,255,0.05));
+      border: 1px solid rgba(0,194,255,0.15);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 56px;
+    }
+    .summary-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .summary-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .summary-item .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .summary-item .label { color: var(--muted); }
+    .summary-item .label strong { color: var(--text); display: block; font-weight: 500; }
+
+    /* CONTENT */
+    .section {
+      margin-bottom: 48px;
+    }
+    h2.section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    p {
+      font-size: 15px;
+      color: #A8B3C0;
+      margin-bottom: 14px;
+      line-height: 1.75;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .data-table th {
+      background: var(--surface);
+      color: var(--accent);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: #A8B3C0;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td:first-child { color: var(--text); font-weight: 500; }
+
+    .tag-yes {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0,194,255,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(0,194,255,0.2);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .tag-no {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(107,122,141,0.1);
+      color: var(--muted);
+      border: 1px solid rgba(107,122,141,0.15);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-top: 16px;
+    }
+    .contact-box a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contact-box a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px;
+      text-align: center;
+    }
+    footer a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--text); }
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 600px) {
+      .summary-grid { grid-template-columns: 1fr; }
+      .page { padding: 40px 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">RORE<span>.</span>TECH</a>
+  <a href="/" class="back">← Back to Home</a>
+</nav>
+
+<div class="page">
+
+  <div class="policy-header">
+    <div class="app-badge">
+      <div class="app-badge-icon">🔒</div>
+      <span class="app-badge-text">Security SPY</span>
+    </div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">
+      <strong>Last updated: April 10, 2026</strong> &nbsp;·&nbsp;
+      App package: com.rore.securityspy &nbsp;·&nbsp;
+      Developer: RORE Tech
+    </p>
+  </div>
+
+  <!-- TL;DR CARD -->
+  <div class="summary-card">
+    <h2>The short version</h2>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <span class="icon">📱</span>
+        <span class="label"><strong>All data stays on your device</strong>Nothing is uploaded to any server or cloud.</span>
+      </div>
+      <div class="summary-item">
+        <span class="icon">🚫</span>
+        <span class="label"><strong>No accounts required</strong>We don't collect your name, email, or any identity.</span>
+      </div>
+      <div class="summary-item">
+        <span class="icon">🔒</span>
+        <span class="label"><strong>Photos are encrypted</strong>Stored in a biometric-protected vault on your device only.</span>
+      </div>
+      <div class="summary-item">
+        <span class="icon">🎯</span>
+        <span class="label"><strong>No ads, no tracking</strong>We don't show ads or share data with advertisers.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <h2 class="section-title">1. About This Policy</h2>
+    <p>
+      This Privacy Policy explains how Security SPY ("the app"), developed by RORE Tech, handles information on your device. Security SPY is a personal device security application for Android that silently captures photographs when user-configured applications are opened, helping device owners identify unauthorized use.
+    </p>
+    <p>
+      This policy applies to all versions of the Security SPY app available on the Google Play Store under the package name <strong>com.rore.securityspy</strong>.
+    </p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <h2 class="section-title">2. Data We Collect and Store</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Data Type</th>
+          <th>Collected?</th>
+          <th>Where Stored</th>
+          <th>Transmitted?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Photographs (front camera)</td>
+          <td><span class="tag-yes">Yes — locally</span></td>
+          <td>Encrypted on-device vault</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>Facial geometry ratios</td>
+          <td><span class="tag-yes">Yes — locally</span></td>
+          <td>Device SharedPreferences</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>App event log (timestamps)</td>
+          <td><span class="tag-yes">Yes — locally</span></td>
+          <td>On-device database (Room)</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>Location data</td>
+          <td><span class="tag-no">No</span></td>
+          <td>—</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>Device identifiers (IMEI, Ad ID)</td>
+          <td><span class="tag-no">No</span></td>
+          <td>—</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>Contact information</td>
+          <td><span class="tag-no">No</span></td>
+          <td>—</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>Crash reports</td>
+          <td><span class="tag-yes">Yes — anonymized</span></td>
+          <td>Google Play Services (Android Vitals)</td>
+          <td>Standard Android crash reporting only</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <h2 class="section-title">3. How the App Uses Your Camera</h2>
+    <p>
+      Security SPY uses the device's front-facing camera exclusively to capture photographs when a user-configured application is opened or when the device lock screen is accessed. This is the core security function of the app.
+    </p>
+    <p>
+      Camera access is initiated only when a monitored event occurs. The app does not record video, does not stream to any external service, and does not access the camera at any other time.
+    </p>
+    <p>
+      All photographs are stored immediately in an encrypted, biometric-protected vault on your device. No photograph is ever transmitted off the device under any circumstances.
+    </p>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <h2 class="section-title">4. Biometric Data</h2>
+    <p>
+      During owner registration, the app processes a photograph of the device owner's face using Google ML Kit, which runs entirely on-device. The app computes a set of numerical facial geometry ratios (not a photograph or raw biometric template) and stores only those ratios in your device's local storage.
+    </p>
+    <p>
+      The photograph taken during registration is processed in memory and is never stored in raw form. Raw biometric data is never transmitted to RORE Tech, Google, or any third party.
+    </p>
+    <p>
+      The stored geometry ratios are used only to determine whether to skip a capture when the owner opens a monitored app. They cannot be reverse-engineered into a photograph.
+    </p>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <h2 class="section-title">5. Accessibility Service</h2>
+    <p>
+      The app uses Android's Accessibility Service API (<code>BIND_ACCESSIBILITY_SERVICE</code>) to detect when a user-configured application is brought to the foreground. This is the only Android API that provides this capability.
+    </p>
+    <p>
+      The Accessibility Service used by Security SPY does not read screen content, does not interact with other apps, does not capture keystrokes or input, and does not transmit any information. It is used solely to detect app foreground events for the purpose of triggering the security capture function.
+    </p>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <h2 class="section-title">6. Third-Party Services</h2>
+    <p>
+      Security SPY uses the following on-device libraries and services:
+    </p>
+    <table class="data-table">
+      <thead>
+        <tr><th>Service</th><th>Purpose</th><th>Data Shared</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google ML Kit (Face Detection)</td>
+          <td>On-device face detection and geometry analysis</td>
+          <td>None — runs entirely on device</td>
+        </tr>
+        <tr>
+          <td>CameraX (AndroidX)</td>
+          <td>Camera capture and image analysis</td>
+          <td>None — local only</td>
+        </tr>
+        <tr>
+          <td>Android BiometricPrompt</td>
+          <td>Vault authentication (fingerprint / face unlock)</td>
+          <td>None — handled by Android OS</td>
+        </tr>
+        <tr>
+          <td>Google Play Services (Android Vitals)</td>
+          <td>Standard crash reporting</td>
+          <td>Anonymized crash data only</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="deletion">
+    <h2 class="section-title">7. Data Retention and Deletion</h2>
+    <p>
+      All data stored by Security SPY — including photographs in the vault, the event log, and owner geometry ratios — is stored exclusively on your device and remains entirely under your control.
+    </p>
+    <p>
+      RORE Tech has no ability to access, retrieve, or delete data stored on your device, as we do not have any server-side copy of your data.
+    </p>
+
+    <div class="contact-box" style="margin-top:16px; margin-bottom:16px;">
+      <p style="margin-bottom:12px;"><strong>How to delete your data</strong></p>
+      <p style="margin-bottom:8px;">To delete all data stored by Security SPY, use either of the following methods:</p>
+      <p style="margin-bottom:6px;"><strong>Option 1 — Clear app data:</strong><br>
+      Android Settings → Apps → Security SPY - Silent Lens → Storage → Clear Data<br>
+      This deletes all photographs, the event log, owner geometry ratios, and your PIN.</p>
+      <p style="margin-bottom:6px;"><strong>Option 2 — Uninstall the app:</strong><br>
+      Long-press the Security SPY icon → Uninstall<br>
+      This removes the app and all associated data permanently.</p>
+      <p style="margin-bottom:0;"><strong>Data types deleted:</strong> All captured photographs, facial geometry ratios, app event log, PIN, and app settings. No data is retained after deletion as RORE Tech holds no server-side copy.</p>
+    </div>
+
+    <p>
+      For deletion assistance, contact us at <a href="mailto:privacy@roretech.com" style="color:var(--accent);text-decoration:none;">privacy@roretech.com</a>
+    </p>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section">
+    <h2 class="section-title">8. Children's Privacy</h2>
+    <p>
+      Security SPY is not directed at children under the age of 13. We do not knowingly collect personal information from children. Because all data is stored locally on the device and we collect no personal information whatsoever, this app poses no known privacy risk to minors.
+    </p>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="section">
+    <h2 class="section-title">9. Changes to This Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time. Any changes will be reflected by an updated "Last updated" date at the top of this page. We encourage you to review this policy periodically. Continued use of the app after changes constitutes acceptance of the updated policy.
+    </p>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="section">
+    <h2 class="section-title">10. Contact Us</h2>
+    <p>
+      If you have any questions about this Privacy Policy or how Security SPY handles data on your device, please contact us:
+    </p>
+    <div class="contact-box">
+      <p style="margin-bottom:8px;"><strong>RORE Tech</strong></p>
+      <p style="margin-bottom:4px;">Privacy inquiries: <a href="mailto:privacy@roretech.com">privacy@roretech.com</a></p>
+      <p style="margin-bottom:0;">General support: <a href="mailto:support@roretech.com">support@roretech.com</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <a href="/">← Back to RORE Tech</a>
+  <p>© 2026 RORE Tech. Security SPY — com.rore.securityspy</p>
+</footer>
+
+</body>
+</html>
