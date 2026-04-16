@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vibespin-v1';
+const CACHE_NAME = 'vibespin-v2';
 const ASSETS = [
   '/games/vibespinner/',
   '/games/vibespinner/index.html',
