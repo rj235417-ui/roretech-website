@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="manifest" href="/manifest.json">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(reg => console.log('SW registered:', reg.scope))
+        .catch(err => console.log('SW failed:', err));
+    });
+  }
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="The ultimate high-RPM engine spinner. Feel the physics of 150,000 RPM with real engine sounds.">
+    <meta name="theme-color" content="#000000">
+    <title>Vibe Studios Spinner</title>
+    <link rel="stylesheet" href="vibe.css">
+</head>
+<body>
+    
+    <header id="header-bar">
+        <div class="header-section left">
+            <span id="stats">0</span>
+            <span id="unit">RPM</span>
+        </div>
+        
+        <div class="header-section center">
+            <div id="gauge-box">
+                <svg viewBox="0 0 200 120" id="gauge-svg">
+                    <path d="M 42 100 A 70 70 0 0 1 172 100" fill="none" stroke="#222" stroke-width="14" />
+                    <path d="M 40 100 A 70 70 0 0 1 85 45.3" fill="none" stroke="#00ff88" stroke-width="12" /> 
+                    <path d="M 85 45.3 A 70 70 0 0 1 130 45.5" fill="none" stroke="#ffcc00" stroke-width="12" />
+                    <path d="M 130 45.5 A 70 70 0 0 1 175 104" fill="none" stroke="#ff4b2b" stroke-width="12" />
+                    <text x="50" y="55" class="g-num">25K</text>
+                    <text x="110" y="35" class="g-num">75K</text>
+                    <text x="165" y="55" class="g-num">125K</text>
+                    <line x1="100" y1="100" x2="100" y2="35" id="needle" stroke="#fff" stroke-width="4" stroke-linecap="round" />
+                    <circle cx="100" cy="100" r="6" fill="#fff" />
+                </svg>
+            </div>
+        </div>
+
+        <div class="header-section right" onclick="hardStop()">
+            <div id="stop-square"></div>
+            <span id="stop-label">STOP</span>
+        </div>
+    </header>
+    
+    <div id="spinner-container">
+        <div id="spinner"></div>
+    </div>
+    
+    <div id="menu">
+        <div id="power-toggle" onclick="handlePowerClick()">🔇</div>
+        
+        <div id="skin-scroll">
+            <div class="skin-option" onclick="setSkin('lambo')">
+                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/lamborghini.png'); background-color: #ffcc00;"></div>
+                <span>LAMBO</span>
+            </div>
+            <div class="skin-option" onclick="setSkin('mustang')">
+                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/ford_mustang.png'); background-color: #ff4b2b;"></div>
+                <span>MUSTANG</span>
+            </div>
+            <div class="skin-option" onclick="setSkin('harley')">
+                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/harley-davidson.png'); background-color: #ff6600;"></div>
+                <span>HARLEY</span>
+            </div>
+            <div class="skin-option" onclick="setSkin('jet')">
+                <div class="skin-btn jet-solid"></div>
+                <span>JET</span>
+            </div>
+            <div class="skin-option" onclick="document.getElementById('photo-input').click()">
+                <div class="skin-btn" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:20px;">+</div>
+                <span>PHOTO</span>
+            </div>
+            <div class="skin-option" style="cursor: help;">
+                <div class="skin-btn" style="background: #000; border: 2px solid #222; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #555; text-shadow: 0 0 5px #fff;">?</div>
+                <span style="color: #444; letter-spacing: 1px;">COMING SOON</span>
+            </div>
+        </div>
+    </div>
+    
+    <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="loadPhoto(event)">
+    <script src="logic.js"></script>
+</body>
+</html>

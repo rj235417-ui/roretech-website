@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+}
+
+body {
+    background: #000;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    padding-bottom: 25px;
+}
+
+/* === HEADER === */
+#header-bar {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    margin-top: 10px;
+}
+
+.header-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* === RPM DISPLAY === */
+#stats {
+    font-size: 24px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+#unit {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* === OVERHEAT GLOW — triggered by JS at 120k RPM === */
+.overheat {
+    color: #ff4b2b !important;
+    text-shadow: 0 0 20px #ff4b2b, 0 0 40px #ff4b2b88 !important;
+}
+
+/* === GAUGE === */
+#gauge-box {
+    width: 160px;
+}
+
+.g-num {
+    fill: rgba(255,255,255,0.6);
+    font-family: 'Rajdhani';
+    font-size: 10px;
+    text-anchor: middle;
+    font-weight: bold;
+}
+
+#needle {
+    transform-origin: 100px 100px;
+    transition: transform 0.01s ease-out;
+}
+
+/* === STOP BUTTON === */
+#stop-square {
+    width: 24px;
+    height: 24px;
+    background: #ff4b2b;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #ff4b2baa;
+    margin-bottom: 4px;
+}
+
+#stop-label {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    color: #ff4b2b;
+}
+
+/* === SPINNER === */
+#spinner-container {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#spinner {
+    width: 80vw;
+    height: 80vw;
+    max-width: 360px;
+    max-height: 360px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    mask-image: radial-gradient(circle, black 70%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle, black 70%, transparent 100%);
+}
+
+/* === METAL GLINT — opacity controlled by JS via --glint variable === */
+#spinner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0) 30%,
+        rgba(255,255,255,0.4) 50%,
+        rgba(255,255,255,0) 70%
+    );
+    opacity: var(--glint, 0);
+    pointer-events: none;
+}
+
+/* === MENU === */
+#menu {
+    width: 94%;
+    padding: 10px;
+    background: rgba(20, 20, 20, 0.98);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+#power-toggle {
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+#skin-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    flex-grow: 1;
+    scrollbar-width: none;
+}
+
+.skin-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.skin-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.jet-solid {
+    background-color: #00ccff;
+}
+
+.skin-option span {
+    font-size: 7px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.5);
+}
