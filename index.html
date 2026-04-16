@@ -1,91 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<link rel="manifest" href="/games/vibespinner/manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/games/vibespinner/service-worker.js')
-        .then(reg => console.log('SW registered:', reg.scope))
-        .catch(err => console.log('SW failed:', err));
-    });
-  }
-</script>
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="The ultimate high-RPM engine spinner. Feel the physics of 150,000 RPM with real engine sounds.">
-    <meta name="theme-color" content="#000000">
-    <title>Vibe Studios Spinner</title>
-    <link rel="stylesheet" href="vibe.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RORE Tech — Mobile Security & Gaming Apps</title>
+  <meta name="description" content="RORE Tech builds intelligent mobile applications — privacy-first Android security tools and immersive web gaming experiences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#080B10; --bg2:#0D1117; --surface:#111820; --border:rgba(255,255,255,0.07);
+      --accent:#00C2FF; --accent2:#0076FF; --vibe:#A855F7; --vibe2:#7C3AED;
+      --text:#E8EDF3; --muted:#6B7A8D;
+    }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden; }
+    body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+    .grid-bg { position:fixed; inset:0; background-image:linear-gradient(rgba(0,194,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,194,255,0.03) 1px,transparent 1px); background-size:60px 60px; pointer-events:none; z-index:0; }
+    .orb { position:fixed; border-radius:50%; filter:blur(120px); pointer-events:none; z-index:0; }
+    .orb-1 { width:600px; height:600px; background:radial-gradient(circle,rgba(0,118,255,0.12),transparent 70%); top:-200px; left:-200px; }
+    .orb-2 { width:500px; height:500px; background:radial-gradient(circle,rgba(168,85,247,0.1),transparent 70%); bottom:10%; right:-150px; }
+    .container { max-width:1100px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 0; background:rgba(8,11,16,0.85); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+    nav .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-family:'Syne',sans-serif; font-weight:800; font-size:22px; letter-spacing:0.06em; color:var(--text); text-decoration:none; }
+    .logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:32px; align-items:center; }
+    nav a.nav-link { font-size:14px; font-weight:500; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    nav a.nav-link:hover { color:var(--text); }
+    .nav-divider { width:1px; height:16px; background:var(--border); }
+
+    /* HERO */
+    .hero { min-height:100vh; display:flex; align-items:center; padding:120px 0 80px; }
+    .hero-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:24px; }
+    .hero-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--accent); }
+    h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(42px,5vw,64px); line-height:1.05; letter-spacing:-0.02em; margin-bottom:24px; }
+    h1 .line-accent { color:var(--accent); }
+    .hero-sub { font-size:18px; font-weight:300; color:var(--muted); line-height:1.7; max-width:440px; margin-bottom:40px; }
+    .btn-group { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .btn-primary { display:inline-flex; align-items:center; gap:10px; background:var(--accent); color:#000; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; letter-spacing:0.03em; padding:14px 28px; border-radius:6px; text-decoration:none; transition:all 0.2s; }
+    .btn-primary:hover { background:#33CEFF; transform:translateY(-1px); box-shadow:0 8px 32px rgba(0,194,255,0.25); }
+    .btn-ghost { display:inline-flex; align-items:center; gap:8px; color:var(--muted); font-size:14px; font-weight:500; text-decoration:none; transition:color 0.2s; }
+    .btn-ghost:hover { color:var(--text); }
+
+    /* HERO PILLS */
+    .hero-pills { display:flex; flex-direction:column; gap:14px; animation:float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    .product-pill { display:flex; align-items:center; gap:16px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 22px; transition:all 0.3s; text-decoration:none; color:var(--text); }
+    .product-pill:hover { transform:translateX(6px); border-color:rgba(0,194,255,0.25); }
+    .product-pill.vibe:hover { border-color:rgba(168,85,247,0.25); }
+    .pill-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+    .pill-icon.security { background:linear-gradient(135deg,#0047CC,#00C2FF); box-shadow:0 4px 12px rgba(0,194,255,0.25); }
+    .pill-icon.gaming { background:linear-gradient(135deg,#7C3AED,#A855F7); box-shadow:0 4px 12px rgba(168,85,247,0.25); }
+    .pill-info { flex:1; }
+    .pill-name { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; margin-bottom:2px; }
+    .pill-desc { font-size:12px; color:var(--muted); }
+    .pill-badge { font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; white-space:nowrap; }
+    .pill-badge.live { background:rgba(0,194,255,0.1); color:var(--accent); border:1px solid rgba(0,194,255,0.2); }
+    .pill-badge.web { background:rgba(168,85,247,0.1); color:var(--vibe); border:1px solid rgba(168,85,247,0.2); }
+
+    /* STATS */
+    .stats-bar { border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:40px 0; }
+    .stats-bar .container { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; text-align:center; }
+    .stat-num { font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--accent); line-height:1; margin-bottom:6px; }
+    .stat-num.purple { color:var(--vibe); }
+    .stat-label { font-size:13px; color:var(--muted); font-weight:400; letter-spacing:0.03em; }
+
+    /* SECTIONS */
+    .section { padding:100px 0; }
+    .section-label { font-size:12px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .section-label.purple { color:var(--vibe); }
+    .section-label::after { content:''; flex:1; height:1px; background:var(--border); max-width:80px; }
+    .section-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(28px,3.5vw,42px); letter-spacing:-0.02em; margin-bottom:60px; line-height:1.15; }
+
+    /* CARDS */
+    .security-grid { display:grid; grid-template-columns:2fr 1fr; gap:24px; }
+    .vibe-grid { display:grid; grid-template-columns:2fr 1fr; gap:24px; }
+    .product-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px 28px; position:relative; overflow:hidden; transition:all 0.3s; }
+    .product-card:hover { border-color:rgba(0,194,255,0.2); transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(0,194,255,0.1); }
+    .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--accent),transparent); opacity:0; transition:opacity 0.3s; }
+    .product-card:hover::before,.product-card.featured::before { opacity:1; }
+    .product-card.featured { background:linear-gradient(135deg,#0D1A2E 0%,var(--surface) 100%); border-color:rgba(0,194,255,0.15); }
+    .vibe-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px 28px; position:relative; overflow:hidden; transition:all 0.3s; }
+    .vibe-card:hover { border-color:rgba(168,85,247,0.25); transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(168,85,247,0.1); }
+    .vibe-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--vibe),transparent); opacity:0; transition:opacity 0.3s; }
+    .vibe-card:hover::before,.vibe-card.featured::before { opacity:1; }
+    .vibe-card.featured { background:linear-gradient(135deg,#150D2E 0%,var(--surface) 100%); border-color:rgba(168,85,247,0.15); }
+
+    .product-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:4px; margin-bottom:20px; }
+    .badge-live { background:rgba(0,194,255,0.1); color:var(--accent); border:1px solid rgba(0,194,255,0.2); }
+    .badge-live::before { content:''; width:6px; height:6px; background:var(--accent); border-radius:50%; animation:pulse 2s infinite; }
+    .badge-web { background:rgba(168,85,247,0.1); color:var(--vibe); border:1px solid rgba(168,85,247,0.2); }
+    .badge-soon { background:rgba(107,122,141,0.1); color:var(--muted); border:1px solid rgba(107,122,141,0.2); }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+    .product-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px; }
+    .icon-blue { background:linear-gradient(135deg,#0047CC,#00C2FF); box-shadow:0 4px 16px rgba(0,194,255,0.25); }
+    .icon-purple { background:linear-gradient(135deg,#7C3AED,#A855F7); box-shadow:0 4px 16px rgba(168,85,247,0.25); }
+    .icon-muted { background:rgba(255,255,255,0.05); border:1px solid var(--border); }
+    .product-name { font-family:'Syne',sans-serif; font-weight:700; font-size:20px; letter-spacing:-0.01em; margin-bottom:10px; }
+    .product-desc { font-size:14px; color:var(--muted); line-height:1.65; margin-bottom:20px; }
+    .product-features { list-style:none; display:flex; flex-direction:column; gap:7px; margin-bottom:24px; }
+    .product-features li { font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+    .product-features li::before { content:'→'; color:var(--accent); font-size:12px; flex-shrink:0; }
+    .product-features.purple li::before { color:var(--vibe); }
+    .product-link { font-size:13px; font-weight:600; color:var(--accent); text-decoration:none; letter-spacing:0.03em; display:inline-flex; align-items:center; gap:6px; transition:gap 0.2s; }
+    .product-link:hover { gap:10px; }
+    .product-link.purple { color:var(--vibe); }
+
+    /* ABOUT */
+    .about-section { padding:100px 0; border-top:1px solid var(--border); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .about-text h2 { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(28px,3vw,40px); letter-spacing:-0.02em; margin-bottom:20px; line-height:1.2; }
+    .about-text p { font-size:16px; color:var(--muted); line-height:1.75; margin-bottom:16px; }
+    .pillars { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .pillar { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; transition:border-color 0.2s; }
+    .pillar:hover { border-color:rgba(0,194,255,0.2); }
+    .pillar-icon { font-size:22px; margin-bottom:10px; }
+    .pillar-title { font-family:'Syne',sans-serif; font-weight:700; font-size:14px; margin-bottom:6px; }
+    .pillar-text { font-size:13px; color:var(--muted); line-height:1.5; }
+
+    /* GAMING SECTION BORDER */
+    .vibe-section { padding:100px 0; border-top:1px solid var(--border); }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:48px 0; }
+    footer .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .footer-left .logo { font-size:18px; }
+    .footer-copy { font-size:13px; color:var(--muted); margin-top:6px; }
+    .footer-links { display:flex; gap:28px; }
+    .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--text); }
+
+    /* ANIMATIONS */
+    .fade-up { opacity:0; transform:translateY(24px); animation:fadeUp 0.7s ease forwards; }
+    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+    .delay-1{animation-delay:0.1s} .delay-2{animation-delay:0.2s} .delay-3{animation-delay:0.35s} .delay-4{animation-delay:0.5s}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .hero-inner,.about-grid{grid-template-columns:1fr;gap:40px}
+      .hero-pills{display:none}
+      .security-grid,.vibe-grid{grid-template-columns:1fr}
+      .stats-bar .container{grid-template-columns:repeat(2,1fr);gap:24px}
+      .pillars{grid-template-columns:1fr}
+      footer .container{flex-direction:column;align-items:flex-start}
+      .nav-links{gap:16px}
+    }
+  </style>
 </head>
 <body>
-    
-    <header id="header-bar">
-        <div class="header-section left">
-            <span id="stats">0</span>
-            <span id="unit">RPM</span>
-        </div>
-        
-        <div class="header-section center">
-            <div id="gauge-box">
-                <svg viewBox="0 0 200 120" id="gauge-svg">
-                    <path d="M 42 100 A 70 70 0 0 1 172 100" fill="none" stroke="#222" stroke-width="14" />
-                    <path d="M 40 100 A 70 70 0 0 1 85 45.3" fill="none" stroke="#00ff88" stroke-width="12" /> 
-                    <path d="M 85 45.3 A 70 70 0 0 1 130 45.5" fill="none" stroke="#ffcc00" stroke-width="12" />
-                    <path d="M 130 45.5 A 70 70 0 0 1 175 104" fill="none" stroke="#ff4b2b" stroke-width="12" />
-                    <text x="50" y="55" class="g-num">25K</text>
-                    <text x="110" y="35" class="g-num">75K</text>
-                    <text x="165" y="55" class="g-num">125K</text>
-                    <line x1="100" y1="100" x2="100" y2="35" id="needle" stroke="#fff" stroke-width="4" stroke-linecap="round" />
-                    <circle cx="100" cy="100" r="6" fill="#fff" />
-                </svg>
-            </div>
-        </div>
 
-        <div class="header-section right" onclick="hardStop()">
-            <div id="stop-square"></div>
-            <span id="stop-label">STOP</span>
-        </div>
-    </header>
-    
-    <div id="spinner-container">
-        <div id="spinner"></div>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="/" class="logo">RORE<span>.</span>TECH</a>
+    <div class="nav-links">
+      <a href="#security" class="nav-link">Security</a>
+      <a href="#gaming" class="nav-link">Gaming</a>
+      <div class="nav-divider"></div>
+      <a href="mailto:support@roretech.com" class="nav-link">Contact</a>
     </div>
-    
-    <div id="menu">
-        <div id="power-toggle" onclick="handlePowerClick()">🔇</div>
-        
-        <div id="skin-scroll">
-            <div class="skin-option" onclick="setSkin('lambo')">
-                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/lamborghini.png'); background-color: #ffcc00;"></div>
-                <span>LAMBO</span>
-            </div>
-            <div class="skin-option" onclick="setSkin('mustang')">
-                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/ford_mustang.png'); background-color: #ff4b2b;"></div>
-                <span>MUSTANG</span>
-            </div>
-            <div class="skin-option" onclick="setSkin('harley')">
-                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/harley-davidson.png'); background-color: #ff6600;"></div>
-                <span>HARLEY</span>
-            </div>
-            <div class="skin-option" onclick="setSkin('jet')">
-                <div class="skin-btn jet-solid"></div>
-                <span>JET</span>
-            </div>
-            <div class="skin-option" onclick="document.getElementById('photo-input').click()">
-                <div class="skin-btn" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:20px;">+</div>
-                <span>PHOTO</span>
-            </div>
-            <div class="skin-option" style="cursor: help;">
-                <div class="skin-btn" style="background: #000; border: 2px solid #222; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #555; text-shadow: 0 0 5px #fff;">?</div>
-                <span style="color: #444; letter-spacing: 1px;">COMING SOON</span>
-            </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow fade-up">Apps by RORE Tech</div>
+        <h1 class="fade-up delay-1">
+          Security tools.<br>
+          <span class="line-accent">Gaming experiences.</span><br>
+          Built different.
+        </h1>
+        <p class="hero-sub fade-up delay-2">
+          We build intelligent mobile and web applications — from privacy-first Android security to immersive high-performance gaming. All crafted with precision.
+        </p>
+        <div class="btn-group fade-up delay-3">
+          <a href="#security" class="btn-primary">Explore Apps ↓</a>
+          <a href="mailto:support@roretech.com" class="btn-ghost">Get in touch</a>
         </div>
+      </div>
+      <div class="hero-pills fade-up delay-4">
+        <a href="#security" class="product-pill">
+          <div class="pill-icon security">🔒</div>
+          <div class="pill-info">
+            <div class="pill-name">Security SPY</div>
+            <div class="pill-desc">Silent face-capture for Android</div>
+          </div>
+          <span class="pill-badge live">Live</span>
+        </a>
+        <a href="#gaming" class="product-pill vibe">
+          <div class="pill-icon gaming">⚡</div>
+          <div class="pill-info">
+            <div class="pill-name">Vibe Studios Spinner</div>
+            <div class="pill-desc">150,000 RPM engine simulator</div>
+          </div>
+          <span class="pill-badge web">Web App</span>
+        </a>
+      </div>
     </div>
-    
-    <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="loadPhoto(event)">
-    <script src="logic.js"></script>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div><div class="stat-num">100%</div><div class="stat-label">On-device processing</div></div>
+    <div><div class="stat-num">0</div><div class="stat-label">Data sent to servers</div></div>
+    <div><div class="stat-num">150K</div><div class="stat-label">Max RPM simulated</div></div>
+    <div><div class="stat-num purple">2</div><div class="stat-label">Products shipped</div></div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<section class="section" id="security">
+  <div class="container">
+    <div class="section-label">Security Products</div>
+    <h2 class="section-title">Privacy-first Android<br>security tools.</h2>
+    <div class="security-grid">
+      <div class="product-card featured">
+        <div class="product-badge badge-live">● Live</div>
+        <div class="product-icon icon-blue">🔒</div>
+        <div class="product-name">Security SPY</div>
+        <p class="product-desc">Silent face-capture security for your Android device. Automatically photographs anyone who opens your tagged apps — and recognizes your face to skip the capture. All photos stored in a biometric-protected vault. Zero cloud.</p>
+        <ul class="product-features">
+          <li>Per-app monitoring — tag any installed app</li>
+          <li>Owner face recognition — no false captures</li>
+          <li>Biometric-protected photo vault</li>
+          <li>Full event log with timestamps</li>
+          <li>Fully on-device — no accounts, no cloud</li>
+        </ul>
+        <a href="https://play.google.com/store/apps/details?id=com.rore.securityspy" class="product-link">View on Google Play →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-badge badge-soon">Coming Soon</div>
+        <div class="product-icon icon-muted">⚡</div>
+        <div class="product-name">More from RORE</div>
+        <p class="product-desc">Next generation of privacy-focused Android tools. Stay tuned.</p>
+        <ul class="product-features">
+          <li>Security & privacy focus</li>
+          <li>On-device intelligence</li>
+          <li>No subscriptions required</li>
+        </ul>
+        <a href="mailto:support@roretech.com" class="product-link">Get notified →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMING -->
+<section class="vibe-section" id="gaming">
+  <div class="container">
+    <div class="section-label purple">Gaming & Web Apps</div>
+    <h2 class="section-title">Immersive web<br>gaming experiences.</h2>
+    <div class="vibe-grid">
+      <div class="vibe-card featured">
+        <div class="product-badge badge-web">⚡ Web App — Live</div>
+        <div class="product-icon icon-purple">🌀</div>
+        <div class="product-name">Vibe Studios Spinner</div>
+        <p class="product-desc">The ultimate high-RPM engine spinner. Physics-accurate simulation with real-time FM audio synthesis, dynamic gauges, and sensory feedback — all in your browser. No download required.</p>
+        <ul class="product-features purple">
+          <li>Custom momentum-based physics engine</li>
+          <li>Dual-oscillator Web Audio API synthesis</li>
+          <li>4 skins — Lambo, Mustang, Harley, Jet</li>
+          <li>Overheat glow & UI shake above 120K RPM</li>
+          <li>Installable PWA — add to home screen</li>
+        </ul>
+        <a href="/games/vibespinner/" class="product-link purple">Launch Vibe Spinner →</a>
+      </div>
+      <div class="vibe-card">
+        <div class="product-badge badge-soon">Coming Soon</div>
+        <div class="product-icon icon-muted">🎮</div>
+        <div class="product-name">More from Vibe Studios</div>
+        <p class="product-desc">More high-fidelity sensory web experiences in the pipeline.</p>
+        <ul class="product-features purple">
+          <li>Game Mode — Hide & Hit mechanics</li>
+          <li>Global leaderboards</li>
+          <li>Premium skin store</li>
+        </ul>
+        <a href="mailto:support@roretech.com" class="product-link purple">Get notified →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About RORE</div>
+        <h2>We build tools that<br>respect your privacy.</h2>
+        <p>RORE Tech is an independent software company building practical, privacy-first Android applications and high-performance web experiences. We believe powerful tools shouldn't require handing your data to a third party.</p>
+        <p>Every app we ship processes data exclusively on your device. No accounts. No cloud storage. No ads.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><div class="pillar-icon">🛡️</div><div class="pillar-title">Privacy First</div><p class="pillar-text">Your data never leaves your device. No cloud, no servers, no tracking.</p></div>
+        <div class="pillar"><div class="pillar-icon">📱</div><div class="pillar-title">Android Native</div><p class="pillar-text">Built specifically for Android using the latest platform APIs and ML capabilities.</p></div>
+        <div class="pillar"><div class="pillar-icon">🧠</div><div class="pillar-title">On-Device AI</div><p class="pillar-text">ML Kit powers real-time face recognition without any data leaving your phone.</p></div>
+        <div class="pillar"><div class="pillar-icon">🎮</div><div class="pillar-title">Web Gaming</div><p class="pillar-text">High-fidelity browser experiences that feel native — no app store required.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-left">
+      <a href="/" class="logo">RORE<span>.</span>TECH</a>
+      <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="mailto:support@roretech.com">Support</a>
+      <a href="mailto:privacy@roretech.com">Privacy Contact</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
