@@ -1,788 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<link rel="manifest" href="/games/vibespinner/manifest.json">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/games/vibespinner/service-worker.js')
+        .then(reg => console.log('SW registered:', reg.scope))
+        .catch(err => console.log('SW failed:', err));
+    });
+  }
+</script>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RORE Tech — Mobile Security & Productivity Apps</title>
-  <meta name="description" content="RORE Tech builds intelligent mobile applications focused on security, privacy, and productivity. Made for Android.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #080B10;
-      --bg2:       #0D1117;
-      --surface:   #111820;
-      --border:    rgba(255,255,255,0.07);
-      --accent:    #00C2FF;
-      --accent2:   #0076FF;
-      --text:      #E8EDF3;
-      --muted:     #6B7A8D;
-      --card-glow: rgba(0,194,255,0.08);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    /* ── GRID BACKGROUND ── */
-    .grid-bg {
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(0,194,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,194,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── GLOW ORBS ── */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .orb-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,118,255,0.12), transparent 70%);
-      top: -200px; left: -200px;
-    }
-    .orb-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(0,194,255,0.08), transparent 70%);
-      bottom: 10%; right: -150px;
-    }
-
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 20px 0;
-      background: rgba(8,11,16,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 22px;
-      letter-spacing: 0.06em;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .logo span {
-      color: var(--accent);
-    }
-    nav a.nav-link {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    nav a.nav-link:hover { color: var(--text); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 0 80px;
-    }
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 24px; height: 1px;
-      background: var(--accent);
-    }
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(42px, 5vw, 64px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-    }
-    h1 .line-accent { color: var(--accent); }
-    .hero-sub {
-      font-size: 18px;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 440px;
-      margin-bottom: 40px;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--accent);
-      color: #000;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      padding: 14px 28px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-primary:hover {
-      background: #33CEFF;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 32px rgba(0,194,255,0.25);
-    }
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      margin-left: 20px;
-      transition: color 0.2s;
-    }
-    .btn-ghost:hover { color: var(--text); }
-
-    /* ── HERO VISUAL ── */
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-16px); }
-    }
-    .phone-mockup {
-      width: 220px;
-      height: 440px;
-      background: var(--surface);
-      border-radius: 36px;
-      border: 1.5px solid rgba(255,255,255,0.1);
-      position: relative;
-      box-shadow:
-        0 0 0 1px rgba(0,194,255,0.1),
-        0 40px 100px rgba(0,0,0,0.6),
-        inset 0 1px 0 rgba(255,255,255,0.05);
-      overflow: hidden;
-    }
-    .phone-mockup::before {
-      content: '';
-      position: absolute;
-      top: 16px; left: 50%; transform: translateX(-50%);
-      width: 80px; height: 6px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 3px;
-    }
-    .phone-screen {
-      position: absolute;
-      inset: 28px 12px 12px;
-      background: linear-gradient(160deg, #0a1628 0%, #060d1a 100%);
-      border-radius: 24px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 16px;
-    }
-    .phone-app-icon {
-      width: 56px; height: 56px;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
-      border-radius: 14px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      box-shadow: 0 8px 24px rgba(0,194,255,0.3);
-    }
-    .phone-app-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.05em;
-      margin-bottom: 18px;
-    }
-    .phone-scan-line {
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      animation: scan 2.5s ease-in-out infinite;
-    }
-    @keyframes scan {
-      0% { transform: translateY(0); opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { transform: translateY(120px); opacity: 0; }
-    }
-    .phone-log-items {
-      width: 100%;
-      margin-top: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .phone-log-item {
-      background: rgba(0,194,255,0.06);
-      border: 1px solid rgba(0,194,255,0.12);
-      border-radius: 8px;
-      padding: 7px 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .log-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-    .log-dot.red { background: #FF4757; }
-    .log-text {
-      font-size: 9px;
-      color: var(--muted);
-      line-height: 1.3;
-    }
-    .log-text strong { color: var(--text); font-weight: 500; }
-    .phone-glow {
-      position: absolute;
-      bottom: -40px; left: 50%; transform: translateX(-50%);
-      width: 160px; height: 160px;
-      background: radial-gradient(circle, rgba(0,194,255,0.2), transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    /* ── STATS ── */
-    .stats-bar {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 40px 0;
-      margin: 0;
-    }
-    .stats-bar .container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      text-align: center;
-    }
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 400;
-      letter-spacing: 0.03em;
-    }
-
-    /* ── PRODUCTS ── */
-    .section {
-      padding: 100px 0;
-    }
-    .section-label {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      max-width: 80px;
-    }
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(28px, 3.5vw, 42px);
-      letter-spacing: -0.02em;
-      margin-bottom: 60px;
-      line-height: 1.15;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .product-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    .product-card:hover {
-      border-color: rgba(0,194,255,0.2);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,194,255,0.1);
-    }
-    .product-card.featured {
-      grid-column: span 2;
-      background: linear-gradient(135deg, #0D1A2E 0%, var(--surface) 100%);
-      border-color: rgba(0,194,255,0.15);
-    }
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .product-card:hover::before { opacity: 1; }
-    .product-card.featured::before { opacity: 1; }
-
-    .product-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
-    .badge-live {
-      background: rgba(0,194,255,0.1);
-      color: var(--accent);
-      border: 1px solid rgba(0,194,255,0.2);
-    }
-    .badge-live::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-    .badge-soon {
-      background: rgba(107,122,141,0.1);
-      color: var(--muted);
-      border: 1px solid rgba(107,122,141,0.2);
-    }
-
-    .product-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin-bottom: 16px;
-    }
-    .icon-blue { background: linear-gradient(135deg, #0047CC, #00C2FF); box-shadow: 0 4px 16px rgba(0,194,255,0.25); }
-    .icon-muted { background: rgba(255,255,255,0.05); border: 1px solid var(--border); }
-
-    .product-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: -0.01em;
-      margin-bottom: 10px;
-    }
-    .product-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 20px;
-    }
-    .product-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      margin-bottom: 24px;
-    }
-    .product-features li {
-      font-size: 13px;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .product-features li::before {
-      content: '→';
-      color: var(--accent);
-      font-size: 12px;
-      flex-shrink: 0;
-    }
-    .product-link {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap 0.2s;
-    }
-    .product-link:hover { gap: 10px; }
-
-    /* ── ABOUT ── */
-    .about-section {
-      padding: 100px 0;
-      border-top: 1px solid var(--border);
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .about-text h2 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(28px, 3vw, 40px);
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-    .about-text p {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 16px;
-    }
-    .pillars {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .pillar {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      transition: border-color 0.2s;
-    }
-    .pillar:hover { border-color: rgba(0,194,255,0.2); }
-    .pillar-icon { font-size: 22px; margin-bottom: 10px; }
-    .pillar-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-    .pillar-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 48px 0;
-    }
-    footer .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .footer-left .logo { font-size: 18px; }
-    .footer-copy {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-    .footer-links {
-      display: flex;
-      gap: 28px;
-    }
-    .footer-links a {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--text); }
-
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      animation: fadeUp 0.7s ease forwards;
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.35s; }
-    .delay-4 { animation-delay: 0.5s; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .hero-inner, .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .hero-visual { display: none; }
-      .products-grid { grid-template-columns: 1fr; }
-      .product-card.featured { grid-column: span 1; }
-      .stats-bar .container { grid-template-columns: 1fr; gap: 24px; }
-      .pillars { grid-template-columns: 1fr; }
-      footer .container { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="The ultimate high-RPM engine spinner. Feel the physics of 150,000 RPM with real engine sounds.">
+    <meta name="theme-color" content="#000000">
+    <title>Vibe Studios Spinner</title>
+    <link rel="stylesheet" href="vibe.css">
 </head>
 <body>
-
-<div class="grid-bg"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="container">
-    <a href="/" class="logo">RORE<span>.</span>TECH</a>
-    <a href="mailto:support@roretech.com" class="nav-link">Contact</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-eyebrow fade-up">Android Apps by RORE</div>
-        <h1 class="fade-up delay-1">
-          Privacy-first<br>
-          <span class="line-accent">mobile security</span><br>
-          for everyone.
-        </h1>
-        <p class="hero-sub fade-up delay-2">
-          We build intelligent Android applications focused on device security, privacy, and personal productivity — all processing done on your device, never in the cloud.
-        </p>
-        <div class="fade-up delay-3">
-          <a href="#products" class="btn-primary">View Our Apps ↓</a>
-          <a href="mailto:support@roretech.com" class="btn-ghost">Get in touch</a>
+    
+    <header id="header-bar">
+        <div class="header-section left">
+            <span id="stats">0</span>
+            <span id="unit">RPM</span>
         </div>
-      </div>
-      <div class="hero-visual fade-up delay-4">
-        <div style="position:relative;">
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <div class="phone-app-icon">🔒</div>
-              <div class="phone-app-name">SECURITY SPY</div>
-              <div class="phone-scan-line"></div>
-              <div class="phone-log-items">
-                <div class="phone-log-item">
-                  <div class="log-dot"></div>
-                  <div class="log-text"><strong>Owner detected</strong><br>No capture · 09:41 AM</div>
-                </div>
-                <div class="phone-log-item">
-                  <div class="log-dot red"></div>
-                  <div class="log-text"><strong>Unknown face</strong><br>Photo saved · 11:23 AM</div>
-                </div>
-                <div class="phone-log-item">
-                  <div class="log-dot red"></div>
-                  <div class="log-text"><strong>Unknown face</strong><br>Photo saved · 02:07 PM</div>
-                </div>
-              </div>
+        
+        <div class="header-section center">
+            <div id="gauge-box">
+                <svg viewBox="0 0 200 120" id="gauge-svg">
+                    <path d="M 42 100 A 70 70 0 0 1 172 100" fill="none" stroke="#222" stroke-width="14" />
+                    <path d="M 40 100 A 70 70 0 0 1 85 45.3" fill="none" stroke="#00ff88" stroke-width="12" /> 
+                    <path d="M 85 45.3 A 70 70 0 0 1 130 45.5" fill="none" stroke="#ffcc00" stroke-width="12" />
+                    <path d="M 130 45.5 A 70 70 0 0 1 175 104" fill="none" stroke="#ff4b2b" stroke-width="12" />
+                    <text x="50" y="55" class="g-num">25K</text>
+                    <text x="110" y="35" class="g-num">75K</text>
+                    <text x="165" y="55" class="g-num">125K</text>
+                    <line x1="100" y1="100" x2="100" y2="35" id="needle" stroke="#fff" stroke-width="4" stroke-linecap="round" />
+                    <circle cx="100" cy="100" r="6" fill="#fff" />
+                </svg>
             </div>
-          </div>
-          <div class="phone-glow"></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="container">
-    <div>
-      <div class="stat-num">100%</div>
-      <div class="stat-label">On-device processing</div>
-    </div>
-    <div>
-      <div class="stat-num">0</div>
-      <div class="stat-label">Data sent to servers</div>
-    </div>
-    <div>
-      <div class="stat-num">Android</div>
-      <div class="stat-label">Platform focus</div>
-    </div>
-  </div>
-</div>
-
-<!-- PRODUCTS -->
-<section class="section" id="products">
-  <div class="container">
-    <div class="section-label">Our Apps</div>
-    <h2 class="section-title">Built for real-world<br>security needs.</h2>
-
-    <div class="products-grid">
-      <!-- Security SPY — featured -->
-      <div class="product-card featured">
-        <div class="product-badge badge-live">● Live</div>
-        <div class="product-icon icon-blue">🔒</div>
-        <div class="product-name">Security SPY</div>
-        <p class="product-desc">
-          Silent face-capture security for your Android device. Automatically photographs anyone who opens your tagged apps — and recognizes your face to skip the capture. All photos stored in a biometric-protected vault. Zero cloud.
-        </p>
-        <ul class="product-features">
-          <li>Per-app monitoring — tag any installed app</li>
-          <li>Owner face recognition — no false captures</li>
-          <li>Biometric-protected photo vault</li>
-          <li>Full event log with timestamps</li>
-          <li>Fully on-device — no accounts, no cloud</li>
-        </ul>
-        <a href="https://play.google.com/store/apps/details?id=com.rore.securityspy" class="product-link">
-          View on Google Play →
-        </a>
-      </div>
-
-      <!-- Coming soon cards -->
-      <div class="product-card">
-        <div class="product-badge badge-soon">Coming Soon</div>
-        <div class="product-icon icon-muted">⚡</div>
-        <div class="product-name">More from RORE</div>
-        <p class="product-desc">
-          We're actively building the next generation of privacy-focused Android tools. Stay tuned.
-        </p>
-        <ul class="product-features">
-          <li>Security & privacy focus</li>
-          <li>On-device intelligence</li>
-          <li>No subscriptions required</li>
-        </ul>
-        <a href="mailto:support@roretech.com" class="product-link">
-          Get notified →
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about-section">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="section-label">About RORE</div>
-        <h2>We build tools that<br>respect your privacy.</h2>
-        <p>
-          RORE Tech is an independent mobile software company focused on building practical, privacy-first Android applications. We believe powerful security tools shouldn't require handing your data to a third party.
-        </p>
-        <p>
-          Every app we ship processes data exclusively on your device. No accounts. No cloud storage. No ads.
-        </p>
-      </div>
-      <div class="pillars">
-        <div class="pillar">
-          <div class="pillar-icon">🛡️</div>
-          <div class="pillar-title">Privacy First</div>
-          <p class="pillar-text">Your data never leaves your device. No cloud, no servers, no tracking.</p>
+        <div class="header-section right" onclick="hardStop()">
+            <div id="stop-square"></div>
+            <span id="stop-label">STOP</span>
         </div>
-        <div class="pillar">
-          <div class="pillar-icon">📱</div>
-          <div class="pillar-title">Android Native</div>
-          <p class="pillar-text">Built specifically for Android using the latest platform APIs and ML capabilities.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">🧠</div>
-          <div class="pillar-title">On-Device AI</div>
-          <p class="pillar-text">ML Kit powers real-time face recognition without any data leaving your phone.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">🔑</div>
-          <div class="pillar-title">Biometric Security</div>
-          <p class="pillar-text">Protected vaults and owner verification using your device's biometrics.</p>
-        </div>
-      </div>
+    </header>
+    
+    <div id="spinner-container">
+        <div id="spinner"></div>
     </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-left">
-      <a href="/" class="logo">RORE<span>.</span>TECH</a>
-      <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
+    
+    <div id="menu">
+        <div id="power-toggle" onclick="handlePowerClick()">🔇</div>
+        
+        <div id="skin-scroll">
+            <div class="skin-option" onclick="setSkin('lambo')">
+                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/lamborghini.png'); background-color: #ffcc00;"></div>
+                <span>LAMBO</span>
+            </div>
+            <div class="skin-option" onclick="setSkin('mustang')">
+                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/ford_mustang.png'); background-color: #ff4b2b;"></div>
+                <span>MUSTANG</span>
+            </div>
+            <div class="skin-option" onclick="setSkin('harley')">
+                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/harley-davidson.png'); background-color: #ff6600;"></div>
+                <span>HARLEY</span>
+            </div>
+            <div class="skin-option" onclick="setSkin('jet')">
+                <div class="skin-btn jet-solid"></div>
+                <span>JET</span>
+            </div>
+            <div class="skin-option" onclick="document.getElementById('photo-input').click()">
+                <div class="skin-btn" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:20px;">+</div>
+                <span>PHOTO</span>
+            </div>
+            <div class="skin-option" style="cursor: help;">
+                <div class="skin-btn" style="background: #000; border: 2px solid #222; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #555; text-shadow: 0 0 5px #fff;">?</div>
+                <span style="color: #444; letter-spacing: 1px;">COMING SOON</span>
+            </div>
+        </div>
     </div>
-    <div class="footer-links">
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="mailto:support@roretech.com">Support</a>
-      <a href="mailto:privacy@roretech.com">Privacy Contact</a>
-    </div>
-  </div>
-</footer>
-
+    
+    <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="loadPhoto(event)">
+    <script src="logic.js"></script>
 </body>
 </html>
