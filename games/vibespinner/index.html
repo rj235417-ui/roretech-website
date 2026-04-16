@@ -1,17 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<link rel="manifest" href="/games/vibespinner/manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/games/vibespinner/service-worker.js')
-        .then(reg => console.log('SW registered:', reg.scope))
-        .catch(err => console.log('SW failed:', err));
-    });
-  }
-</script>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -19,6 +7,16 @@
     <meta name="theme-color" content="#000000">
     <title>Vibe Studios Spinner</title>
     <link rel="stylesheet" href="vibe.css">
+    <link rel="manifest" href="/games/vibespinner/manifest.json">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/games/vibespinner/service-worker.js')
+            .then(reg => console.log('SW registered:', reg.scope))
+            .catch(err => console.log('SW failed:', err));
+        });
+      }
+    </script>
 </head>
 <body>
     
@@ -59,19 +57,19 @@
         
         <div id="skin-scroll">
             <div class="skin-option" onclick="setSkin('lambo')">
-                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/lamborghini.png'); background-color: #ffcc00;"></div>
+                <div class="skin-btn" style="background-color: #ffcc00; font-size: 22px; display:flex; align-items:center; justify-content:center;">🏎</div>
                 <span>LAMBO</span>
             </div>
             <div class="skin-option" onclick="setSkin('mustang')">
-                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/ford_mustang.png'); background-color: #ff4b2b;"></div>
+                <div class="skin-btn" style="background-color: #ff4b2b; font-size: 22px; display:flex; align-items:center; justify-content:center;">🐎</div>
                 <span>MUSTANG</span>
             </div>
             <div class="skin-option" onclick="setSkin('harley')">
-                <div class="skin-btn" style="background-image: url('https://www.car-logos.org/wp-content/uploads/2011/09/harley-davidson.png'); background-color: #ff6600;"></div>
+                <div class="skin-btn" style="background-color: #ff6600; font-size: 22px; display:flex; align-items:center; justify-content:center;">🏍</div>
                 <span>HARLEY</span>
             </div>
             <div class="skin-option" onclick="setSkin('jet')">
-                <div class="skin-btn jet-solid"></div>
+                <div class="skin-btn jet-solid" style="font-size: 22px; display:flex; align-items:center; justify-content:center;">✈️</div>
                 <span>JET</span>
             </div>
             <div class="skin-option" onclick="document.getElementById('photo-input').click()">

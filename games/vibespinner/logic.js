@@ -2,10 +2,10 @@ let audioCtx = null, mainEngine = null, subEngine = null, gainNode = null, modul
 let isMuted = true, currentSkin = 'lambo', angle = 0, velocity = 0, lastY = 0;
 
 const config = {
-    lambo:   { base: 45, harmonic: 'sawtooth', rumble: 'triangle', pulse: 0,  img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=800' },
-    mustang: { base: 35, harmonic: 'square',   rumble: 'sawtooth', pulse: 12, img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800' },
-    harley:  { base: 22, harmonic: 'sawtooth', rumble: 'square',   pulse: 35, img: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=800' },
-    jet:     { base: 85, harmonic: 'sine',     rumble: 'sine',     pulse: 0,  img: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800' }
+    lambo:   { base: 45, harmonic: 'sawtooth', rumble: 'triangle', img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=800' },
+    mustang: { base: 35, harmonic: 'square',   rumble: 'sawtooth', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800' },
+    harley:  { base: 22, harmonic: 'sawtooth', rumble: 'square',   img: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=800' },
+    jet:     { base: 85, harmonic: 'sine',     rumble: 'sine',     img: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800' }
 };
 
 function initAudio() {
@@ -65,7 +65,6 @@ function stopEngine() {
     if (audioCtx) audioCtx.suspend();
 }
 
-// ✅ FIXED: all reset logic is now inside the function block
 function hardStop() {
     velocity = 0;
     angle = 0;
