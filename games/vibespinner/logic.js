@@ -7,7 +7,6 @@ const PRO_SKINS = ['lambo', 'mustang', 'harley', 'jet'];
 // ─── AUDIO & PHYSICS STATE ───────────────────────────────────────────────────
 let audioCtx = null, mainEngine = null, subEngine = null, gainNode = null, modulator = null;
 let isMuted = true, currentSkin = 'lambo', angle = 0, velocity = 0, lastY = 0;
-let userHasSpun  = false;
 let wasShaking   = false;
 let lastNeedleRot = null;
 
@@ -206,7 +205,6 @@ window.addEventListener('touchmove', (e) => {
     const delta    = currentY - lastY;
     if (Math.abs(delta) < 2) velocity *= 0.95;
     else                     velocity += delta * 0.8;
-    if (Math.abs(velocity) > 1) userHasSpun = true;
     lastY = currentY;
 }, { passive: false });
 
@@ -232,7 +230,7 @@ function animate() {
         lastNeedleRot = needleRot;
     }
 
-    const shouldShake = userHasSpun && (vibeTier === 'pro' || vibeTier === 'max') && rpm > 125000;
+    const shouldShake = (vibeTier === 'pro' || vibeTier === 'max') && rpm > 125000;
     if (shouldShake) {
         wasShaking = true;
         const shake = Math.min((rpm - 125000) / 10000, 3);
@@ -272,9 +270,8 @@ function animate() {
 // ─── APP LIFECYCLE ────────────────────────────────────────────────────────────
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        velocity    = 0;
-        userHasSpun = false;
-        wasShaking  = false;
+        velocity   = 0;
+        wasShaking = false;
         document.getElementById('header-bar').style.transform = '';
         document.getElementById('menu').style.transform       = '';
         if (!isMuted) {
