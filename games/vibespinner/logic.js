@@ -233,7 +233,7 @@ function animate() {
     const shouldShake = (vibeTier === 'pro' || vibeTier === 'max') && rpm > 125000;
     if (shouldShake) {
         wasShaking = true;
-        const shake = Math.min((rpm - 125000) / 10000, 3);
+        const shake = (rpm - 125000) / 10000;
         document.getElementById('header-bar').style.transform =
             `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
         document.getElementById('menu').style.transform =
