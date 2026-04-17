@@ -92,8 +92,9 @@ function hardStop() {
     document.getElementById('needle').style.transform                = 'rotate(-90deg)';
     document.getElementById('stats').innerText                       = '0';
     document.getElementById('stats').classList.remove('overheat');
-    document.getElementById('header-bar').style.transform            = 'translate(0,0)';
-    document.getElementById('menu').style.transform                  = 'translate(0,0)';
+    document.querySelector('.header-section.left').style.transform   = '';
+    document.querySelector('.header-section.center').style.transform = '';
+    document.getElementById('menu').style.transform                  = '';
 }
 
 // ─── SKINS ───────────────────────────────────────────────────────────────────
@@ -233,14 +234,14 @@ function animate() {
     const shouldShake = (vibeTier === 'pro' || vibeTier === 'max') && rpm > 125000;
     if (shouldShake) {
         wasShaking = true;
-        const shake = (rpm - 125000) / 10000 * (vibeTier === 'max' ? 3 : 1);
-        document.getElementById('header-bar').style.transform =
-            `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
-        document.getElementById('menu').style.transform =
-            `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
+        const shake = (rpm - 125000) / 10000 * (vibeTier === 'max' ? 3 : 1.75);
+        document.querySelector('.header-section.left').style.transform   = `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
+        document.querySelector('.header-section.center').style.transform = `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
+        document.getElementById('menu').style.transform                  = `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
     } else if (wasShaking) {
         wasShaking = false;
-        document.getElementById('header-bar').style.transform = '';
+        document.querySelector('.header-section.left').style.transform   = '';
+        document.querySelector('.header-section.center').style.transform = '';
         document.getElementById('menu').style.transform = '';
     }
 
@@ -272,8 +273,9 @@ document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
         velocity   = 0;
         wasShaking = false;
-        document.getElementById('header-bar').style.transform = '';
-        document.getElementById('menu').style.transform       = '';
+        document.querySelector('.header-section.left').style.transform   = '';
+        document.querySelector('.header-section.center').style.transform = '';
+        document.getElementById('menu').style.transform                  = '';
         if (!isMuted) {
             stopEngine();
             isMuted = true;
