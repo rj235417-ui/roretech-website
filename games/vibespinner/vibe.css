@@ -169,11 +169,11 @@ body {
 
 #skin-scroll {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     overflow-x: auto;
     flex-grow: 1;
     scrollbar-width: none;
-    align-items: center;
+    -webkit-overflow-scrolling: touch;
 }
 
 .skin-option {
@@ -186,13 +186,14 @@ body {
 }
 
 .skin-btn {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 10px;
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
     border: 1px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
 }
 
 .jet-solid {
@@ -200,7 +201,7 @@ body {
 }
 
 .skin-option span {
-    font-size: 7px;
+    font-size: 6px;
     font-weight: bold;
     color: rgba(255,255,255,0.5);
 }
@@ -386,4 +387,71 @@ body {
     touch-action: auto;
     padding: 4px 10px;
     white-space: nowrap;
+}
+
+/* === BANNER MAX LINK === */
+.banner-max-link {
+    display: block;
+    margin-top: 7px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: rgba(180, 80, 255, 0.7);
+    cursor: pointer;
+    touch-action: auto;
+}
+
+.banner-max-link:active { color: #b050ff; }
+
+/* === VIBE MAX MODAL === */
+.max-card {
+    border-color: rgba(160, 0, 255, 0.35);
+    box-shadow: 0 0 40px rgba(120, 0, 255, 0.25);
+}
+
+.max-price {
+    color: #b000ff !important;
+    text-shadow: 0 0 12px rgba(160, 0, 255, 0.6) !important;
+}
+
+.max-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.32);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.max-features {
+    list-style: none;
+    text-align: left;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 12px;
+}
+
+.max-features li {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    line-height: 1.2;
+}
+
+.max-features li:last-child { border-bottom: none; }
+
+.launch-note {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.22);
+    margin-bottom: 20px;
+    letter-spacing: 0.3px;
+}
+
+.max-btn {
+    background: linear-gradient(135deg, #b000ff, #6600cc) !important;
+    color: #fff !important;
+    box-shadow: 0 0 18px rgba(160, 0, 255, 0.4) !important;
+}
+
+.max-btn:active {
+    box-shadow: 0 0 8px rgba(160, 0, 255, 0.3) !important;
 }

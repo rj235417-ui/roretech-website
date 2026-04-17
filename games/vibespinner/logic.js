@@ -160,6 +160,16 @@ function closePaywall(e) {
     }
 }
 
+function showMaxModal() {
+    document.getElementById('max-modal').style.display = 'flex';
+}
+
+function closeMaxModal(e) {
+    if (!e || e.target === document.getElementById('max-modal')) {
+        document.getElementById('max-modal').style.display = 'none';
+    }
+}
+
 // ─── UPGRADE BANNER ──────────────────────────────────────────────────────────
 let bannerTimeout         = null;
 let bannerShownThisRound  = false;

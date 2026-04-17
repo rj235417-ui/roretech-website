@@ -94,8 +94,9 @@
 
     <!-- Upgrade Banner (shown when free tier hits 50K) -->
     <div id="upgrade-banner">
-        <span>You've hit the free limit! Unlock 150K RPM + all skins &rarr; <strong>Vibe Pro $1.99</strong></span>
+        <span>Unlock 150K RPM + Mustang, Harley, Jet skins &rarr; <strong>Vibe Pro $1.99</strong></span>
         <a href="https://buy.stripe.com/placeholder" class="banner-btn" target="_blank" rel="noopener">Unlock Now</a>
+        <a class="banner-max-link" onclick="showMaxModal()">Learn about Vibe Max &rarr;</a>
     </div>
 
     <!-- Paywall / Store Modal -->
@@ -107,6 +108,26 @@
             <p class="paywall-price" id="modal-price">One-time $1.99</p>
             <p class="paywall-desc" id="modal-desc">All skins + 150,000 RPM + overheat FX + photo upload.</p>
             <a href="https://buy.stripe.com/placeholder" class="paywall-btn" id="modal-btn" target="_blank" rel="noopener">Unlock Pro &#x2014; $1.99</a>
+        </div>
+    </div>
+
+    <!-- Vibe Max Modal -->
+    <div id="max-modal" class="paywall-backdrop" onclick="closeMaxModal(event)">
+        <div class="paywall-card max-card">
+            <button class="paywall-close" onclick="closeMaxModal()">&#x2715;</button>
+            <div class="paywall-lock">&#x26A1;</div>
+            <h2 class="paywall-title">Vibe Max</h2>
+            <p class="paywall-price max-price">$4.99 one-time</p>
+            <p class="max-subtitle">For the serious speed junkie</p>
+            <ul class="max-features">
+                <li>&#x26A1; Everything in Vibe Pro</li>
+                <li>&#x1F534; Unlimited RPM &#x2014; no cap ever</li>
+                <li>&#x1F525; Overheat + shake at 125K</li>
+                <li>&#x1F3C1; Speed Run Challenge</li>
+                <li>&#x1F3C6; Global Leaderboard &#x2014; top times worldwide</li>
+            </ul>
+            <p class="launch-note">&#x23F3; Launching when enough players join</p>
+            <a href="https://buy.stripe.com/placeholder-max" class="paywall-btn max-btn" target="_blank" rel="noopener">Get Vibe Max &#x2014; $4.99</a>
         </div>
     </div>
 
