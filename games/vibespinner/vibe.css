@@ -11,7 +11,8 @@
 
 body {
     background: #000;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,6 +20,7 @@ body {
     font-family: 'Orbitron', sans-serif;
     color: white;
     padding-bottom: 25px;
+    padding-top: env(safe-area-inset-top, 0px);
 }
 
 /* === HEADER === */
@@ -29,18 +31,36 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0 10px;
-    padding-top: env(safe-area-inset-top, 0px);
-    margin-top: env(safe-area-inset-top, 10px);
 }
 
 .header-section {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
     overflow: hidden;
+}
+
+.header-section.left {
+    flex: 0 0 auto;
+    min-width: 60px;
+    padding-left: 10px;
+}
+
+.header-section.right {
+    flex: 0 0 auto;
+    min-width: 60px;
+    padding-right: 10px;
+}
+
+.header-section.center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 /* === RPM DISPLAY === */
