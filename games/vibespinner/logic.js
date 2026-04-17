@@ -244,10 +244,8 @@ function animate() {
     const needleRot = Math.min((rpm / 200000) * 180 - 90, 105);
     document.getElementById('needle').style.transform = `rotate(${needleRot}deg)`;
 
-    // Only shake on PRO or MAX tier, and only above 125K
-    const currentTier = localStorage.getItem('vibeTier') || 'free';
-    const canShake = currentTier === 'pro' || currentTier === 'max';
-    if (canShake && rpm > 125000) {
+    const vibeTierNow = localStorage.getItem('vibeTier') || 'free';
+    if ((vibeTierNow === 'pro' || vibeTierNow === 'max') && rpm > 125000) {
         const shake = Math.min((rpm - 125000) / 10000, 3);
         document.getElementById('header-bar').style.transform =
             `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
