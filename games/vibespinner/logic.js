@@ -7,7 +7,8 @@ const PRO_SKINS = ['lambo', 'mustang', 'harley', 'jet'];
 // ─── AUDIO & PHYSICS STATE ───────────────────────────────────────────────────
 let audioCtx = null, mainEngine = null, subEngine = null, gainNode = null, modulator = null;
 let isMuted = true, currentSkin = 'lambo', angle = 0, velocity = 0, lastY = 0;
-let userHasSpun = false;
+let userHasSpun  = false;
+let wasShaking   = false;
 
 // ─── SKIN CONFIG ─────────────────────────────────────────────────────────────
 const config = {
@@ -227,15 +228,18 @@ function animate() {
     document.getElementById('needle').style.transform = `rotate(${needleRot}deg)`;
 
     const vibeTierNow = localStorage.getItem('vibeTier') || 'free';
-    if (userHasSpun && (vibeTierNow === 'pro' || vibeTierNow === 'max') && rpm > 125000) {
+    const shouldShake = userHasSpun && (vibeTierNow === 'pro' || vibeTierNow === 'max') && rpm > 125000;
+    if (shouldShake) {
+        wasShaking = true;
         const shake = Math.min((rpm - 125000) / 10000, 3);
         document.getElementById('header-bar').style.transform =
             `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
         document.getElementById('menu').style.transform =
             `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
-    } else {
-        document.getElementById('header-bar').style.transform = 'translate(0,0)';
-        document.getElementById('menu').style.transform = 'translate(0,0)';
+    } else if (wasShaking) {
+        wasShaking = false;
+        document.getElementById('header-bar').style.transform = '';
+        document.getElementById('menu').style.transform = '';
     }
 
     if (mainEngine && gainNode && !isMuted) {

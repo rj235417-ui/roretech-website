@@ -109,7 +109,6 @@ body {
 
 #needle {
     transform-origin: 100px 100px;
-    transition: transform 0.01s ease-out;
 }
 
 /* === STOP BUTTON === */
@@ -152,6 +151,7 @@ body {
     overflow: hidden;
     mask-image: radial-gradient(circle, black 70%, transparent 100%);
     -webkit-mask-image: radial-gradient(circle, black 70%, transparent 100%);
+    will-change: transform, filter;
 }
 
 /* === METAL GLINT — opacity controlled by JS via --glint variable === */
