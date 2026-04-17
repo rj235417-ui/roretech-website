@@ -2,25 +2,19 @@
 let vibeTier   = localStorage.getItem('vibeTier')   || 'free';
 let ownedSkins = JSON.parse(localStorage.getItem('ownedSkins') || '[]');
 
-const PRO_SKINS   = ['lambo', 'mustang', 'harley', 'jet'];
-const STORE_SKINS = ['f1', 'space'];
-const SKIN_META   = {
-    f1:    { name: 'F1 Racing', icon: '\uD83C\uDFC1', stripeUrl: 'https://buy.stripe.com/placeholder_f1' },
-    space: { name: 'Space',     icon: '\uD83D\uDE80', stripeUrl: 'https://buy.stripe.com/placeholder_space' }
-};
+const PRO_SKINS = ['lambo', 'mustang', 'harley', 'jet'];
 
 // ─── AUDIO & PHYSICS STATE ───────────────────────────────────────────────────
 let audioCtx = null, mainEngine = null, subEngine = null, gainNode = null, modulator = null;
 let isMuted = true, currentSkin = 'lambo', angle = 0, velocity = 0, lastY = 0;
+let userHasSpun = false;
 
 // ─── SKIN CONFIG ─────────────────────────────────────────────────────────────
 const config = {
     lambo:   { base: 45, harmonic: 'sawtooth', rumble: 'triangle', img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=800' },
     mustang: { base: 35, harmonic: 'square',   rumble: 'sawtooth', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800' },
     harley:  { base: 22, harmonic: 'sawtooth', rumble: 'square',   img: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=800' },
-    jet:     { base: 85, harmonic: 'sine',     rumble: 'sine',     img: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800' },
-    f1:      { base: 70, harmonic: 'square',   rumble: 'sawtooth', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800' },
-    space:   { base: 90, harmonic: 'sine',     rumble: 'sine',     img: 'https://images.unsplash.com/photo-1446941611757-91d2c3bd3d45?auto=format&fit=crop&q=80&w=800' }
+    jet:     { base: 85, harmonic: 'sine',     rumble: 'sine',     img: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800' }
 };
 
 // ─── TIER HELPERS ────────────────────────────────────────────────────────────
@@ -31,10 +25,8 @@ function getRpmCap() {
 }
 
 function getOverheatThreshold() { return vibeTier === 'free' ? Infinity : 125000; }
-function getShakeThreshold()    { return vibeTier === 'free' ? Infinity : 125000; }
 
 function isSkinAccessible(skin) {
-    if (STORE_SKINS.includes(skin)) return ownedSkins.includes(skin);
     if (vibeTier === 'free') return skin === 'lambo';
     return true;
 }
@@ -105,7 +97,7 @@ function hardStop() {
 // ─── SKINS ───────────────────────────────────────────────────────────────────
 function handleSkinClick(skin) {
     if (!isSkinAccessible(skin)) {
-        STORE_SKINS.includes(skin) ? showStorePurchaseModal(skin) : showUpgradeModal();
+        showUpgradeModal();
         return;
     }
     setSkin(skin);
@@ -138,17 +130,6 @@ function showUpgradeModal() {
     document.getElementById('modal-desc').textContent  = 'All skins + 150,000 RPM + overheat FX + photo upload.';
     document.getElementById('modal-btn').href          = 'https://buy.stripe.com/placeholder';
     document.getElementById('modal-btn').textContent   = 'Unlock Pro \u2014 $1.99';
-    document.getElementById('paywall-modal').style.display = 'flex';
-}
-
-function showStorePurchaseModal(skin) {
-    const meta = SKIN_META[skin];
-    document.getElementById('modal-icon').textContent  = meta.icon;
-    document.getElementById('modal-title').textContent = `Unlock ${meta.name}`;
-    document.getElementById('modal-price').textContent = 'One-time $0.99';
-    document.getElementById('modal-desc').textContent  = 'Yours forever on any tier.';
-    document.getElementById('modal-btn').href          = meta.stripeUrl;
-    document.getElementById('modal-btn').textContent   = 'Unlock Skin \u2014 $0.99';
     document.getElementById('paywall-modal').style.display = 'flex';
 }
 
@@ -199,10 +180,10 @@ function updateSkinUI() {
         if (badge) badge.style.display = ok ? 'none' : '';
     });
 
-    const photoBtn  = document.getElementById('photo-btn');
+    const photoBtn   = document.getElementById('photo-btn');
     const photoBadge = photoBtn ? photoBtn.querySelector('.lock-badge') : null;
-    const photoOk   = isPhotoEnabled();
-    if (photoBtn) photoBtn.classList.toggle('locked', !photoOk);
+    const photoOk    = isPhotoEnabled();
+    if (photoBtn)   photoBtn.classList.toggle('locked', !photoOk);
     if (photoBadge) photoBadge.style.display = photoOk ? 'none' : '';
 
     const tierBadge = document.getElementById('tier-badge');
@@ -222,6 +203,7 @@ window.addEventListener('touchmove', (e) => {
     const delta    = currentY - lastY;
     if (Math.abs(delta) < 2) velocity *= 0.95;
     else                     velocity += delta * 0.8;
+    if (Math.abs(velocity) > 1) userHasSpun = true;
     lastY = currentY;
 }, { passive: false });
 
@@ -245,7 +227,7 @@ function animate() {
     document.getElementById('needle').style.transform = `rotate(${needleRot}deg)`;
 
     const vibeTierNow = localStorage.getItem('vibeTier') || 'free';
-    if ((vibeTierNow === 'pro' || vibeTierNow === 'max') && rpm > 125000) {
+    if (userHasSpun && (vibeTierNow === 'pro' || vibeTierNow === 'max') && rpm > 125000) {
         const shake = Math.min((rpm - 125000) / 10000, 3);
         document.getElementById('header-bar').style.transform =
             `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
