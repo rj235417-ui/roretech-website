@@ -58,7 +58,16 @@ body {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* === OVERHEAT GLOW — triggered by JS at 120k RPM === */
+/* === TIER BADGE — small indicator below RPM === */
+#tier-badge {
+    font-size: 7px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.18);
+    margin-top: 3px;
+}
+
+/* === OVERHEAT GLOW — triggered by JS at threshold === */
 .overheat {
     color: #ff4b2b !important;
     text-shadow: 0 0 20px #ff4b2b, 0 0 40px #ff4b2b88 !important;
@@ -128,10 +137,8 @@ body {
 #spinner::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     border-radius: 50%;
     background: linear-gradient(
         135deg,
@@ -165,6 +172,7 @@ body {
     overflow-x: auto;
     flex-grow: 1;
     scrollbar-width: none;
+    align-items: center;
 }
 
 .skin-option {
@@ -173,6 +181,7 @@ body {
     align-items: center;
     gap: 4px;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 .skin-btn {
@@ -193,4 +202,187 @@ body {
     font-size: 7px;
     font-weight: bold;
     color: rgba(255,255,255,0.5);
+}
+
+/* === LOCKED SKINS === */
+.skin-option.locked .skin-btn {
+    opacity: 0.42;
+    filter: grayscale(40%);
+}
+
+.lock-badge {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    font-size: 11px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* === SKIN STORE LINK === */
+.skin-store-link {
+    flex-shrink: 0;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: rgba(0, 204, 255, 0.5);
+    text-align: center;
+    line-height: 1.3;
+    cursor: pointer;
+    padding: 4px 2px;
+    border-left: 1px solid rgba(255,255,255,0.06);
+    padding-left: 10px;
+    touch-action: auto;
+}
+
+.skin-store-link:active {
+    color: #00ccff;
+}
+
+/* === UPGRADE BANNER === */
+#upgrade-banner {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #1a0033, #2d0060);
+    border: 1px solid rgba(160, 0, 255, 0.35);
+    border-radius: 14px;
+    padding: 12px 18px;
+    max-width: 340px;
+    width: 90%;
+    z-index: 900;
+    text-align: center;
+    box-shadow: 0 0 24px rgba(120, 0, 255, 0.3);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    touch-action: auto;
+}
+
+#upgrade-banner.visible {
+    display: block;
+}
+
+.banner-btn {
+    display: inline-block;
+    margin-top: 9px;
+    background: linear-gradient(135deg, #9b00ff, #6600cc);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+/* === PAYWALL MODAL === */
+.paywall-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.82);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    touch-action: auto;
+}
+
+.paywall-card {
+    background: #0f0f0f;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 32px 28px 28px;
+    max-width: 320px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0,204,255,0.15);
+}
+
+.paywall-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    touch-action: auto;
+}
+
+.paywall-close:active { color: #fff; }
+
+.paywall-lock {
+    font-size: 40px;
+    margin-bottom: 14px;
+}
+
+.paywall-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 17px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.paywall-price {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    color: #00ccff;
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px rgba(0,204,255,0.6);
+}
+
+.paywall-desc {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+}
+
+.paywall-btn {
+    display: block;
+    background: linear-gradient(135deg, #00ccff, #0088cc);
+    color: #000;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(0,204,255,0.4);
+    transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.paywall-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 8px rgba(0,204,255,0.3);
+}
+
+/* === DEV MODE BUTTON === */
+#dev-btn {
+    position: fixed;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #2a2a2a;
+    cursor: pointer;
+    z-index: 999;
+    touch-action: auto;
+    padding: 4px 10px;
+    white-space: nowrap;
 }

@@ -23,6 +23,7 @@
         <div class="header-section left">
             <span id="stats">0</span>
             <span id="unit">RPM</span>
+            <span id="tier-badge">FREE</span>
         </div>
         <div class="header-section center">
             <div id="gauge-box">
@@ -44,39 +45,74 @@
             <span id="stop-label">STOP</span>
         </div>
     </header>
+
     <div id="spinner-container">
         <div id="spinner"></div>
     </div>
+
     <div id="menu">
-        <div id="power-toggle" onclick="handlePowerClick()">🔇</div>
+        <div id="power-toggle" onclick="handlePowerClick()">&#x1F507;</div>
         <div id="skin-scroll">
-            <div class="skin-option" onclick="setSkin('lambo')">
-                <div class="skin-btn" style="background-color:#ffcc00;font-size:22px;display:flex;align-items:center;justify-content:center;">🏎</div>
+            <!-- FREE: always unlocked -->
+            <div class="skin-option" data-skin="lambo" onclick="handleSkinClick('lambo')">
+                <div class="skin-btn" style="background-color:#ffcc00;font-size:22px;display:flex;align-items:center;justify-content:center;">&#x1F3CE;</div>
                 <span>LAMBO</span>
             </div>
-            <div class="skin-option" onclick="setSkin('mustang')">
-                <div class="skin-btn" style="background-color:#ff4b2b;font-size:22px;display:flex;align-items:center;justify-content:center;">🐎</div>
+            <!-- PRO skins -->
+            <div class="skin-option locked" data-skin="mustang" onclick="handleSkinClick('mustang')">
+                <div class="skin-btn" style="position:relative;background-color:#ff4b2b;font-size:22px;display:flex;align-items:center;justify-content:center;">&#x1F40E;<span class="lock-badge">&#x1F512;</span></div>
                 <span>MUSTANG</span>
             </div>
-            <div class="skin-option" onclick="setSkin('harley')">
-                <div class="skin-btn" style="background-color:#ff6600;font-size:22px;display:flex;align-items:center;justify-content:center;">🏍</div>
+            <div class="skin-option locked" data-skin="harley" onclick="handleSkinClick('harley')">
+                <div class="skin-btn" style="position:relative;background-color:#ff6600;font-size:22px;display:flex;align-items:center;justify-content:center;">&#x1F3CD;<span class="lock-badge">&#x1F512;</span></div>
                 <span>HARLEY</span>
             </div>
-            <div class="skin-option" onclick="setSkin('jet')">
-                <div class="skin-btn jet-solid" style="font-size:22px;display:flex;align-items:center;justify-content:center;">✈️</div>
+            <div class="skin-option locked" data-skin="jet" onclick="handleSkinClick('jet')">
+                <div class="skin-btn jet-solid" style="position:relative;font-size:22px;display:flex;align-items:center;justify-content:center;">&#x2708;&#xFE0F;<span class="lock-badge">&#x1F512;</span></div>
                 <span>JET</span>
             </div>
-            <div class="skin-option" onclick="document.getElementById('photo-input').click()">
-                <div class="skin-btn" style="background:#333;display:flex;align-items:center;justify-content:center;font-size:20px;">+</div>
+            <!-- PHOTO upload -->
+            <div class="skin-option locked" id="photo-btn" onclick="handlePhotoClick()">
+                <div class="skin-btn" style="position:relative;background:#333;display:flex;align-items:center;justify-content:center;font-size:20px;">+<span class="lock-badge">&#x1F512;</span></div>
                 <span>PHOTO</span>
             </div>
-            <div class="skin-option" style="cursor:help;">
-                <div class="skin-btn" style="background:#000;border:2px solid #222;display:flex;align-items:center;justify-content:center;font-size:24px;color:#555;text-shadow:0 0 5px #fff;">?</div>
-                <span style="color:#444;letter-spacing:1px;">COMING SOON</span>
+            <!-- SKIN STORE: $0.99 each -->
+            <div class="skin-option locked" data-skin="f1" onclick="handleSkinClick('f1')">
+                <div class="skin-btn" style="position:relative;background-color:#ffe000;font-size:22px;display:flex;align-items:center;justify-content:center;">&#x1F3C1;<span class="lock-badge">&#x1F512;</span></div>
+                <span>F1</span>
             </div>
+            <div class="skin-option locked" data-skin="space" onclick="handleSkinClick('space')">
+                <div class="skin-btn" style="position:relative;background-color:#0a0a2e;font-size:22px;display:flex;align-items:center;justify-content:center;border:1px solid #1a1a6e;">&#x1F680;<span class="lock-badge">&#x1F512;</span></div>
+                <span>SPACE</span>
+            </div>
+            <!-- Skin Store link -->
+            <div class="skin-store-link" onclick="showUpgradeModal()">SKIN<br>STORE</div>
         </div>
     </div>
+
     <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="loadPhoto(event)">
+
+    <!-- Upgrade Banner (shown when free tier hits 50K) -->
+    <div id="upgrade-banner">
+        <span>You've hit the free limit! Unlock 150K RPM + all skins &rarr; <strong>Vibe Pro $1.99</strong></span>
+        <a href="https://buy.stripe.com/placeholder" class="banner-btn" target="_blank" rel="noopener">Unlock Now</a>
+    </div>
+
+    <!-- Paywall / Store Modal -->
+    <div id="paywall-modal" class="paywall-backdrop" onclick="closePaywall(event)">
+        <div class="paywall-card">
+            <button class="paywall-close" onclick="closePaywall()">&#x2715;</button>
+            <div class="paywall-lock" id="modal-icon">&#x1F512;</div>
+            <h2 class="paywall-title" id="modal-title">Unlock Vibe Pro</h2>
+            <p class="paywall-price" id="modal-price">One-time $1.99</p>
+            <p class="paywall-desc" id="modal-desc">All skins + 150,000 RPM + overheat FX + photo upload.</p>
+            <a href="https://buy.stripe.com/placeholder" class="paywall-btn" id="modal-btn" target="_blank" rel="noopener">Unlock Pro &#x2014; $1.99</a>
+        </div>
+    </div>
+
+    <!-- DEV mode toggle (bottom center) -->
+    <div id="dev-btn" onclick="devCycleTier()">DEV &middot; <span id="dev-tier-display">FREE</span></div>
+
     <script src="logic.js"></script>
 </body>
 </html>
