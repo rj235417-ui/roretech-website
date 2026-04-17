@@ -112,24 +112,14 @@ function setSkin(skin) {
     if (mainEngine) { mainEngine.type = config[skin].harmonic; subEngine.type = config[skin].rumble; }
 }
 
-async function handlePhotoClick() {
+function handlePhotoClick() {
     if (!isPhotoEnabled()) { showUpgradeModal(); return; }
+    document.getElementById('photo-chooser').style.display = 'flex';
+}
 
-    if (window.capacitorCamera && window.Capacitor && Capacitor.isNativePlatform()) {
-        try {
-            const { Camera, CameraSource, CameraResultType } = capacitorCamera;
-            const image = await Camera.getPhoto({
-                quality: 90,
-                allowEditing: false,
-                resultType: CameraResultType.DataUrl,
-                source: CameraSource.Prompt
-            });
-            if (image && image.dataUrl) {
-                document.getElementById('spinner').style.backgroundImage = `url('${image.dataUrl}')`;
-            }
-        } catch (e) { /* user cancelled */ }
-    } else {
-        document.getElementById('photo-input').click();
+function closePhotoChooser(e) {
+    if (!e || e.target === document.getElementById('photo-chooser')) {
+        document.getElementById('photo-chooser').style.display = 'none';
     }
 }
 

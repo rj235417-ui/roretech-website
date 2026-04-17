@@ -85,7 +85,31 @@
         </div>
     </div>
 
-    <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="loadPhoto(event)">
+    <input type="file" id="photo-input"  accept="image/*"                      style="display:none;" onchange="loadPhoto(event)">
+    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none;" onchange="loadPhoto(event)">
+
+    <!-- Photo source chooser -->
+    <div id="photo-chooser" class="paywall-backdrop" onclick="closePhotoChooser(event)" style="display:none;">
+        <div class="paywall-card" style="padding:24px 20px;">
+            <button class="paywall-close" onclick="closePhotoChooser()">&#x2715;</button>
+            <div onclick="document.getElementById('camera-input').click();closePhotoChooser();"
+                 style="display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);cursor:pointer;">
+                <span style="font-size:28px;">&#x1F4F7;</span>
+                <div>
+                    <div style="font-family:'Orbitron',sans-serif;font-size:13px;color:#fff;letter-spacing:1px;">Take Photo</div>
+                    <div style="font-family:'Rajdhani',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;">Use camera</div>
+                </div>
+            </div>
+            <div onclick="document.getElementById('photo-input').click();closePhotoChooser();"
+                 style="display:flex;align-items:center;gap:14px;padding:16px 0;cursor:pointer;">
+                <span style="font-size:28px;">&#x1F5BC;&#xFE0F;</span>
+                <div>
+                    <div style="font-family:'Orbitron',sans-serif;font-size:13px;color:#fff;letter-spacing:1px;">Choose from Gallery</div>
+                    <div style="font-family:'Rajdhani',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;">Pick existing photo</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Upgrade Banner (shown when free tier hits 50K) -->
     <div id="upgrade-banner">
