@@ -244,14 +244,18 @@ function animate() {
     const needleRot = Math.min((rpm / 200000) * 180 - 90, 105);
     document.getElementById('needle').style.transform = `rotate(${needleRot}deg)`;
 
-    const shakeThr = getShakeThreshold();
-    if (rpm > shakeThr) {
-        const shake = (rpm - shakeThr) / 10000;
-        document.getElementById('header-bar').style.transform = `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
-        document.getElementById('menu').style.transform       = `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
+    // Only shake on PRO or MAX tier, and only above 125K
+    const currentTier = localStorage.getItem('vibeTier') || 'free';
+    const canShake = currentTier === 'pro' || currentTier === 'max';
+    if (canShake && rpm > 125000) {
+        const shake = Math.min((rpm - 125000) / 10000, 3);
+        document.getElementById('header-bar').style.transform =
+            `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
+        document.getElementById('menu').style.transform =
+            `translate(${(Math.random()-0.5)*shake}px,${(Math.random()-0.5)*shake}px)`;
     } else {
         document.getElementById('header-bar').style.transform = 'translate(0,0)';
-        document.getElementById('menu').style.transform       = 'translate(0,0)';
+        document.getElementById('menu').style.transform = 'translate(0,0)';
     }
 
     if (mainEngine && gainNode && !isMuted) {
