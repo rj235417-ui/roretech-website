@@ -232,8 +232,7 @@ function animate() {
         lastNeedleRot = needleRot;
     }
 
-    const vibeTierNow = localStorage.getItem('vibeTier') || 'free';
-    const shouldShake = userHasSpun && (vibeTierNow === 'pro' || vibeTierNow === 'max') && rpm > 125000;
+    const shouldShake = userHasSpun && (vibeTier === 'pro' || vibeTier === 'max') && rpm > 125000;
     if (shouldShake) {
         wasShaking = true;
         const shake = Math.min((rpm - 125000) / 10000, 3);
@@ -269,6 +268,22 @@ function animate() {
 
     requestAnimationFrame(animate);
 }
+
+// ─── APP LIFECYCLE ────────────────────────────────────────────────────────────
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        velocity    = 0;
+        userHasSpun = false;
+        wasShaking  = false;
+        document.getElementById('header-bar').style.transform = '';
+        document.getElementById('menu').style.transform       = '';
+        if (!isMuted) {
+            stopEngine();
+            isMuted = true;
+            document.getElementById('power-toggle').innerText = '\uD83D\uDD07';
+        }
+    }
+});
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 setSkin('lambo');
