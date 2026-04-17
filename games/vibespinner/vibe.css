@@ -43,14 +43,12 @@ body {
 }
 
 .header-section.left {
-    flex: 0 0 auto;
-    min-width: 60px;
+    flex: 0 0 90px;
     padding-left: 10px;
 }
 
 .header-section.right {
-    flex: 0 0 auto;
-    min-width: 60px;
+    flex: 0 0 90px;
     padding-right: 10px;
 }
 
@@ -69,6 +67,9 @@ body {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     transition: color 0.2s, text-shadow 0.2s;
+    font-variant-numeric: tabular-nums;
+    width: 80px;
+    text-align: center;
 }
 
 #unit {
@@ -109,6 +110,7 @@ body {
 
 #needle {
     transform-origin: 100px 100px;
+    will-change: transform;
 }
 
 /* === STOP BUTTON === */

@@ -9,6 +9,7 @@ let audioCtx = null, mainEngine = null, subEngine = null, gainNode = null, modul
 let isMuted = true, currentSkin = 'lambo', angle = 0, velocity = 0, lastY = 0;
 let userHasSpun  = false;
 let wasShaking   = false;
+let lastNeedleRot = null;
 
 // ─── SKIN CONFIG ─────────────────────────────────────────────────────────────
 const config = {
@@ -82,6 +83,7 @@ function stopEngine() {
 function hardStop() {
     velocity = 0;
     angle    = 0;
+    lastNeedleRot = null;
     stopEngine();
     isMuted = true;
     document.getElementById('power-toggle').innerText                = '\uD83D\uDD07';
@@ -224,8 +226,11 @@ function animate() {
     spinner.style.filter    = `blur(${Math.min(rpm / 9000, 15)}px)`;
     spinner.style.setProperty('--glint', Math.min(rpm / 150000, 0.8));
 
-    const needleRot = Math.min((rpm / 200000) * 180 - 90, 105);
-    document.getElementById('needle').style.transform = `rotate(${needleRot}deg)`;
+    const needleRot = Math.round(Math.min((rpm / 200000) * 180 - 90, 105) * 10) / 10;
+    if (needleRot !== lastNeedleRot) {
+        document.getElementById('needle').style.transform = `rotate(${needleRot}deg)`;
+        lastNeedleRot = needleRot;
+    }
 
     const vibeTierNow = localStorage.getItem('vibeTier') || 'free';
     const shouldShake = userHasSpun && (vibeTierNow === 'pro' || vibeTierNow === 'max') && rpm > 125000;
@@ -250,7 +255,8 @@ function animate() {
     }
 
     const statsEl = document.getElementById('stats');
-    statsEl.innerText = Math.round(rpm).toLocaleString();
+    const rpmDisplay = Math.round(rpm).toLocaleString();
+    if (statsEl.innerText !== rpmDisplay) statsEl.innerText = rpmDisplay;
     if (rpm > getOverheatThreshold()) statsEl.classList.add('overheat');
     else                              statsEl.classList.remove('overheat');
 
