@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — RORE Edge Journal | RORE Tech</title>
+  <meta name="description" content="Privacy Policy for RORE Edge Journal by RORE Tech. Your trade data never leaves your device.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#080B10; --bg2:#0D1117; --surface:#111820; --border:rgba(255,255,255,0.07);
+      --accent:#00C2FF; --fintech2:#22D3EE; --text:#E8EDF3; --muted:#6B7A8D;
+      --green:#10B981; --greenLt:rgba(16,185,129,0.1);
+    }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden; }
+    body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+    .container { max-width:800px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 0; background:rgba(8,11,16,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+    nav .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-family:'Syne',sans-serif; font-weight:800; font-size:22px; letter-spacing:0.06em; color:var(--text); text-decoration:none; }
+    .logo span { color:var(--accent); }
+    .nav-back { font-size:14px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .nav-back:hover { color:var(--text); }
+
+    .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-bottom:32px; flex-wrap:wrap; }
+    .breadcrumb a { color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .breadcrumb a:hover { color:var(--fintech2); }
+    .breadcrumb span { color:var(--fintech2); font-weight:500; }
+    .breadcrumb::before { content:''; display:block; width:16px; height:1px; background:var(--fintech2); }
+
+    .legal-header { padding:140px 0 48px; border-bottom:1px solid var(--border); margin-bottom:48px; }
+    .legal-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--fintech2); margin-bottom:16px; }
+    .legal-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(28px,4vw,48px); letter-spacing:-0.02em; margin-bottom:16px; }
+    .legal-meta { font-size:14px; color:var(--muted); }
+    .legal-meta strong { color:var(--text); }
+
+    /* Core commitment banner */
+    .commitment-banner { background:linear-gradient(135deg,rgba(14,116,144,0.15),rgba(34,211,238,0.05)); border:1px solid rgba(34,211,238,0.2); border-radius:12px; padding:28px 32px; margin-bottom:48px; }
+    .commitment-banner h3 { font-family:'Syne',sans-serif; font-weight:700; font-size:18px; margin-bottom:12px; color:var(--fintech2); }
+    .commitment-banner p { font-size:15px; color:var(--text); line-height:1.75; margin-bottom:0; }
+    .commitment-banner strong { color:var(--fintech2); }
+
+    .legal-body { padding-bottom:100px; }
+    .legal-body h2 { font-family:'Syne',sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.01em; margin:48px 0 16px; padding-top:48px; border-top:1px solid var(--border); color:var(--text); }
+    .legal-body h2:first-child { margin-top:0; padding-top:0; border-top:none; }
+    .legal-body p { font-size:15px; color:var(--muted); line-height:1.8; margin-bottom:16px; }
+    .legal-body p strong { color:var(--text); font-weight:600; }
+    .legal-body ul { list-style:none; display:flex; flex-direction:column; gap:8px; margin:16px 0 24px 0; }
+    .legal-body ul li { font-size:15px; color:var(--muted); line-height:1.7; display:flex; align-items:flex-start; gap:10px; }
+    .legal-body ul li::before { content:'—'; color:var(--fintech2); font-size:13px; flex-shrink:0; margin-top:3px; }
+    .legal-body ul.no-collect li::before { content:'✗'; color:#F87171; }
+    .legal-body ul.yes-collect li::before { content:'✓'; color:var(--fintech2); }
+    .highlight-box { background:var(--surface); border:1px solid rgba(34,211,238,0.15); border-left:3px solid var(--fintech2); border-radius:8px; padding:20px 24px; margin:24px 0; }
+    .highlight-box p { margin-bottom:0; color:var(--text); font-size:14px; }
+    .data-table { width:100%; border-collapse:collapse; margin:24px 0; font-size:13px; }
+    .data-table th { text-align:left; padding:10px 14px; background:var(--surface); color:var(--muted); font-weight:600; border-bottom:1px solid var(--border); font-size:12px; letter-spacing:0.05em; text-transform:uppercase; }
+    .data-table td { padding:12px 14px; border-bottom:1px solid var(--border); color:var(--muted); vertical-align:top; line-height:1.6; }
+    .data-table td a { color:var(--fintech2); text-decoration:none; }
+    .contact-block { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px 28px; margin-top:16px; }
+    .contact-block p { margin-bottom:6px; font-size:14px; }
+    .contact-block a { color:var(--fintech2); text-decoration:none; }
+    .tagline { text-align:center; padding:48px 0 0; font-family:'Syne',sans-serif; font-weight:700; font-size:20px; color:var(--fintech2); letter-spacing:-0.01em; }
+
+    footer { border-top:1px solid var(--border); padding:40px 0; margin-top:0; }
+    footer .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .footer-copy { font-size:13px; color:var(--muted); }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+    .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">RORE<span>.</span>TECH</a>
+    <a href="/" class="nav-back">← Back to roretech.com</a>
+  </div>
+</nav>
+
+<div class="legal-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">RORE Tech</a> / <a href="/#trading">RORE Edge Journal</a> / <span>Privacy Policy</span>
+    </div>
+    <div class="legal-eyebrow">Legal — RORE Edge Journal</div>
+    <h1 class="legal-title">Privacy Policy</h1>
+    <p class="legal-meta"><strong>Last Updated:</strong> April 2026 &nbsp;·&nbsp; <strong>Effective Date:</strong> Upon first use of the application</p>
+  </div>
+</div>
+
+<div class="legal-body">
+  <div class="container">
+
+    <div class="commitment-banner">
+      <h3>Our Core Privacy Commitment</h3>
+      <p>RORE Tech built RORE Edge Journal on a single foundational principle: <strong>your trade data belongs to you and stays on your machine.</strong> We do not collect your data. We do not have servers storing your trades. We cannot see your portfolio. This is not a policy we can change — it is architectural. Your data physically cannot reach us because we built it that way.</p>
+    </div>
+
+    <h2>1. Who We Are</h2>
+    <p>RORE Tech is the developer and publisher of RORE Edge Journal. This Privacy Policy explains how we handle information in connection with the Application.</p>
+    <div class="contact-block">
+      <p>Contact: <a href="mailto:support@roretech.com">support@roretech.com</a> | <a href="https://roretech.com">roretech.com</a></p>
+    </div>
+
+    <h2>2. Information We Do NOT Collect</h2>
+    <p>Because RORE Edge Journal runs entirely on your local device, the following information <strong>never leaves your machine and is never accessible to RORE Tech:</strong></p>
+    <ul class="no-collect">
+      <li>Your trade history — dates, ticker symbols, prices, quantities, and P&amp;L</li>
+      <li>Your brokerage account numbers or account names</li>
+      <li>Your imported CSV files or any brokerage data</li>
+      <li>Your trade notes, setups, emotions, or journal entries</li>
+      <li>Your portfolio value or net worth</li>
+      <li>Any personally identifying financial information</li>
+    </ul>
+    <p>We have no servers that receive this data. We have no database that stores it. We have no employees who can access it. This is our strongest privacy guarantee and it is technically enforced, not just promised.</p>
+
+    <h2>3. Information We Collect — License Activation</h2>
+    <p>When you purchase a Pro or Lifetime license through our payment processor (currently Gumroad), the following information is collected <strong>by Gumroad, not by RORE Tech:</strong></p>
+    <ul>
+      <li>Your email address (used to deliver your license key)</li>
+      <li>Payment information (processed by Gumroad — never seen by RORE Tech)</li>
+    </ul>
+    <p>When you activate a license key within the Application, the Application may make a network request to verify the key. This request contains only the license key itself — no trade data, no personal information. We retain purchase records solely to deliver license keys, provide customer support, and prevent license key fraud. We do not sell or share purchase records for marketing purposes.</p>
+
+    <h2>4. AI Review Feature — Data Transmission (Pro Users Only)</h2>
+    <div class="highlight-box">
+      <p>The AI Review feature transmits trade data to Anthropic, PBC via the Claude API. This only occurs when you explicitly request a coaching report and <strong>only after you have provided informed consent.</strong></p>
+    </div>
+    <p><strong>What is transmitted to Anthropic:</strong></p>
+    <ul class="yes-collect">
+      <li>Trade records — dates, ticker symbols, entry/exit prices, P&amp;L amounts</li>
+      <li>Aggregated statistics derived from your trades</li>
+      <li>Any notes you have added to your trades</li>
+    </ul>
+    <p><strong>What is never transmitted:</strong></p>
+    <ul class="no-collect">
+      <li>Your name, email address, or any identifying information</li>
+      <li>Your brokerage account numbers or credentials</li>
+      <li>Any data beyond what is necessary to generate a coaching report</li>
+    </ul>
+    <p>RORE Tech does not log, store, or retain any data sent to or received from the Claude API. Anthropic processes this data according to their own Privacy Policy at <a href="https://anthropic.com/privacy" style="color:var(--fintech2);">anthropic.com/privacy</a>. You can disable AI Review at any time in Application settings.</p>
+
+    <h2>5. Crash Reports and Diagnostics</h2>
+    <p>The Application does not automatically send crash reports or diagnostic data to RORE Tech. If you experience a technical issue and contact our support team, you may choose to share log files or screenshots voluntarily. We use that information solely to diagnose and resolve your issue.</p>
+
+    <h2>6. Usage Analytics</h2>
+    <p>The Application does not collect usage analytics, telemetry, or behavioral data. We do not track which features you use, how often you open the Application, or how you interact with it.</p>
+
+    <h2>7. Local Storage</h2>
+    <p>All Application data is stored locally on your device:</p>
+    <ul>
+      <li><strong>Trade data and settings</strong> — stored in the Application's designated local data directory</li>
+      <li><strong>License key status</strong> — stored locally on your device</li>
+      <li><strong>Window and UI preferences</strong> — stored locally on your device</li>
+    </ul>
+    <p>You can delete all locally stored data at any time using "Clear All Data" in the Application, or by uninstalling the Application.</p>
+
+    <h2>8. Third-Party Services</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Service</th><th>Purpose</th><th>When Used</th><th>Their Privacy Policy</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Anthropic Claude API</td><td>AI coaching reports</td><td>Only when Pro user requests AI Review and has consented</td><td><a href="https://anthropic.com/privacy">anthropic.com/privacy</a></td></tr>
+        <tr><td>Gumroad</td><td>Payment processing and license delivery</td><td>Only at purchase</td><td><a href="https://gumroad.com/privacy">gumroad.com/privacy</a></td></tr>
+      </tbody>
+    </table>
+
+    <h2>9. Children's Privacy</h2>
+    <p>The Application is not directed to or intended for use by individuals under the age of 18. We do not knowingly collect any information from children.</p>
+
+    <h2>10. Your Rights</h2>
+    <p>Because we do not collect your trade data, most data subject rights are exercised directly by you within the Application — you own and control your data completely.</p>
+    <p>Regarding purchase records we hold (email for license delivery):</p>
+    <ul>
+      <li><strong>Access:</strong> Contact support@roretech.com to request what information we hold</li>
+      <li><strong>Deletion:</strong> Contact support@roretech.com to request deletion of purchase records</li>
+      <li><strong>Correction:</strong> Contact support@roretech.com to correct any inaccurate information</li>
+    </ul>
+    <p>If you are in the European Economic Area, you have additional rights under the GDPR. Contact us at <a href="mailto:support@roretech.com" style="color:var(--fintech2);">support@roretech.com</a> for GDPR-related requests.</p>
+
+    <h2>11. Data Security</h2>
+    <p>For locally stored data, security depends on your device's own security measures. We recommend enabling full-disk encryption on your device (FileVault on Mac, BitLocker on Windows) to protect your locally stored trade data.</p>
+
+    <h2>12. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Material changes will be communicated through the Application at next launch or via roretech.com. The "Last Updated" date at the top reflects the most recent revision. Continued use after changes take effect constitutes acceptance of the revised Policy.</p>
+
+    <h2>13. Contact Us</h2>
+    <p>If you have questions, concerns, or requests regarding this Privacy Policy:</p>
+    <div class="contact-block">
+      <p><strong>RORE Tech</strong></p>
+      <p>Email: <a href="mailto:support@roretech.com">support@roretech.com</a></p>
+      <p>Privacy contact: <a href="mailto:privacy@roretech.com">privacy@roretech.com</a></p>
+      <p>Website: <a href="https://roretech.com">roretech.com</a></p>
+      <p style="color:var(--muted);font-size:13px;margin-top:8px;">We aim to respond to all privacy-related inquiries within 5 business days.</p>
+    </div>
+
+    <p class="tagline">Your trades. Your machine. Your edge.</p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div>
+      <a href="/" class="logo" style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:0.06em;color:var(--text);text-decoration:none;">RORE<span style="color:var(--accent);">.</span>TECH</a>
+      <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/journal/terms.html">Journal Terms</a>
+      <a href="/journal/privacy.html">Journal Privacy</a>
+      <a href="mailto:support@roretech.com">Support</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

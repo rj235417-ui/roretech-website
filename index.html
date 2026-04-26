@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RORE Tech — Mobile Security & Gaming Apps</title>
-  <meta name="description" content="RORE Tech builds intelligent mobile applications — privacy-first Android security tools and immersive web gaming experiences.">
+  <title>RORE Tech — Security, Trading & Gaming Apps</title>
+  <meta name="description" content="RORE Tech builds privacy-first desktop and mobile applications — trade journals, Android security tools, and immersive web gaming experiences.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -13,6 +13,7 @@
     :root {
       --bg:#080B10; --bg2:#0D1117; --surface:#111820; --border:rgba(255,255,255,0.07);
       --accent:#00C2FF; --accent2:#0076FF; --vibe:#A855F7; --vibe2:#7C3AED;
+      --fintech:#0E7490; --fintech2:#22D3EE; --fintech-light:rgba(14,116,144,0.15);
       --text:#E8EDF3; --muted:#6B7A8D;
     }
     html { scroll-behavior: smooth; }
@@ -22,6 +23,7 @@
     .orb { position:fixed; border-radius:50%; filter:blur(120px); pointer-events:none; z-index:0; }
     .orb-1 { width:600px; height:600px; background:radial-gradient(circle,rgba(0,118,255,0.12),transparent 70%); top:-200px; left:-200px; }
     .orb-2 { width:500px; height:500px; background:radial-gradient(circle,rgba(168,85,247,0.1),transparent 70%); bottom:10%; right:-150px; }
+    .orb-3 { width:400px; height:400px; background:radial-gradient(circle,rgba(14,116,144,0.12),transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); }
     .container { max-width:1100px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
 
     /* NAV */
@@ -39,12 +41,17 @@
     .hero-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
     .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:24px; }
     .hero-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--accent); }
-    h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(42px,5vw,64px); line-height:1.05; letter-spacing:-0.02em; margin-bottom:24px; }
+    h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(38px,4.5vw,58px); line-height:1.05; letter-spacing:-0.02em; margin-bottom:24px; }
     h1 .line-accent { color:var(--accent); }
+    h1 .line-fintech { color:var(--fintech2); }
     .hero-sub { font-size:18px; font-weight:300; color:var(--muted); line-height:1.7; max-width:440px; margin-bottom:40px; }
     .btn-group { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
     .btn-primary { display:inline-flex; align-items:center; gap:10px; background:var(--accent); color:#000; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; letter-spacing:0.03em; padding:14px 28px; border-radius:6px; text-decoration:none; transition:all 0.2s; }
     .btn-primary:hover { background:#33CEFF; transform:translateY(-1px); box-shadow:0 8px 32px rgba(0,194,255,0.25); }
+    .btn-primary.fintech { background:var(--fintech2); color:#000; }
+    .btn-primary.fintech:hover { background:#38e4ff; box-shadow:0 8px 32px rgba(34,211,238,0.25); }
+    .btn-outline-fintech { display:inline-flex; align-items:center; gap:8px; color:var(--fintech2); font-size:14px; font-weight:600; text-decoration:none; border:1px solid rgba(34,211,238,0.3); padding:13px 24px; border-radius:6px; transition:all 0.2s; }
+    .btn-outline-fintech:hover { background:rgba(34,211,238,0.08); border-color:var(--fintech2); }
     .btn-ghost { display:inline-flex; align-items:center; gap:8px; color:var(--muted); font-size:14px; font-weight:500; text-decoration:none; transition:color 0.2s; }
     .btn-ghost:hover { color:var(--text); }
 
@@ -54,38 +61,50 @@
     .product-pill { display:flex; align-items:center; gap:16px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 22px; transition:all 0.3s; text-decoration:none; color:var(--text); }
     .product-pill:hover { transform:translateX(6px); border-color:rgba(0,194,255,0.25); }
     .product-pill.vibe:hover { border-color:rgba(168,85,247,0.25); }
-    .pill-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+    .product-pill.fintech:hover { border-color:rgba(34,211,238,0.25); }
+    .pill-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; overflow:hidden; }
     .pill-icon.security { background:linear-gradient(135deg,#0047CC,#00C2FF); box-shadow:0 4px 12px rgba(0,194,255,0.25); }
     .pill-icon.gaming { background:linear-gradient(135deg,#7C3AED,#A855F7); box-shadow:0 4px 12px rgba(168,85,247,0.25); }
+    .pill-icon.trading { background:linear-gradient(135deg,#0E7490,#22D3EE); box-shadow:0 4px 12px rgba(14,116,144,0.35); }
+    .pill-icon img { width:100%; height:100%; object-fit:cover; border-radius:10px; }
     .pill-info { flex:1; }
     .pill-name { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; margin-bottom:2px; }
     .pill-desc { font-size:12px; color:var(--muted); }
     .pill-badge { font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; white-space:nowrap; }
     .pill-badge.live { background:rgba(0,194,255,0.1); color:var(--accent); border:1px solid rgba(0,194,255,0.2); }
     .pill-badge.web { background:rgba(168,85,247,0.1); color:var(--vibe); border:1px solid rgba(168,85,247,0.2); }
+    .pill-badge.desktop { background:rgba(34,211,238,0.1); color:var(--fintech2); border:1px solid rgba(34,211,238,0.2); }
 
     /* STATS */
     .stats-bar { border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:40px 0; }
-    .stats-bar .container { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; text-align:center; }
+    .stats-bar .container { display:grid; grid-template-columns:repeat(5,1fr); gap:40px; text-align:center; }
     .stat-num { font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--accent); line-height:1; margin-bottom:6px; }
     .stat-num.purple { color:var(--vibe); }
+    .stat-num.teal { color:var(--fintech2); }
     .stat-label { font-size:13px; color:var(--muted); font-weight:400; letter-spacing:0.03em; }
 
     /* SECTIONS */
     .section { padding:100px 0; }
     .section-label { font-size:12px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
     .section-label.purple { color:var(--vibe); }
+    .section-label.teal { color:var(--fintech2); }
     .section-label::after { content:''; flex:1; height:1px; background:var(--border); max-width:80px; }
     .section-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(28px,3.5vw,42px); letter-spacing:-0.02em; margin-bottom:60px; line-height:1.15; }
 
     /* CARDS */
     .security-grid { display:grid; grid-template-columns:2fr 1fr; gap:24px; }
     .vibe-grid { display:grid; grid-template-columns:2fr 1fr; gap:24px; }
+    .trading-grid { display:grid; grid-template-columns:2fr 1fr; gap:24px; }
     .product-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px 28px; position:relative; overflow:hidden; transition:all 0.3s; }
     .product-card:hover { border-color:rgba(0,194,255,0.2); transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(0,194,255,0.1); }
     .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--accent),transparent); opacity:0; transition:opacity 0.3s; }
     .product-card:hover::before,.product-card.featured::before { opacity:1; }
     .product-card.featured { background:linear-gradient(135deg,#0D1A2E 0%,var(--surface) 100%); border-color:rgba(0,194,255,0.15); }
+    .trading-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px 28px; position:relative; overflow:hidden; transition:all 0.3s; }
+    .trading-card:hover { border-color:rgba(34,211,238,0.25); transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(34,211,238,0.1); }
+    .trading-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--fintech2),transparent); opacity:0; transition:opacity 0.3s; }
+    .trading-card:hover::before,.trading-card.featured::before { opacity:1; }
+    .trading-card.featured { background:linear-gradient(135deg,#0A1A20 0%,var(--surface) 100%); border-color:rgba(14,116,144,0.2); }
     .vibe-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px 28px; position:relative; overflow:hidden; transition:all 0.3s; }
     .vibe-card:hover { border-color:rgba(168,85,247,0.25); transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(168,85,247,0.1); }
     .vibe-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--vibe),transparent); opacity:0; transition:opacity 0.3s; }
@@ -95,13 +114,17 @@
     .product-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:4px; margin-bottom:20px; }
     .badge-live { background:rgba(0,194,255,0.1); color:var(--accent); border:1px solid rgba(0,194,255,0.2); }
     .badge-live::before { content:''; width:6px; height:6px; background:var(--accent); border-radius:50%; animation:pulse 2s infinite; }
+    .badge-live-teal { background:rgba(34,211,238,0.1); color:var(--fintech2); border:1px solid rgba(34,211,238,0.2); }
+    .badge-live-teal::before { content:''; width:6px; height:6px; background:var(--fintech2); border-radius:50%; animation:pulse 2s infinite; }
     .badge-web { background:rgba(168,85,247,0.1); color:var(--vibe); border:1px solid rgba(168,85,247,0.2); }
     .badge-soon { background:rgba(107,122,141,0.1); color:var(--muted); border:1px solid rgba(107,122,141,0.2); }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 
-    .product-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px; }
+    .product-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px; overflow:hidden; }
+    .product-icon img { width:100%; height:100%; object-fit:cover; border-radius:12px; }
     .icon-blue { background:linear-gradient(135deg,#0047CC,#00C2FF); box-shadow:0 4px 16px rgba(0,194,255,0.25); }
     .icon-purple { background:linear-gradient(135deg,#7C3AED,#A855F7); box-shadow:0 4px 16px rgba(168,85,247,0.25); }
+    .icon-teal { background:linear-gradient(135deg,#0E7490,#22D3EE); box-shadow:0 4px 16px rgba(14,116,144,0.35); }
     .icon-muted { background:rgba(255,255,255,0.05); border:1px solid var(--border); }
     .product-name { font-family:'Syne',sans-serif; font-weight:700; font-size:20px; letter-spacing:-0.01em; margin-bottom:10px; }
     .product-desc { font-size:14px; color:var(--muted); line-height:1.65; margin-bottom:20px; }
@@ -109,9 +132,39 @@
     .product-features li { font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
     .product-features li::before { content:'→'; color:var(--accent); font-size:12px; flex-shrink:0; }
     .product-features.purple li::before { color:var(--vibe); }
+    .product-features.teal li::before { color:var(--fintech2); }
     .product-link { font-size:13px; font-weight:600; color:var(--accent); text-decoration:none; letter-spacing:0.03em; display:inline-flex; align-items:center; gap:6px; transition:gap 0.2s; }
     .product-link:hover { gap:10px; }
     .product-link.purple { color:var(--vibe); }
+    .product-link.teal { color:var(--fintech2); }
+    .card-btn-group { display:flex; gap:12px; flex-wrap:wrap; }
+
+    /* PRICING */
+    .pricing-section { padding:100px 0; border-top:1px solid var(--border); }
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:32px; }
+    .pricing-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px 28px; position:relative; overflow:hidden; transition:all 0.3s; display:flex; flex-direction:column; }
+    .pricing-card:hover { transform:translateY(-4px); }
+    .pricing-card.popular { border-color:rgba(34,211,238,0.3); background:linear-gradient(135deg,#0A1A20 0%,var(--surface) 100%); }
+    .pricing-card.popular::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--fintech2),transparent); }
+    .pricing-badge { display:inline-block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:20px; }
+    .pricing-badge.popular-badge { background:rgba(34,211,238,0.15); color:var(--fintech2); border:1px solid rgba(34,211,238,0.3); }
+    .pricing-badge.value-badge { background:rgba(251,191,36,0.15); color:#FCD34D; border:1px solid rgba(251,191,36,0.3); }
+    .pricing-name { font-family:'Syne',sans-serif; font-weight:800; font-size:22px; margin-bottom:8px; }
+    .pricing-price { font-family:'Syne',sans-serif; font-weight:800; font-size:40px; line-height:1; margin-bottom:4px; }
+    .pricing-price span { font-size:18px; font-weight:400; color:var(--muted); }
+    .pricing-period { font-size:13px; color:var(--muted); margin-bottom:24px; }
+    .pricing-features { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:32px; flex:1; }
+    .pricing-features li { font-size:14px; color:var(--muted); display:flex; align-items:center; gap:10px; }
+    .pricing-features li::before { content:'✓'; color:var(--fintech2); font-size:13px; font-weight:700; flex-shrink:0; }
+    .pricing-btn { display:block; text-align:center; padding:14px 24px; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s; }
+    .pricing-btn.free-btn { background:rgba(255,255,255,0.06); color:var(--text); border:1px solid var(--border); }
+    .pricing-btn.free-btn:hover { background:rgba(255,255,255,0.1); }
+    .pricing-btn.pro-btn { background:var(--fintech2); color:#000; }
+    .pricing-btn.pro-btn:hover { background:#38e4ff; box-shadow:0 8px 32px rgba(34,211,238,0.3); }
+    .pricing-btn.lifetime-btn { background:linear-gradient(135deg,#1B3A5C,#0E7490); color:var(--text); border:1px solid rgba(34,211,238,0.2); }
+    .pricing-btn.lifetime-btn:hover { border-color:var(--fintech2); box-shadow:0 8px 32px rgba(14,116,144,0.3); }
+    .pricing-guarantee { text-align:center; font-size:13px; color:var(--muted); }
+    .pricing-guarantee span { color:var(--fintech2); }
 
     /* ABOUT */
     .about-section { padding:100px 0; border-top:1px solid var(--border); }
@@ -125,15 +178,16 @@
     .pillar-title { font-family:'Syne',sans-serif; font-weight:700; font-size:14px; margin-bottom:6px; }
     .pillar-text { font-size:13px; color:var(--muted); line-height:1.5; }
 
-    /* GAMING SECTION BORDER */
+    /* SECTION BORDERS */
     .vibe-section { padding:100px 0; border-top:1px solid var(--border); }
+    .trading-section { padding:100px 0; border-top:1px solid var(--border); }
 
     /* FOOTER */
     footer { border-top:1px solid var(--border); padding:48px 0; }
     footer .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
     .footer-left .logo { font-size:18px; }
     .footer-copy { font-size:13px; color:var(--muted); margin-top:6px; }
-    .footer-links { display:flex; gap:28px; }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
     .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
     .footer-links a:hover { color:var(--text); }
 
@@ -146,11 +200,12 @@
     @media(max-width:768px){
       .hero-inner,.about-grid{grid-template-columns:1fr;gap:40px}
       .hero-pills{display:none}
-      .security-grid,.vibe-grid{grid-template-columns:1fr}
-      .stats-bar .container{grid-template-columns:repeat(2,1fr);gap:24px}
+      .security-grid,.vibe-grid,.trading-grid,.pricing-grid{grid-template-columns:1fr}
+      .stats-bar .container{grid-template-columns:repeat(2,1fr);gap:24px;padding:0 16px}
       .pillars{grid-template-columns:1fr}
       footer .container{flex-direction:column;align-items:flex-start}
       .nav-links{gap:16px}
+      .card-btn-group{flex-direction:column}
     }
   </style>
 </head>
@@ -159,6 +214,7 @@
 <div class="grid-bg"></div>
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
 <!-- NAV -->
 <nav>
@@ -166,7 +222,9 @@
     <a href="/" class="logo">RORE<span>.</span>TECH</a>
     <div class="nav-links">
       <a href="#security" class="nav-link">Security</a>
+      <a href="#trading" class="nav-link">Trading</a>
       <a href="#gaming" class="nav-link">Gaming</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
       <div class="nav-divider"></div>
       <a href="mailto:support@roretech.com" class="nav-link">Contact</a>
     </div>
@@ -181,14 +239,15 @@
         <div class="hero-eyebrow fade-up">Apps by RORE Tech</div>
         <h1 class="fade-up delay-1">
           Security tools.<br>
+          <span class="line-fintech">Trading intelligence.</span><br>
           <span class="line-accent">Gaming experiences.</span><br>
           Built different.
         </h1>
         <p class="hero-sub fade-up delay-2">
-          We build intelligent mobile and web applications — from privacy-first Android security to immersive high-performance gaming. All crafted with precision.
+          We build precision software — privacy-first trade journals, Android security tools, and immersive web gaming. Your data never leaves your device.
         </p>
         <div class="btn-group fade-up delay-3">
-          <a href="#security" class="btn-primary">Explore Apps ↓</a>
+          <a href="#trading" class="btn-primary fintech">Explore RORE Edge ↓</a>
           <a href="mailto:support@roretech.com" class="btn-ghost">Get in touch</a>
         </div>
       </div>
@@ -200,6 +259,16 @@
             <div class="pill-desc">Silent face-capture for Android</div>
           </div>
           <span class="pill-badge live">Live</span>
+        </a>
+        <a href="#trading" class="product-pill fintech">
+          <div class="pill-icon trading">
+            <img src="assets/icon.png" alt="RORE Edge Journal">
+          </div>
+          <div class="pill-info">
+            <div class="pill-name">RORE Edge Journal</div>
+            <div class="pill-desc">Privacy-first trade journal</div>
+          </div>
+          <span class="pill-badge desktop">Desktop App</span>
         </a>
         <a href="#gaming" class="product-pill vibe">
           <div class="pill-icon gaming">⚡</div>
@@ -219,8 +288,9 @@
   <div class="container">
     <div><div class="stat-num">100%</div><div class="stat-label">On-device processing</div></div>
     <div><div class="stat-num">0</div><div class="stat-label">Data sent to servers</div></div>
+    <div><div class="stat-num teal">8</div><div class="stat-label">Brokers supported</div></div>
     <div><div class="stat-num">150K</div><div class="stat-label">Max RPM simulated</div></div>
-    <div><div class="stat-num purple">2</div><div class="stat-label">Products shipped</div></div>
+    <div><div class="stat-num purple">3</div><div class="stat-label">Products shipped</div></div>
   </div>
 </div>
 
@@ -250,7 +320,7 @@
         <div class="product-name">More from RORE</div>
         <p class="product-desc">Next generation of privacy-focused Android tools. Stay tuned.</p>
         <ul class="product-features">
-          <li>Security & privacy focus</li>
+          <li>Security &amp; privacy focus</li>
           <li>On-device intelligence</li>
           <li>No subscriptions required</li>
         </ul>
@@ -260,10 +330,113 @@
   </div>
 </section>
 
+<!-- TRADING -->
+<section class="trading-section" id="trading">
+  <div class="container">
+    <div class="section-label teal">Trading Tools</div>
+    <h2 class="section-title">Privacy-first trading<br>intelligence.</h2>
+    <div class="trading-grid">
+      <div class="trading-card featured">
+        <div class="product-badge badge-live-teal">● Live — Desktop App</div>
+        <div class="product-icon icon-teal">
+          <img src="assets/icon.png" alt="RORE Edge Journal icon">
+        </div>
+        <div class="product-name">RORE Edge Journal</div>
+        <p class="product-desc">The trade journal built for serious day traders. Import from 8 brokers, track every position, analyze your patterns, and get AI coaching — all 100% on your machine. Zero cloud. Zero compromise.</p>
+        <ul class="product-features teal">
+          <li>Import from 8 brokers — Fidelity, Robinhood, Schwab, TDA, IBKR, Tastytrade, E*TRADE, Webull</li>
+          <li>Auto-detects broker format — no manual mapping required</li>
+          <li>Full analytics suite — win rate, drawdown, P&amp;L by setup</li>
+          <li>AI coaching powered by Claude (Pro feature)</li>
+          <li>100% local — your data never leaves your machine</li>
+        </ul>
+        <div class="card-btn-group">
+          <a href="https://github.com/rj235417-ui/rore-edge-journal/releases" class="btn-primary fintech">Download for Mac →</a>
+          <a href="#pricing" class="btn-outline-fintech">View Pricing →</a>
+        </div>
+      </div>
+      <div class="trading-card">
+        <div class="product-badge badge-soon">Coming Soon</div>
+        <div class="product-icon icon-muted">📊</div>
+        <div class="product-name">More from RORE Edge</div>
+        <p class="product-desc">More fintech tools in the pipeline — scanner, risk manager, options tracker.</p>
+        <ul class="product-features teal">
+          <li>RORE Edge Scanner</li>
+          <li>RORE Edge Risk Manager</li>
+          <li>All 100% local, no cloud</li>
+        </ul>
+        <a href="mailto:support@roretech.com" class="product-link teal">Get notified →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-label teal">RORE Edge Journal</div>
+    <h2 class="section-title">Simple, honest pricing.</h2>
+    <p style="font-size:16px;color:var(--muted);margin-top:-40px;margin-bottom:48px;font-style:italic;">Your trades. Your machine. Your edge.</p>
+    <div class="pricing-grid">
+
+      <!-- FREE -->
+      <div class="pricing-card">
+        <div class="pricing-name">Free</div>
+        <div class="pricing-price">$0<span>/mo</span></div>
+        <div class="pricing-period">No credit card required</div>
+        <ul class="pricing-features">
+          <li>40 trades per month</li>
+          <li>Dashboard &amp; Calendar</li>
+          <li>All 8 broker imports</li>
+          <li>Auto-detect broker format</li>
+          <li>Resets 1st of each month</li>
+        </ul>
+        <a href="https://github.com/rj235417-ui/rore-edge-journal/releases" class="pricing-btn free-btn">Download Free →</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="pricing-card popular">
+        <div class="pricing-badge popular-badge">★ Most Popular</div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price">$9.99<span>/mo</span></div>
+        <div class="pricing-period">Cancel anytime</div>
+        <ul class="pricing-features">
+          <li>Unlimited trades</li>
+          <li>Full Trade Log with filtering</li>
+          <li>Complete analytics suite</li>
+          <li>AI coaching powered by Claude</li>
+          <li>Priority support</li>
+          <li>All future updates</li>
+        </ul>
+        <a href="https://roretech.com/upgrade" class="pricing-btn pro-btn">Start Pro →</a>
+      </div>
+
+      <!-- LIFETIME -->
+      <div class="pricing-card">
+        <div class="pricing-badge value-badge">⚡ Best Value</div>
+        <div class="pricing-name">Lifetime</div>
+        <div class="pricing-price">$199<span> once</span></div>
+        <div class="pricing-period">One payment, yours forever</div>
+        <ul class="pricing-features">
+          <li>Everything in Pro, forever</li>
+          <li>No monthly charges — ever</li>
+          <li>All future updates included</li>
+          <li>License key — instant delivery</li>
+          <li>Transfer to new machine</li>
+          <li>30-day money-back guarantee</li>
+        </ul>
+        <a href="https://roretech.com/upgrade" class="pricing-btn lifetime-btn">Get Lifetime Access →</a>
+      </div>
+
+    </div>
+    <p class="pricing-guarantee">All purchases include a <span>30-day money-back guarantee</span>. License keys delivered instantly via email.</p>
+  </div>
+</section>
+
 <!-- GAMING -->
 <section class="vibe-section" id="gaming">
   <div class="container">
-    <div class="section-label purple">Gaming & Web Apps</div>
+    <div class="section-label purple">Gaming &amp; Web Apps</div>
     <h2 class="section-title">Immersive web<br>gaming experiences.</h2>
     <div class="vibe-grid">
       <div class="vibe-card featured">
@@ -275,7 +448,7 @@
           <li>Custom momentum-based physics engine</li>
           <li>Dual-oscillator Web Audio API synthesis</li>
           <li>4 skins — Lambo, Mustang, Harley, Jet</li>
-          <li>Overheat glow & UI shake above 120K RPM</li>
+          <li>Overheat glow &amp; UI shake above 120K RPM</li>
           <li>Installable PWA — add to home screen</li>
         </ul>
         <a href="/games/vibespinner/" class="product-link purple">Launch Vibe Spinner →</a>
@@ -286,7 +459,7 @@
         <div class="product-name">More from Vibe Studios</div>
         <p class="product-desc">More high-fidelity sensory web experiences in the pipeline.</p>
         <ul class="product-features purple">
-          <li>Game Mode — Hide & Hit mechanics</li>
+          <li>Game Mode — Hide &amp; Hit mechanics</li>
           <li>Global leaderboards</li>
           <li>Premium skin store</li>
         </ul>
@@ -303,13 +476,13 @@
       <div class="about-text">
         <div class="section-label">About RORE</div>
         <h2>We build tools that<br>respect your privacy.</h2>
-        <p>RORE Tech is an independent software company building practical, privacy-first Android applications and high-performance web experiences. We believe powerful tools shouldn't require handing your data to a third party.</p>
-        <p>Every app we ship processes data exclusively on your device. No accounts. No cloud storage. No ads.</p>
+        <p>RORE Tech is an independent software company building practical, privacy-first applications — from the RORE Edge trade journal for serious day traders, to Android security tools and high-performance web gaming experiences.</p>
+        <p>Every product we ship processes data exclusively on your device. No accounts. No cloud storage. No ads. No compromise.</p>
       </div>
       <div class="pillars">
         <div class="pillar"><div class="pillar-icon">🛡️</div><div class="pillar-title">Privacy First</div><p class="pillar-text">Your data never leaves your device. No cloud, no servers, no tracking.</p></div>
-        <div class="pillar"><div class="pillar-icon">📱</div><div class="pillar-title">Android Native</div><p class="pillar-text">Built specifically for Android using the latest platform APIs and ML capabilities.</p></div>
-        <div class="pillar"><div class="pillar-icon">🧠</div><div class="pillar-title">On-Device AI</div><p class="pillar-text">ML Kit powers real-time face recognition without any data leaving your phone.</p></div>
+        <div class="pillar"><div class="pillar-icon">📈</div><div class="pillar-title">Trading Tools</div><p class="pillar-text">RORE Edge Journal — 8-broker import, full analytics, AI coaching.</p></div>
+        <div class="pillar"><div class="pillar-icon">🧠</div><div class="pillar-title">On-Device AI</div><p class="pillar-text">From face recognition to Claude-powered coaching — all processed locally.</p></div>
         <div class="pillar"><div class="pillar-icon">🎮</div><div class="pillar-title">Web Gaming</div><p class="pillar-text">High-fidelity browser experiences that feel native — no app store required.</p></div>
       </div>
     </div>
@@ -325,6 +498,8 @@
     </div>
     <div class="footer-links">
       <a href="/privacy.html">Privacy Policy</a>
+      <a href="/journal/terms.html">Journal Terms</a>
+      <a href="/journal/privacy.html">Journal Privacy</a>
       <a href="mailto:support@roretech.com">Support</a>
       <a href="mailto:privacy@roretech.com">Privacy Contact</a>
     </div>
