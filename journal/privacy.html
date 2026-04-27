@@ -21,10 +21,12 @@
     .container { max-width:800px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
     nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 0; background:rgba(8,11,16,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
     nav .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; }
-    .logo { font-family:'Syne',sans-serif; font-weight:800; font-size:22px; letter-spacing:0.06em; color:var(--text); text-decoration:none; }
-    .logo span { color:var(--accent); }
-    .nav-back { font-size:14px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
-    .nav-back:hover { color:var(--text); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--text); }
 
     .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-bottom:32px; flex-wrap:wrap; }
     .breadcrumb a { color:var(--muted); text-decoration:none; transition:color 0.2s; }
@@ -65,27 +67,31 @@
     .contact-block a { color:var(--fintech2); text-decoration:none; }
     .tagline { text-align:center; padding:48px 0 0; font-family:'Syne',sans-serif; font-weight:700; font-size:20px; color:var(--fintech2); letter-spacing:-0.01em; }
 
-    footer { border-top:1px solid var(--border); padding:40px 0; margin-top:0; }
-    footer .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-    .footer-copy { font-size:13px; color:var(--muted); }
-    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
-    .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
-    .footer-links a:hover { color:var(--text); }
+    footer { border-top: 1px solid var(--border); padding: 44px 0; }
+    footer .container { max-width: 1100px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { display: flex; flex-direction: column; }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
   </style>
 </head>
 <body>
 
 <nav>
   <div class="container">
-    <a href="/" class="logo">RORE<span>.</span>TECH</a>
-    <a href="/" class="nav-back">← Back to roretech.com</a>
+    <a href="/" class="nav-logo">
+      <img src="/RORE_Tech_transparent.png" alt="RORE Tech">
+      <span class="nav-logo-text">RORE<span>.</span>TECH</span>
+    </a>
+    <a href="/journal/" class="nav-back">← Back to RORE Edge Journal</a>
   </div>
 </nav>
 
 <div class="legal-header">
   <div class="container">
     <div class="breadcrumb">
-      <a href="/">RORE Tech</a> / <a href="/#trading">RORE Edge Journal</a> / <span>Privacy Policy</span>
+      <a href="/">RORE Tech</a> / <a href="/journal/">RORE Edge Journal</a> / <span>Privacy Policy</span>
     </div>
     <div class="legal-eyebrow">Legal — RORE Edge Journal</div>
     <h1 class="legal-title">Privacy Policy</h1>
@@ -207,14 +213,16 @@
 
 <footer>
   <div class="container">
-    <div>
-      <a href="/" class="logo" style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:0.06em;color:var(--text);text-decoration:none;">RORE<span style="color:var(--accent);">.</span>TECH</a>
+    <div class="footer-logo">
+      <a href="/" class="nav-logo" style="margin-bottom:8px;display:inline-flex;">
+        <img src="/RORE_Tech_transparent.png" alt="RORE Tech">
+        <span class="nav-logo-text">RORE<span>.</span>TECH</span>
+      </a>
       <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
     </div>
     <div class="footer-links">
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/journal/terms.html">Journal Terms</a>
-      <a href="/journal/privacy.html">Journal Privacy</a>
+      <a href="/journal/privacy.html">Privacy Policy</a>
+      <a href="/journal/terms.html">Terms of Service</a>
       <a href="mailto:support@roretech.com">Support</a>
     </div>
   </div>

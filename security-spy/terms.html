@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Security SPY | RORE Tech</title>
+  <meta name="description" content="Terms of Service for Security SPY by RORE Tech.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#080B10; --bg2:#0D1117; --surface:#111820; --border:rgba(255,255,255,0.07); --accent:#00C2FF; --text:#E8EDF3; --muted:#6B7A8D; }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden; }
+    body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+    .container { max-width:800px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:14px 0; background:rgba(8,11,16,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+    nav .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-back { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .nav-back:hover { color:var(--text); }
+    .legal-header { padding:130px 0 44px; border-bottom:1px solid var(--border); margin-bottom:44px; }
+    .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-bottom:28px; flex-wrap:wrap; }
+    .breadcrumb a { color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .breadcrumb a:hover { color:var(--accent); }
+    .breadcrumb span { color:var(--accent); font-weight:500; }
+    .breadcrumb::before { content:''; display:block; width:16px; height:1px; background:var(--accent); }
+    .legal-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+    .legal-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(28px,4vw,46px); letter-spacing:-0.02em; margin-bottom:14px; }
+    .legal-meta { font-size:14px; color:var(--muted); }
+    .legal-meta strong { color:var(--text); }
+    .legal-body { padding-bottom:100px; }
+    .legal-body h2 { font-family:'Syne',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.01em; margin:44px 0 14px; padding-top:44px; border-top:1px solid var(--border); }
+    .legal-body h2:first-child { margin-top:0; padding-top:0; border-top:none; }
+    .legal-body p { font-size:15px; color:var(--muted); line-height:1.8; margin-bottom:14px; }
+    .legal-body p strong { color:var(--text); }
+    .legal-body ul { list-style:none; display:flex; flex-direction:column; gap:8px; margin:14px 0 20px; }
+    .legal-body ul li { font-size:15px; color:var(--muted); line-height:1.7; display:flex; align-items:flex-start; gap:10px; }
+    .legal-body ul li::before { content:'—'; color:var(--accent); font-size:13px; flex-shrink:0; margin-top:3px; }
+    .highlight-box { background:var(--surface); border:1px solid rgba(0,194,255,0.15); border-left:3px solid var(--accent); border-radius:8px; padding:18px 22px; margin:20px 0; }
+    .highlight-box p { margin-bottom:0; color:var(--text); font-size:14px; }
+    .uppercase-section { font-size:13px; color:var(--muted); line-height:1.8; margin-bottom:14px; }
+    .contact-block { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:22px 26px; margin-top:14px; }
+    .contact-block p { margin-bottom:6px; font-size:14px; }
+    .contact-block a { color:var(--accent); text-decoration:none; }
+    footer { border-top:1px solid var(--border); padding:40px 0; }
+    footer .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .footer-logo img { height:28px; width:auto; display:block; margin-bottom:6px; }
+    .footer-copy { font-size:12px; color:var(--muted); }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+    .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo"><img src="/RORE_Tech_transparent.png" alt="RORE Tech"><span class="nav-logo-text">RORE<span>.</span>TECH</span></a>
+    <a href="/security-spy/" class="nav-back">← Back to Security SPY</a>
+  </div>
+</nav>
+
+<div class="legal-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">RORE Tech</a> / <a href="/security-spy/">Security SPY</a> / <span>Terms of Service</span>
+    </div>
+    <div class="legal-eyebrow">Legal — Security SPY</div>
+    <h1 class="legal-title">Terms of Service</h1>
+    <p class="legal-meta"><strong>Last Updated:</strong> April 2026 &nbsp;·&nbsp; <strong>Effective Date:</strong> Upon first use of the application</p>
+  </div>
+</div>
+
+<div class="legal-body">
+  <div class="container">
+
+    <h2>1. Agreement to Terms</h2>
+    <p>By downloading, installing, or using Security SPY ("the Application"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, do not install or use the Application.</p>
+    <p>These Terms constitute a legally binding agreement between you ("User") and RORE Tech ("Company," "we," "us," or "our"), the developer and publisher of Security SPY.</p>
+
+    <h2>2. Description of the Application</h2>
+    <p>Security SPY (also marketed as "Smart Lens") is an Android application that silently captures photographs using the front-facing camera when user-configured applications are opened or the device lock screen is accessed. Its purpose is to help device owners identify unauthorized access to their personal devices. The Application is designed to run entirely on the User's local device. No photographs, biometric data, or personal information is transmitted to RORE Tech servers at any time.</p>
+
+    <h2>3. Permitted and Prohibited Use</h2>
+    <div class="highlight-box">
+      <p><strong>IMPORTANT:</strong> Security SPY is designed exclusively for monitoring your own personally-owned device. Use of this Application to monitor any device you do not own, or to surveil any person without lawful authority, may be illegal in your jurisdiction.</p>
+    </div>
+    <p><strong>Permitted uses:</strong></p>
+    <ul>
+      <li>Monitoring your own personally-owned Android device</li>
+      <li>Identifying unauthorized access to your own device by third parties</li>
+      <li>Parental monitoring of a minor child's device where you are the legal guardian and device owner</li>
+    </ul>
+    <p><strong>Prohibited uses:</strong></p>
+    <ul>
+      <li>Installing or using the Application on any device you do not own or have lawful authority to monitor</li>
+      <li>Covert surveillance of any person in violation of applicable privacy, wiretapping, or surveillance laws</li>
+      <li>Using captured images to harass, blackmail, defame, or harm any person</li>
+      <li>Any use that violates applicable local, state, national, or international law</li>
+    </ul>
+    <p>You are solely responsible for ensuring your use of the Application complies with all applicable laws in your jurisdiction. RORE Tech disclaims all liability for unlawful use of the Application.</p>
+
+    <h2>4. License Grant</h2>
+    <p>Subject to your compliance with these Terms, RORE Tech grants you a limited, non-exclusive, non-transferable, revocable license to install and use the Application on Android devices you own or control, solely for personal, lawful device security purposes.</p>
+    <p>This license does not include the right to copy, modify, distribute, sell, reverse engineer, or use the Application for any commercial purpose.</p>
+
+    <h2>5. Subscription Tiers and Pricing</h2>
+    <p><strong>Free Tier (after trial):</strong></p>
+    <ul>
+      <li>1 tagged app permitted</li>
+      <li>Tag can be changed at any time</li>
+      <li>No owner face registration or capture skip</li>
+      <li>No intruder vault access</li>
+      <li>Last 5 activity log entries only</li>
+    </ul>
+    <p><strong>Trial (first 30 days from install):</strong></p>
+    <ul>
+      <li>2 tagged apps — slots are permanently assigned; no switching after both slots are used, even if untagged</li>
+      <li>Full owner face registration and capture skip</li>
+      <li>Intruder vault included</li>
+      <li>Photos taken during trial are locked (not deleted) at trial end — upgrade to Pro to unlock access</li>
+      <li>Last 5 activity log entries only</li>
+    </ul>
+    <p><strong>Pro ($2.99/month or $14.99/year):</strong></p>
+    <ul>
+      <li>Unlimited tagged apps, changeable any time</li>
+      <li>Owner face registration and capture skip</li>
+      <li>Full intruder vault — always accessible</li>
+      <li>Full activity log and evidence export (PDF)</li>
+      <li>Vault photo count on dashboard</li>
+      <li>Geo-tagging and remote alerts — planned for Pro Ultra tier</li>
+    </ul>
+    <p>Annual Pro saves approximately 58% versus monthly pricing. Subscriptions renew automatically until cancelled. Cancellation takes effect at the end of the current billing period. No refunds for partial periods.</p>
+
+    <h2>6. Privacy and Data Storage</h2>
+    <p>All data collected by the Application — including photographs, facial geometry ratios, and event logs — is stored exclusively on your device. RORE Tech has no ability to access, view, or retrieve this data. For complete details, see our <a href="/security-spy/privacy.html" style="color:var(--accent);">Privacy Policy</a>.</p>
+
+    <h2>7. Biometric Data</h2>
+    <p>The Application processes a photograph of the device owner's face for owner recognition purposes. Only numerical facial geometry ratios are stored — not the raw photograph. This data never leaves your device. You may delete all biometric data at any time by clearing app data or uninstalling the Application.</p>
+
+    <h2>8. Intellectual Property</h2>
+    <p>The Application and all associated intellectual property is owned exclusively by RORE Tech and protected by applicable copyright, trademark, and intellectual property laws.</p>
+
+    <h2>9. Disclaimer of Warranties</h2>
+    <p class="uppercase-section">THE APPLICATION IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND. RORE TECH DOES NOT WARRANT THAT THE APPLICATION WILL FUNCTION WITHOUT ERROR, THAT ALL CAPTURES WILL BE SUCCESSFUL, OR THAT THE APPLICATION WILL MEET YOUR REQUIREMENTS. FACE RECOGNITION IS NOT PERFECT — FALSE POSITIVES AND FALSE NEGATIVES MAY OCCUR.</p>
+
+    <h2>10. Limitation of Liability</h2>
+    <p class="uppercase-section">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, RORE TECH SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF YOUR USE OF THE APPLICATION, INCLUDING ANY LIABILITY ARISING FROM UNLAWFUL USE OF THE APPLICATION BY YOU. RORE TECH'S TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNTS YOU PAID IN THE TWELVE MONTHS PRECEDING THE CLAIM, OR $50, WHICHEVER IS GREATER.</p>
+
+    <h2>11. User Responsibility and Indemnification</h2>
+    <p>You are solely responsible for ensuring your use of the Application is lawful. You agree to indemnify, defend, and hold harmless RORE Tech and its officers, directors, employees, and agents from any claims, liabilities, damages, or expenses arising from your use of the Application or violation of these Terms, including any claim arising from unlawful surveillance.</p>
+
+    <h2>12. Updates and Changes</h2>
+    <p>RORE Tech may modify these Terms at any time. Material changes will be communicated through the Application or via roretech.com. Continued use after changes take effect constitutes acceptance of the revised Terms.</p>
+
+    <h2>13. Governing Law</h2>
+    <p>These Terms shall be governed by the laws of the State of Delaware, United States. Any disputes shall be subject to the exclusive jurisdiction of the courts located in Delaware.</p>
+
+    <h2>14. Contact</h2>
+    <div class="contact-block">
+      <p><strong>RORE Tech</strong></p>
+      <p>Website: <a href="https://roretech.com">roretech.com</a></p>
+      <p>Email: <a href="mailto:support@roretech.com">support@roretech.com</a></p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <a href="/" class="nav-logo" style="margin-bottom:8px;display:inline-flex;">
+        <img src="/RORE_Tech_transparent.png" alt="RORE Tech">
+        <span class="nav-logo-text">RORE<span>.</span>TECH</span>
+      </a>
+      <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/security-spy/privacy.html">Privacy Policy</a>
+      <a href="/security-spy/terms.html">Terms of Service</a>
+      <a href="mailto:support@roretech.com">Support</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

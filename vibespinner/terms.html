@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Vibe Spinner | RORE Tech</title>
+  <meta name="description" content="Terms of Service for Vibe Spinner by RORE Tech.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#080B10; --surface:#111820; --border:rgba(255,255,255,0.07); --vibe:#A855F7; --text:#E8EDF3; --muted:#6B7A8D; }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden; }
+    body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+    .container { max-width:800px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:14px 0; background:rgba(8,11,16,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+    nav .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-back { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .nav-back:hover { color:var(--text); }
+    .legal-header { padding:130px 0 44px; border-bottom:1px solid var(--border); margin-bottom:44px; }
+    .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-bottom:28px; flex-wrap:wrap; }
+    .breadcrumb a { color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .breadcrumb a:hover { color:var(--vibe); }
+    .breadcrumb span { color:var(--vibe); font-weight:500; }
+    .breadcrumb::before { content:''; display:block; width:16px; height:1px; background:var(--vibe); }
+    .legal-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--vibe); margin-bottom:14px; }
+    .legal-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(28px,4vw,46px); letter-spacing:-0.02em; margin-bottom:14px; }
+    .legal-meta { font-size:14px; color:var(--muted); }
+    .legal-meta strong { color:var(--text); }
+    .legal-body { padding-bottom:100px; }
+    .legal-body h2 { font-family:'Syne',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.01em; margin:44px 0 14px; padding-top:44px; border-top:1px solid var(--border); }
+    .legal-body h2:first-child { margin-top:0; padding-top:0; border-top:none; }
+    .legal-body p { font-size:15px; color:var(--muted); line-height:1.8; margin-bottom:14px; }
+    .legal-body p strong { color:var(--text); }
+    .legal-body ul { list-style:none; display:flex; flex-direction:column; gap:8px; margin:14px 0 20px; }
+    .legal-body ul li { font-size:15px; color:var(--muted); line-height:1.7; display:flex; align-items:flex-start; gap:10px; }
+    .legal-body ul li::before { content:'—'; color:var(--vibe); font-size:13px; flex-shrink:0; margin-top:3px; }
+    .highlight-box { background:var(--surface); border:1px solid rgba(168,85,247,0.2); border-left:3px solid var(--vibe); border-radius:8px; padding:18px 22px; margin:20px 0; }
+    .highlight-box p { margin-bottom:0; color:var(--text); font-size:14px; }
+    .warning-box { background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.04)); border:1px solid rgba(168,85,247,0.25); border-left:3px solid var(--vibe); border-radius:8px; padding:20px 24px; margin:20px 0; }
+    .warning-box h4 { font-family:'Syne',sans-serif; font-weight:700; font-size:14px; color:var(--vibe); margin-bottom:10px; }
+    .warning-box p { margin-bottom:8px; font-size:14px; color:var(--text); }
+    .warning-box p:last-child { margin-bottom:0; }
+    .uppercase-section { font-size:13px; color:var(--muted); line-height:1.8; margin-bottom:14px; }
+    .contact-block { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:22px 26px; margin-top:14px; }
+    .contact-block p { margin-bottom:6px; font-size:14px; }
+    .contact-block a { color:var(--vibe); text-decoration:none; }
+    footer { border-top:1px solid var(--border); padding:40px 0; }
+    footer .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .footer-logo img { height:28px; width:auto; display:block; margin-bottom:6px; }
+    .footer-copy { font-size:12px; color:var(--muted); }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+    .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo"><img src="/RORE_Tech_transparent.png" alt="RORE Tech"><span class="nav-logo-text">RORE<span>.</span>TECH</span></a>
+    <a href="/vibespinner/" class="nav-back">← Back to Vibe Spinner</a>
+  </div>
+</nav>
+
+<div class="legal-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">RORE Tech</a> / <a href="/vibespinner/">Vibe Spinner</a> / <span>Terms of Service</span>
+    </div>
+    <div class="legal-eyebrow">Legal — Vibe Spinner</div>
+    <h1 class="legal-title">Terms of Service</h1>
+    <p class="legal-meta"><strong>Last Updated:</strong> April 2026 &nbsp;·&nbsp; <strong>Effective Date:</strong> Upon first use of the application</p>
+  </div>
+</div>
+
+<div class="legal-body">
+  <div class="container">
+
+    <h2>1. Agreement to Terms</h2>
+    <p>By downloading, installing, or using Vibe Spinner ("the Application"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, do not install or use the Application.</p>
+    <p>These Terms constitute a legally binding agreement between you ("User") and RORE Tech ("Company," "we," "us," or "our"), the developer and publisher of Vibe Spinner.</p>
+
+    <h2>2. Description of the Application</h2>
+    <p>Vibe Spinner is a mobile entertainment application featuring a physics-accurate, high-RPM engine spinner simulator with real-time audio synthesis, dynamic visual effects, and multiple engine skin themes. The Application is available on Android, with iOS coming soon.</p>
+
+    <h2>3. Physical Use Warning — Please Read Carefully</h2>
+    <div class="warning-box">
+      <h4>⚡ Physical Activity Warning</h4>
+      <p><strong>Vibe Spinner is a physically demanding game.</strong> Achieving high RPM requires rapid, repetitive spinning and swiping motions with your fingers on a mobile touchscreen. Extended or intense gameplay may result in:</p>
+      <p>— Finger fatigue, soreness, or strain<br>
+      — Wrist or hand discomfort<br>
+      — Repetitive strain injury (RSI) with excessive use<br>
+      — Elevated heart rate and adrenaline response during high-intensity play sessions</p>
+      <p>The competitive and sensory nature of the game — including escalating audio, visual effects, and RPM challenges — is designed to be engaging and exciting. This can make it easy to lose track of time and play longer than intended without noticing physical discomfort.</p>
+      <p><strong>We strongly recommend:</strong> taking regular breaks every 15–20 minutes of active play, stopping immediately if you experience any pain, numbness, or discomfort in your fingers, hands, or wrists, and not playing for extended sessions without rest.</p>
+    </div>
+    <p>By using the Application, you acknowledge that you are aware of these physical risks and accept responsibility for monitoring your own physical well-being during gameplay. RORE Tech is not liable for any physical injury arising from use of the Application.</p>
+
+    <h2>4. License Grant</h2>
+    <p>Subject to your compliance with these Terms, RORE Tech grants you a limited, non-exclusive, non-transferable, revocable license to install and use the Application on mobile devices you own or control, solely for personal entertainment purposes.</p>
+    <p>This license does not include the right to copy, modify, distribute, sell, reverse engineer, or use the Application for any commercial purpose.</p>
+
+    <h2>5. In-App Purchases and Pricing Tiers</h2>
+    <p><strong>Free Tier:</strong></p>
+    <ul>
+      <li>Lambo skin only — all other skins show a lock icon</li>
+      <li>RPM hard cap at 50,000 — needle freezes at 50K regardless of spinning speed</li>
+      <li>No overheat glow or screen shake effects</li>
+      <li>Photo upload feature disabled</li>
+    </ul>
+    <p><strong>Pro ($1.99 — one-time purchase):</strong></p>
+    <ul>
+      <li>All 4 base skins unlocked — Lambo, Mustang, Harley, Jet</li>
+      <li>RPM cap raised to 150,000</li>
+      <li>Overheat glow effect triggers at 125K RPM</li>
+      <li>Screen shake effect triggers at 125K RPM</li>
+      <li>Photo upload enabled</li>
+    </ul>
+    <p><strong>MAX ($4.99 — one-time purchase):</strong></p>
+    <ul>
+      <li>All Pro features included</li>
+      <li>No RPM cap — unlimited</li>
+      <li>Overheat glow and screen shake at 125K RPM</li>
+      <li>Game Mode access (placeholder UI — full feature planned)</li>
+    </ul>
+    <p>All in-app purchases are one-time payments with no recurring charges. Purchases are non-refundable except where required by applicable law or platform policy (Google Play / Apple App Store refund policies apply).</p>
+
+    <h2>6. Age Restriction</h2>
+    <p>The Application is intended for users aged 13 and older. Users under 18 should obtain parental consent before making any in-app purchases. If you are under 13, do not download or use this Application.</p>
+
+    <h2>7. Acceptable Use</h2>
+    <p>You agree not to use the Application to violate any applicable laws, attempt to circumvent in-app purchase validation or tier restrictions, reverse engineer or modify the Application, or interfere with the proper functioning of the Application.</p>
+
+    <h2>8. Privacy and Data</h2>
+    <p>Vibe Spinner collects no personal identifying information. All application data is stored locally on your device. No account registration is required. For complete details, see our <a href="/vibespinner/privacy.html" style="color:var(--vibe);">Privacy Policy</a>.</p>
+
+    <h2>9. Intellectual Property</h2>
+    <p>The Application, including its code, design, audio, visual assets, skin designs, and all associated intellectual property, is owned exclusively by RORE Tech and is protected by applicable copyright, trademark, and intellectual property laws.</p>
+
+    <h2>10. Disclaimer of Warranties</h2>
+    <p class="uppercase-section">THE APPLICATION IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND. RORE TECH DOES NOT WARRANT THAT THE APPLICATION WILL FUNCTION WITHOUT INTERRUPTION OR ERROR, OR THAT IT WILL MEET YOUR REQUIREMENTS. RPM PERFORMANCE MAY VARY BY DEVICE HARDWARE.</p>
+
+    <h2>11. Limitation of Liability</h2>
+    <p class="uppercase-section">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, RORE TECH SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF YOUR USE OF THE APPLICATION, INCLUDING ANY PHYSICAL INJURY ARISING FROM GAMEPLAY. RORE TECH'S TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID FOR THE APPLICATION.</p>
+
+    <h2>12. Updates and Changes</h2>
+    <p>RORE Tech may modify these Terms at any time. Material changes will be communicated through the Application or via roretech.com. Continued use after changes take effect constitutes acceptance of the revised Terms.</p>
+
+    <h2>13. Governing Law</h2>
+    <p>These Terms shall be governed by the laws of the State of Delaware, United States. Any disputes shall be subject to the exclusive jurisdiction of the courts located in Delaware.</p>
+
+    <h2>14. Contact</h2>
+    <div class="contact-block">
+      <p><strong>RORE Tech</strong></p>
+      <p>Website: <a href="https://roretech.com">roretech.com</a></p>
+      <p>Email: <a href="mailto:support@roretech.com">support@roretech.com</a></p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <a href="/" class="nav-logo" style="margin-bottom:8px;display:inline-flex;">
+        <img src="/RORE_Tech_transparent.png" alt="RORE Tech">
+        <span class="nav-logo-text">RORE<span>.</span>TECH</span>
+      </a>
+      <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/vibespinner/privacy.html">Privacy Policy</a>
+      <a href="/vibespinner/terms.html">Terms of Service</a>
+      <a href="mailto:support@roretech.com">Support</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

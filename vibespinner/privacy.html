@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Vibe Spinner | RORE Tech</title>
+  <meta name="description" content="Privacy Policy for Vibe Spinner by RORE Tech. No personal data collected. Everything stays on your device.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#080B10; --surface:#111820; --border:rgba(255,255,255,0.07); --vibe:#A855F7; --text:#E8EDF3; --muted:#6B7A8D; }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden; }
+    body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+    .container { max-width:800px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:14px 0; background:rgba(8,11,16,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+    nav .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-back { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .nav-back:hover { color:var(--text); }
+    .legal-header { padding:130px 0 44px; border-bottom:1px solid var(--border); margin-bottom:44px; }
+    .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-bottom:28px; flex-wrap:wrap; }
+    .breadcrumb a { color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .breadcrumb a:hover { color:var(--vibe); }
+    .breadcrumb span { color:var(--vibe); font-weight:500; }
+    .breadcrumb::before { content:''; display:block; width:16px; height:1px; background:var(--vibe); }
+    .legal-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--vibe); margin-bottom:14px; }
+    .legal-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(28px,4vw,46px); letter-spacing:-0.02em; margin-bottom:14px; }
+    .legal-meta { font-size:14px; color:var(--muted); }
+    .legal-meta strong { color:var(--text); }
+    .commitment-banner { background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.04)); border:1px solid rgba(168,85,247,0.2); border-radius:12px; padding:26px 30px; margin-bottom:44px; }
+    .commitment-banner h3 { font-family:'Syne',sans-serif; font-weight:700; font-size:17px; margin-bottom:10px; color:var(--vibe); }
+    .commitment-banner p { font-size:15px; color:var(--text); line-height:1.75; margin:0; }
+    .commitment-banner strong { color:var(--vibe); }
+    .legal-body { padding-bottom:100px; }
+    .legal-body h2 { font-family:'Syne',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.01em; margin:44px 0 14px; padding-top:44px; border-top:1px solid var(--border); }
+    .legal-body h2:first-child { margin-top:0; padding-top:0; border-top:none; }
+    .legal-body p { font-size:15px; color:var(--muted); line-height:1.8; margin-bottom:14px; }
+    .legal-body p strong { color:var(--text); }
+    .legal-body ul { list-style:none; display:flex; flex-direction:column; gap:8px; margin:14px 0 20px; }
+    .legal-body ul li { font-size:15px; color:var(--muted); line-height:1.7; display:flex; align-items:flex-start; gap:10px; }
+    .legal-body ul li::before { content:'—'; color:var(--vibe); font-size:13px; flex-shrink:0; margin-top:3px; }
+    .legal-body ul.no-collect li::before { content:'✗'; color:#F87171; }
+    .data-table { width:100%; border-collapse:collapse; margin:18px 0; font-size:13px; }
+    .data-table th { text-align:left; padding:10px 14px; background:var(--surface); color:var(--muted); font-weight:600; border-bottom:1px solid var(--border); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; }
+    .data-table td { padding:11px 14px; border-bottom:1px solid var(--border); color:var(--muted); vertical-align:top; line-height:1.6; }
+    .tag-yes { display:inline-flex; align-items:center; gap:4px; background:rgba(168,85,247,0.08); color:var(--vibe); border:1px solid rgba(168,85,247,0.18); font-size:11px; font-weight:600; padding:2px 8px; border-radius:4px; }
+    .tag-no { display:inline-flex; align-items:center; gap:4px; background:rgba(107,122,141,0.08); color:var(--muted); border:1px solid rgba(107,122,141,0.15); font-size:11px; font-weight:600; padding:2px 8px; border-radius:4px; }
+    .contact-block { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:22px 26px; margin-top:14px; }
+    .contact-block p { margin-bottom:6px; font-size:14px; }
+    .contact-block a { color:var(--vibe); text-decoration:none; }
+    footer { border-top:1px solid var(--border); padding:40px 0; }
+    footer .container { max-width:1100px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .footer-logo img { height:28px; width:auto; display:block; margin-bottom:6px; }
+    .footer-copy { font-size:12px; color:var(--muted); }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+    .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo"><img src="/RORE_Tech_transparent.png" alt="RORE Tech"><span class="nav-logo-text">RORE<span>.</span>TECH</span></a>
+    <a href="/vibespinner/" class="nav-back">← Back to Vibe Spinner</a>
+  </div>
+</nav>
+
+<div class="legal-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">RORE Tech</a> / <a href="/vibespinner/">Vibe Spinner</a> / <span>Privacy Policy</span>
+    </div>
+    <div class="legal-eyebrow">Legal — Vibe Spinner</div>
+    <h1 class="legal-title">Privacy Policy</h1>
+    <p class="legal-meta"><strong>Last Updated:</strong> April 2026 &nbsp;·&nbsp; <strong>Developer:</strong> RORE Tech</p>
+  </div>
+</div>
+
+<div class="legal-body">
+  <div class="container">
+
+    <div class="commitment-banner">
+      <h3>The Short Version</h3>
+      <p><strong>We collect nothing personal.</strong> Vibe Spinner requires no account, collects no personal data, and transmits nothing off your device. Your gameplay data stays on your phone. That's it.</p>
+    </div>
+
+    <h2>1. About This Policy</h2>
+    <p>This Privacy Policy explains how Vibe Spinner, developed by RORE Tech, handles information in connection with the Application. Vibe Spinner is a mobile entertainment app — an engine spinner simulator with physics-based gameplay, audio synthesis, and visual effects.</p>
+    <div class="contact-block">
+      <p>Contact: <a href="mailto:support@roretech.com">support@roretech.com</a> | <a href="https://roretech.com">roretech.com</a></p>
+    </div>
+
+    <h2>2. Data We Do NOT Collect</h2>
+    <p>The following information is <strong>never collected, stored remotely, or accessible to RORE Tech:</strong></p>
+    <ul class="no-collect">
+      <li>Your name, email address, or any identifying information</li>
+      <li>Your location or device location</li>
+      <li>Your gameplay statistics or session history (beyond what is stored locally on your device)</li>
+      <li>Your device identifiers (IMEI, Advertising ID)</li>
+      <li>Any photos you upload to the app (stored locally only)</li>
+      <li>Any financial information beyond what is processed by the app store at purchase</li>
+    </ul>
+
+    <h2>3. Data Stored on Your Device</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Data Type</th><th>Collected?</th><th>Where Stored</th><th>Transmitted?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Selected skin and settings</td><td><span class="tag-yes">Yes — locally</span></td><td>Device local storage</td><td><span class="tag-no">Never</span></td></tr>
+        <tr><td>Purchase/tier status</td><td><span class="tag-yes">Yes — locally</span></td><td>Device local storage</td><td><span class="tag-no">Never</span></td></tr>
+        <tr><td>User-uploaded photo (Pro)</td><td><span class="tag-yes">Yes — locally</span></td><td>Device local storage</td><td><span class="tag-no">Never</span></td></tr>
+        <tr><td>Personal identifiers</td><td><span class="tag-no">No</span></td><td>—</td><td><span class="tag-no">Never</span></td></tr>
+        <tr><td>Location data</td><td><span class="tag-no">No</span></td><td>—</td><td><span class="tag-no">Never</span></td></tr>
+        <tr><td>Crash reports</td><td><span class="tag-yes">Yes — anonymized</span></td><td>Google Play / Apple App Store (platform standard)</td><td>Anonymized crash data only</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. In-App Purchases</h2>
+    <p>When you make an in-app purchase (Pro or MAX tier), the transaction is processed entirely by the platform store — Google Play on Android, Apple App Store on iOS. RORE Tech receives confirmation that a purchase was made but does not receive your payment information, card details, or billing address. Purchase records are held by the respective platform store under their privacy policies.</p>
+
+    <h2>5. Photo Upload Feature (Pro)</h2>
+    <p>Pro and MAX users can upload a personal photo as a spinner background. This photo is stored exclusively in the app's local storage on your device. It is never transmitted to RORE Tech or any third party. You can delete it at any time by clearing app data or changing the background within the app.</p>
+
+    <h2>6. Third-Party Services</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Service</th><th>Purpose</th><th>Data Shared</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Google Play Services (Android)</td><td>App distribution and standard crash reporting</td><td>Anonymized crash data only</td></tr>
+        <tr><td>Apple App Store (iOS — coming soon)</td><td>App distribution and standard crash reporting</td><td>Anonymized crash data only</td></tr>
+      </tbody>
+    </table>
+    <p>No advertising SDKs, analytics platforms, or tracking frameworks are included in this Application.</p>
+
+    <h2>7. No Accounts Required</h2>
+    <p>Vibe Spinner does not require you to create an account, log in, or provide any personal information to play. Download and play — that's it.</p>
+
+    <h2>8. Data Deletion</h2>
+    <p>All app data is stored on your device and is deleted when you uninstall the Application or clear app data through your device settings. RORE Tech holds no server-side copy of your data and cannot retrieve it.</p>
+
+    <h2>9. Children's Privacy</h2>
+    <p>Vibe Spinner is intended for users aged 13 and older. We do not knowingly collect personal information from children under 13. Because no personal data is collected by the Application, the app poses no known privacy risk to minors.</p>
+
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be reflected by an updated date at the top of this page. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>11. Contact Us</h2>
+    <div class="contact-block">
+      <p><strong>RORE Tech</strong></p>
+      <p>Privacy: <a href="mailto:privacy@roretech.com">privacy@roretech.com</a></p>
+      <p>Support: <a href="mailto:support@roretech.com">support@roretech.com</a></p>
+      <p>Website: <a href="https://roretech.com">roretech.com</a></p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <a href="/" class="nav-logo" style="margin-bottom:8px;display:inline-flex;">
+        <img src="/RORE_Tech_transparent.png" alt="RORE Tech">
+        <span class="nav-logo-text">RORE<span>.</span>TECH</span>
+      </a>
+      <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/vibespinner/privacy.html">Privacy Policy</a>
+      <a href="/vibespinner/terms.html">Terms of Service</a>
+      <a href="mailto:support@roretech.com">Support</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

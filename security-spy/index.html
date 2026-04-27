@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security SPY — Silent. Smart. Sentinel. | RORE Tech</title>
+  <meta name="description" content="Security SPY silently captures anyone snooping on your phone. On-device vault, face recognition, per-app monitoring. Android — iOS coming soon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080B10; --bg2: #0D1117; --surface: #111820; --border: rgba(255,255,255,0.07);
+      --accent: #00C2FF; --accent2: #0076FF; --text: #E8EDF3; --muted: #6B7A8D;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
+    .grid-bg { position: fixed; inset: 0; background-image: linear-gradient(rgba(0,194,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,194,255,0.025) 1px, transparent 1px); background-size: 64px 64px; pointer-events: none; z-index: 0; }
+    .orb { position: fixed; border-radius: 50%; filter: blur(130px); pointer-events: none; z-index: 0; }
+    .orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,118,255,0.12), transparent 70%); top: -200px; left: -150px; }
+    .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,194,255,0.08), transparent 70%); bottom: 10%; right: -100px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 0; background: rgba(8,11,16,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--text); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* HERO */
+    .hero { padding: 140px 0 80px; border-bottom: 1px solid var(--border); }
+    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.5s ease 0.1s forwards; }
+    .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+    .app-identity { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.5s ease 0.15s forwards; }
+    .app-icon-lg { width: 72px; height: 72px; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,194,255,0.2); }
+    .app-icon-lg img { width: 100%; height: 100%; object-fit: cover; }
+    .app-name-block .app-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.02em; line-height: 1.1; }
+    .app-name-block .app-smartlens { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 4px; }
+    .hero-tagline { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.5s ease 0.2s forwards; }
+    .hero-tagline span { color: var(--accent); }
+    .hero-desc { font-size: 17px; font-weight: 300; color: var(--muted); line-height: 1.75; max-width: 540px; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.5s ease 0.28s forwards; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; opacity: 0; animation: fadeUp 0.5s ease 0.35s forwards; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #000; font-size: 14px; font-weight: 600; padding: 13px 26px; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
+    .btn-primary:hover { background: #33CEFF; transform: translateY(-2px); box-shadow: 0 10px 36px rgba(0,194,255,0.28); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 14px; font-weight: 600; text-decoration: none; border: 1px solid rgba(0,194,255,0.3); padding: 12px 22px; border-radius: 6px; transition: all 0.2s; }
+    .btn-outline:hover { background: rgba(0,194,255,0.07); }
+    .platform-badges { display: flex; gap: 8px; margin-top: 20px; opacity: 0; animation: fadeUp 0.5s ease 0.4s forwards; }
+    .pbadge { font-size: 12px; font-weight: 500; color: var(--muted); background: rgba(255,255,255,0.04); border: 1px solid var(--border); padding: 5px 14px; border-radius: 20px; }
+    .pbadge.soon { color: rgba(107,122,141,0.5); font-style: italic; }
+
+    /* STATUS BADGE */
+    .status-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; width: 200px; opacity: 0; animation: fadeUp 0.5s ease 0.3s forwards; }
+    .status-item { margin-bottom: 14px; }
+    .status-item:last-child { margin-bottom: 0; }
+    .status-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .status-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; }
+    .sv-live { color: var(--accent); display: flex; align-items: center; gap: 6px; }
+    .sv-live::before { content: ''; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.75)} }
+
+    /* SECTION */
+    .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .sec-label { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .sec-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.02em; margin-bottom: 48px; line-height: 1.15; }
+
+    /* FEATURES GRID */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px 22px; transition: border-color 0.25s, transform 0.25s; }
+    .feat-card:hover { border-color: rgba(0,194,255,0.2); transform: translateY(-3px); }
+    .feat-icon { font-size: 22px; margin-bottom: 12px; }
+    .feat-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+    .feat-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .pricing-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 32px 26px; position: relative; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.25s; }
+    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.popular { border-color: rgba(0,194,255,0.3); background: linear-gradient(135deg, #0A1525 0%, var(--surface) 100%); }
+    .pricing-card.popular::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+    .pc-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 18px; }
+    .pcb-pop { background: rgba(0,194,255,0.12); color: var(--accent); border: 1px solid rgba(0,194,255,0.25); }
+    .pcb-val { background: rgba(251,191,36,0.12); color: #FCD34D; border: 1px solid rgba(251,191,36,0.25); }
+    .pc-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; margin-bottom: 6px; }
+    .pc-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 38px; line-height: 1; margin-bottom: 4px; }
+    .pc-price span { font-size: 16px; font-weight: 400; color: var(--muted); }
+    .pc-period { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .pc-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; flex: 1; }
+    .pc-features li { font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+    .pc-features li::before { content: '✓'; color: var(--accent); font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .pc-features li.locked { color: rgba(107,122,141,0.5); }
+    .pc-features li.locked::before { content: '—'; color: rgba(107,122,141,0.4); }
+    .pc-btn { display: block; text-align: center; padding: 13px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+    .pcb-free { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
+    .pcb-free:hover { background: rgba(255,255,255,0.09); }
+    .pcb-trial { background: rgba(0,194,255,0.08); color: var(--accent); border: 1px solid rgba(0,194,255,0.25); }
+    .pcb-trial:hover { background: rgba(0,194,255,0.14); }
+    .pcb-pro { background: var(--accent); color: #000; }
+    .pcb-pro:hover { background: #33CEFF; box-shadow: 0 8px 32px rgba(0,194,255,0.3); }
+    .pricing-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 20px; }
+    .pricing-note a { color: var(--accent); text-decoration: none; }
+
+    /* TRIAL CALLOUT */
+    .trial-callout { background: linear-gradient(135deg, rgba(0,118,255,0.08), rgba(0,194,255,0.04)); border: 1px solid rgba(0,194,255,0.15); border-radius: 14px; padding: 24px 28px; margin-bottom: 36px; }
+    .trial-callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin: 0; }
+    .trial-callout strong { color: var(--accent); }
+
+    /* FOOTER */
+    .legal-links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; }
+    .legal-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .legal-links a:hover { color: var(--text); }
+    footer { border-top: 1px solid var(--border); padding: 44px 0; }
+    footer .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-logo img { height: 30px; width: auto; display: block; margin-bottom: 8px; }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .fdiv { width: 1px; height: 14px; background: var(--border); }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .status-box { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; gap: 14px; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .features-grid { grid-template-columns: 1fr; }
+      footer .container { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo"><img src="/RORE_Tech_transparent.png" alt="RORE Tech"><span class="nav-logo-text">RORE<span>.</span>TECH</span></a>
+    <a href="/" class="nav-back">← Back to RORE Tech</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Mobile Security Tools</div>
+        <div class="app-identity">
+          <div class="app-icon-lg"><img src="/security__spy_app_logo.png" alt="Security SPY"></div>
+          <div class="app-name-block">
+            <div class="app-name">Security SPY</div>
+            <div class="app-smartlens">Smart Lens</div>
+          </div>
+        </div>
+        <h1 class="hero-tagline">Silent.<span> Smart.</span><br>Sentinel.</h1>
+        <p class="hero-desc">Your phone knows who's been snooping. Security SPY silently photographs anyone who opens your tagged apps — while instantly recognizing your face to skip the capture. Every intrusion logged, encrypted, and locked in an on-device vault.</p>
+        <div class="hero-actions">
+          <a href="https://play.google.com/store/apps/details?id=com.rore.securityspy" class="btn-primary">Download on Android →</a>
+          <a href="#pricing" class="btn-outline">View Pricing</a>
+        </div>
+        <div class="platform-badges">
+          <span class="pbadge">Android — Live</span>
+          <span class="pbadge soon">iOS — Coming Soon</span>
+        </div>
+      </div>
+      <div class="status-box">
+        <div class="status-item">
+          <div class="status-label">Status</div>
+          <div class="status-value sv-live">Live</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Platform</div>
+          <div class="status-value" style="font-size:13px;color:var(--text)">Android</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Data stored</div>
+          <div class="status-value" style="font-size:13px;color:var(--accent)">On-device only</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Cloud</div>
+          <div class="status-value" style="font-size:13px;color:var(--muted)">Zero</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="container">
+    <div class="sec-label">How it works</div>
+    <h2 class="sec-title">Catch every intruder.<br>Miss no false alarms.</h2>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🎯</div>
+        <div class="feat-title">Per-App Monitoring</div>
+        <p class="feat-desc">Tag any installed app. The moment someone opens a monitored app, Security SPY captures a silent photo — no flash, no sound, no warning.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🧬</div>
+        <div class="feat-title">Owner Face Recognition</div>
+        <p class="feat-desc">Register your face once. When you open your own tagged apps, the capture is skipped automatically — zero false positives, zero friction.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔐</div>
+        <div class="feat-title">Encrypted Vault</div>
+        <p class="feat-desc">Every captured photo is stored immediately in a biometric-protected, encrypted vault on your device. No photo ever leaves your phone.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📋</div>
+        <div class="feat-title">Full Event Log</div>
+        <p class="feat-desc">Every access attempt is timestamped and logged. Pro users get the full history with PDF export — perfect as evidence if needed.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔇</div>
+        <div class="feat-title">Completely Silent</div>
+        <p class="feat-desc">No notifications, no UI changes, no sounds. The intruder has no idea they've been photographed. Your security is invisible.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">☁️</div>
+        <div class="feat-title">Zero Cloud</div>
+        <p class="feat-desc">No accounts required. No data transmitted. RORE Tech cannot see your vault, your logs, or your captures. Architecturally impossible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="sec-label">Pricing</div>
+    <h2 class="sec-title">Start free. Upgrade<br>when you need more.</h2>
+
+    <div class="trial-callout">
+      <p><strong>30-day free trial</strong> — every new install gets full access for 30 days. The 2 apps you tag during the trial are permanently assigned and cannot be changed after both slots are used. After trial, you drop to the Free tier or upgrade to Pro. Annual Pro saves 58% vs monthly.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- FREE -->
+      <div class="pricing-card">
+        <div class="pc-name">Free</div>
+        <div class="pc-price">$0<span>/mo</span></div>
+        <div class="pc-period">After 30-day trial ends</div>
+        <ul class="pc-features">
+          <li>1 tagged app</li>
+          <li>Change tagged app any time</li>
+          <li class="locked">Owner face registration</li>
+          <li class="locked">Owner skip on capture</li>
+          <li class="locked">Intruder vault</li>
+          <li>Last 5 activity log entries</li>
+          <li class="locked">Evidence export (PDF)</li>
+        </ul>
+        <a href="https://play.google.com/store/apps/details?id=com.rore.securityspy" class="pc-btn pcb-free">Download Free →</a>
+      </div>
+
+      <!-- TRIAL -->
+      <div class="pricing-card">
+        <div class="pc-name">Trial</div>
+        <div class="pc-price">$0<span></span></div>
+        <div class="pc-period">First 30 days — expires day 30</div>
+        <ul class="pc-features">
+          <li>2 tagged apps (locked in permanently — no switching after both slots used)</li>
+          <li>Owner face registration</li>
+          <li>Owner skip on capture</li>
+          <li>Intruder vault included</li>
+          <li>Photos locked (not deleted) at trial end — upgrade to unlock</li>
+          <li>Last 5 activity log entries</li>
+          <li class="locked">Evidence export (PDF)</li>
+        </ul>
+        <a href="https://play.google.com/store/apps/details?id=com.rore.securityspy" class="pc-btn pcb-trial">Start Free Trial →</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="pricing-card popular">
+        <div class="pc-badge pcb-pop">★ Best Value</div>
+        <div class="pc-name">Pro</div>
+        <div class="pc-price">$2.99<span>/mo</span></div>
+        <div class="pc-period">or $14.99/year — save 58%</div>
+        <ul class="pc-features">
+          <li>Unlimited tagged apps</li>
+          <li>Change any app any time</li>
+          <li>Owner face registration</li>
+          <li>Owner skip on capture</li>
+          <li>Full intruder vault — always accessible</li>
+          <li>Full activity log + export</li>
+          <li>Evidence export (PDF)</li>
+          <li>Vault photo count on dashboard</li>
+          <li>Geo-tagging — Planned (Pro Ultra)</li>
+          <li>Remote alert — Planned (Pro Ultra)</li>
+        </ul>
+        <a href="https://play.google.com/store/apps/details?id=com.rore.securityspy" class="pc-btn pcb-pro">Get Pro →</a>
+      </div>
+
+    </div>
+    <p class="pricing-note">Questions? <a href="mailto:support@roretech.com">support@roretech.com</a></p>
+  </div>
+</section>
+
+<!-- LEGAL + PRIVACY -->
+<section class="section" style="border-bottom:none;">
+  <div class="container">
+    <div class="sec-label">Legal & Privacy</div>
+    <h2 class="sec-title" style="margin-bottom:16px;">Your data stays on<br>your device. Always.</h2>
+    <p style="font-size:15px;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:24px;">All photos, logs, and biometric data is stored exclusively on your device. RORE Tech has zero access to your vault. No accounts. No cloud. No exceptions.</p>
+    <div class="legal-links">
+      <a href="/security-spy/privacy.html">Privacy Policy →</a>
+      <a href="/security-spy/terms.html">Terms of Service →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <a href="/" class="nav-logo" style="margin-bottom:8px;display:inline-flex;">
+        <img src="/RORE_Tech_transparent.png" alt="RORE Tech">
+        <span class="nav-logo-text">RORE<span>.</span>TECH</span>
+      </a>
+      <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <div class="fdiv"></div>
+      <a href="/privacy.html">Privacy</a>
+      <div class="fdiv"></div>
+      <a href="mailto:support@roretech.com">Support</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
