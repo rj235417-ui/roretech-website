@@ -21,13 +21,8 @@
     .container { max-width:1100px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
     nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:14px 0; background:rgba(8,11,16,0.88); backdrop-filter:blur(24px); border-bottom:1px solid var(--border); }
     nav .container { display:flex; align-items:center; justify-content:space-between; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { height: 34px; width: auto; display: block; }
-    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); }
-    .nav-logo-text span { color: var(--accent); }
-    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); }
-    .nav-logo-text span { color: var(--accent); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 0.06em; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
     .nav-back { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
     .nav-back:hover { color:var(--text); }
     @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
@@ -114,7 +109,6 @@
 
     footer { border-top:1px solid var(--border); padding:44px 0; }
     footer .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
-    .footer-logo img { height:30px; width:auto; display:block; margin-bottom:8px; }
     .footer-copy { font-size:12px; color:var(--muted); }
     .footer-links { display:flex; gap:20px; flex-wrap:wrap; align-items:center; }
     .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
@@ -132,7 +126,7 @@
 
 <nav>
   <div class="container">
-    <a href="/" class="nav-logo"><img src="/RORE_Tech_transparent.png" alt="RORE Tech"><span class="nav-logo-text">RORE<span>.</span>TECH</span></a>
+    <a href="/" class="nav-logo">RORE<span>.</span>TECH</a>
     <a href="/" class="nav-back">← Back to RORE Tech</a>
   </div>
 </nav>
@@ -312,11 +306,8 @@
 
 <footer>
   <div class="container">
-    <div class="footer-logo">
-      <a href="/" class="nav-logo" style="margin-bottom:8px;display:inline-flex;">
-        <img src="/RORE_Tech_transparent.png" alt="RORE Tech">
-        <span class="nav-logo-text">RORE<span>.</span>TECH</span>
-      </a>
+    <div class="footer-brand">
+      <a href="/" class="footer-logo-text">RORE<span>.</span>TECH</a>
       <p class="footer-copy">© 2026 RORE Tech. All rights reserved.</p>
     </div>
     <div class="footer-links">
