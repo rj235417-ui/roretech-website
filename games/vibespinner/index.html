@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="description" content="The ultimate high-RPM engine spinner. Feel the physics of 150,000 RPM with real engine sounds.">
     <meta name="theme-color" content="#000000">
-    <title>Vibe Studios Spinner</title>
+    <title>Vibe Spinner</title>
     <link rel="stylesheet" href="vibe.css">
     <link rel="manifest" href="/games/vibespinner/manifest.json">
     <script>
@@ -50,7 +50,7 @@
         <div id="spinner"></div>
     </div>
 
-    <div style="font-size:8px;color:rgba(255,255,255,0.15);letter-spacing:2px;text-align:center;padding-bottom:4px;font-family:'Orbitron',sans-serif;">Vibe Spin &middot; RORE Tech</div>
+    <div style="font-size:8px;color:rgba(255,255,255,0.15);letter-spacing:2px;text-align:center;padding-bottom:4px;font-family:'Orbitron',sans-serif;">Vibe Spinner &middot; RORE Tech</div>
     <div id="menu">
         <div id="power-toggle" onclick="handlePowerClick()">&#x1F507;</div>
         <div id="skin-scroll">
@@ -127,6 +127,9 @@
             <p class="paywall-price" id="modal-price">One-time $1.99</p>
             <p class="paywall-desc" id="modal-desc">All skins + 150,000 RPM + overheat FX + photo upload.</p>
             <a href="https://buy.stripe.com/placeholder" class="paywall-btn" id="modal-btn" target="_blank" rel="noopener">Unlock Pro &#x2014; $1.99</a>
+            <p style="margin-top:14px;font-size:12px;text-align:center;">
+              <a onclick="closePaywall();showMaxModal();" style="color:rgba(168,85,247,0.7);cursor:pointer;letter-spacing:0.5px;font-family:'Rajdhani',sans-serif;">⚡ Learn about Vibe MAX →</a>
+            </p>
         </div>
     </div>
 
@@ -149,9 +152,6 @@
             <a href="https://buy.stripe.com/placeholder-max" class="paywall-btn max-btn" target="_blank" rel="noopener">Get Vibe Max &#x2014; $4.99</a>
         </div>
     </div>
-
-    <!-- DEV mode toggle (bottom center) -->
-    <div id="dev-btn" onclick="devCycleTier()">DEV &middot; <span id="dev-tier-display">FREE</span></div>
 
     <script src="logic.js"></script>
 </body>

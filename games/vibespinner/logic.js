@@ -171,15 +171,6 @@ function showUpgradeBanner() {
     bannerTimeout = setTimeout(() => banner.classList.remove('visible'), 4000);
 }
 
-// ─── DEV MODE ────────────────────────────────────────────────────────────────
-function devCycleTier() {
-    const tiers = ['free', 'pro', 'max'];
-    vibeTier = tiers[(tiers.indexOf(vibeTier) + 1) % 3];
-    localStorage.setItem('vibeTier', vibeTier);
-    if (!isSkinAccessible(currentSkin)) setSkin('lambo');
-    updateSkinUI();
-}
-
 // ─── SKIN UI UPDATE ───────────────────────────────────────────────────────────
 function updateSkinUI() {
     document.querySelectorAll('[data-skin]').forEach(el => {
@@ -196,9 +187,7 @@ function updateSkinUI() {
     if (photoBadge) photoBadge.style.display = photoOk ? 'none' : '';
 
     const tierBadge = document.getElementById('tier-badge');
-    const devDisp   = document.getElementById('dev-tier-display');
     if (tierBadge) tierBadge.textContent = vibeTier.toUpperCase();
-    if (devDisp)   devDisp.textContent   = vibeTier.toUpperCase();
 }
 
 // ─── TOUCH INPUT ─────────────────────────────────────────────────────────────
