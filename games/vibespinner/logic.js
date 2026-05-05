@@ -18,6 +18,93 @@ const config = {
     jet:     { base: 85, harmonic: 'sine',     rumble: 'sine',     img: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800' }
 };
 
+// ─── GOOGLE PLAY BILLING ─────────────────────────────────────────────────────
+let storeReady = false;
+
+function initBilling() {
+    if (typeof CdvPurchase === 'undefined') return;
+
+    const store = CdvPurchase.store;
+
+    store.register([
+        {
+            id: 'vibe_pro',
+            type: CdvPurchase.ProductType.NON_CONSUMABLE,
+            platform: CdvPurchase.Platform.GOOGLE_PLAY
+        },
+        {
+            id: 'vibe_max',
+            type: CdvPurchase.ProductType.NON_CONSUMABLE,
+            platform: CdvPurchase.Platform.GOOGLE_PLAY
+        }
+    ]);
+
+    store.when()
+        .approved(transaction => {
+            transaction.finish();
+            const id = transaction.products[0]?.id;
+            if (id === 'vibe_pro') {
+                localStorage.setItem('vibeTier', 'pro');
+                vibeTier = 'pro';
+                updateSkinUI();
+                closePaywall();
+            }
+            if (id === 'vibe_max') {
+                localStorage.setItem('vibeTier', 'max');
+                vibeTier = 'max';
+                updateSkinUI();
+                closeMaxModal();
+            }
+        })
+        .verified(receipt => receipt.finish());
+
+    store.initialize([CdvPurchase.Platform.GOOGLE_PLAY])
+        .then(() => {
+            storeReady = true;
+            restoreTierFromPurchases();
+        });
+}
+
+function restoreTierFromPurchases() {
+    if (typeof CdvPurchase === 'undefined') return;
+    const store = CdvPurchase.store;
+    const proOwned = store.get('vibe_pro')?.owned;
+    const maxOwned = store.get('vibe_max')?.owned;
+    if (maxOwned) {
+        localStorage.setItem('vibeTier', 'max');
+        vibeTier = 'max';
+    } else if (proOwned) {
+        localStorage.setItem('vibeTier', 'pro');
+        vibeTier = 'pro';
+    }
+    updateSkinUI();
+}
+
+function purchasePro() {
+    if (typeof CdvPurchase === 'undefined' || !storeReady) {
+        alert('Store not ready. Please try again.');
+        return;
+    }
+    CdvPurchase.store.get('vibe_pro')?.getOffer()?.order();
+}
+
+function purchaseMax() {
+    if (typeof CdvPurchase === 'undefined' || !storeReady) {
+        alert('Store not ready. Please try again.');
+        return;
+    }
+    CdvPurchase.store.get('vibe_max')?.getOffer()?.order();
+}
+
+function restorePurchases() {
+    if (typeof CdvPurchase === 'undefined') return;
+    CdvPurchase.store.restorePurchases();
+}
+
+window.addEventListener('load', () => {
+    setTimeout(initBilling, 1000);
+});
+
 // ─── TIER HELPERS ────────────────────────────────────────────────────────────
 function getRpmCap() {
     if (vibeTier === 'free') return 50000;
@@ -137,8 +224,6 @@ function showUpgradeModal() {
     document.getElementById('modal-title').textContent = 'Unlock Vibe Pro';
     document.getElementById('modal-price').textContent = 'One-time $1.99';
     document.getElementById('modal-desc').textContent  = 'All skins + 150,000 RPM + overheat FX + photo upload.';
-    document.getElementById('modal-btn').href          = 'https://buy.stripe.com/placeholder';
-    document.getElementById('modal-btn').textContent   = 'Unlock Pro \u2014 $1.99';
     document.getElementById('paywall-modal').style.display = 'flex';
 }
 
@@ -226,7 +311,7 @@ function animate() {
         lastNeedleRot = needleRot;
     }
 
-    const shouldShake = (vibeTier === 'pro' || vibeTier === 'max') && rpm > 125000;
+    const shouldShake = (vibeTier === 'pro' || vibeTier === 'max') && rpm > 125000 && Math.abs(velocity) > 0.1;
     if (shouldShake) {
         wasShaking = true;
         const shakeMultiplier = vibeTier === 'max' ? 3 : 1.75;

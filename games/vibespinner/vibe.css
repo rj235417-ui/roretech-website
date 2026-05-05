@@ -6,7 +6,6 @@
     box-sizing: border-box;
     -webkit-user-select: none;
     user-select: none;
-    touch-action: none;
 }
 
 body {
@@ -139,6 +138,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    touch-action: none;
 }
 
 #spinner {
