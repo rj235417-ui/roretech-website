@@ -276,12 +276,15 @@ function updateSkinUI() {
 }
 
 // ─── TOUCH INPUT ─────────────────────────────────────────────────────────────
-window.addEventListener('touchstart', (e) => {
+// Listeners scoped to #spinner-container so header/menu touches never affect velocity.
+const spinnerContainer = document.getElementById('spinner-container');
+
+spinnerContainer.addEventListener('touchstart', (e) => {
     lastY = e.touches[0].clientY;
     if (audioCtx && !isMuted) audioCtx.resume();
 }, { passive: false });
 
-window.addEventListener('touchmove', (e) => {
+spinnerContainer.addEventListener('touchmove', (e) => {
     const currentY = e.touches[0].clientY;
     const delta    = currentY - lastY;
     if (Math.abs(delta) < 2) velocity *= 0.95;
