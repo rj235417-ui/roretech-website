@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Security SPY | RORE Tech</title>
-  <meta name="description" content="Privacy Policy for Security SPY by RORE Tech. All data is stored locally on your device. No data is transmitted to any server.">
+  <meta name="description" content="Privacy Policy for Security SPY by RORE Tech. An anti-theft and personal device security app. All data is stored locally on your device. No data is transmitted to any server.">
   <link rel="canonical" href="https://roretech.com/privacy.html">
   <link rel="icon" type="image/png" href="/RORE_Tech_transparent.png">
   <link rel="apple-touch-icon" href="/RORE_Tech_transparent.png">
@@ -13,14 +13,14 @@
   <meta property="og:site_name" content="RORE Tech">
   <meta property="og:url" content="https://roretech.com/privacy.html">
   <meta property="og:title" content="Privacy Policy — Security SPY | RORE Tech">
-  <meta property="og:description" content="Privacy Policy for Security SPY by RORE Tech. All data is stored locally on your device. No data is transmitted to any server.">
+  <meta property="og:description" content="Privacy Policy for Security SPY by RORE Tech. An anti-theft and personal device security app. All data is stored locally on your device. No data is transmitted to any server.">
   <meta property="og:image" content="https://roretech.com/RORE_Tech_transparent.png">
   <meta property="og:image:width" content="2048">
   <meta property="og:image:height" content="2048">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Privacy Policy — Security SPY | RORE Tech">
-  <meta name="twitter:description" content="Privacy Policy for Security SPY by RORE Tech. All data is stored locally on your device. No data is transmitted to any server.">
+  <meta name="twitter:description" content="Privacy Policy for Security SPY by RORE Tech. An anti-theft and personal device security app. All data is stored locally on your device. No data is transmitted to any server.">
   <meta name="twitter:image" content="https://roretech.com/RORE_Tech_transparent.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +34,7 @@
       --surface: #111820;
       --border:  rgba(255,255,255,0.07);
       --accent:  #00C2FF;
+      --warn:    #FFB347;
       --text:    #E8EDF3;
       --muted:   #6B7A8D;
     }
@@ -114,7 +115,7 @@
       border: 1px solid rgba(0,194,255,0.15);
       border-radius: 16px;
       padding: 28px 32px;
-      margin-bottom: 56px;
+      margin-bottom: 32px;
     }
     .summary-card h2 {
       font-family: 'Syne', sans-serif;
@@ -140,6 +141,30 @@
     .summary-item .label { color: var(--muted); }
     .summary-item .label strong { color: var(--text); display: block; font-weight: 500; }
 
+    /* WARN CARD */
+    .warn-card {
+      background: linear-gradient(135deg, rgba(255,179,71,0.08), rgba(255,179,71,0.04));
+      border: 1px solid rgba(255,179,71,0.20);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 56px;
+    }
+    .warn-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--warn);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .warn-card p {
+      font-size: 14px;
+      color: #C8D1DC;
+      margin-bottom: 8px;
+    }
+    .warn-card p:last-child { margin-bottom: 0; }
+
     /* CONTENT */
     .section {
       margin-bottom: 48px;
@@ -161,6 +186,16 @@
       line-height: 1.75;
     }
     p:last-child { margin-bottom: 0; }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 14px;
+      color: #A8B3C0;
+      font-size: 15px;
+    }
+    ul li {
+      margin-bottom: 8px;
+      line-height: 1.75;
+    }
 
     .data-table {
       width: 100%;
@@ -264,7 +299,7 @@
     </div>
     <h1>Privacy Policy</h1>
     <p class="meta">
-      <strong>Last updated: May 5, 2026</strong> &nbsp;·&nbsp;
+      <strong>Last updated: May 6, 2026</strong> &nbsp;·&nbsp;
       App package: com.rore.securityspy &nbsp;·&nbsp;
       Developer: RORE Tech
     </p>
@@ -276,28 +311,39 @@
     <div class="summary-grid">
       <div class="summary-item">
         <span class="icon">📱</span>
-        <span class="label"><strong>All data stays on your device</strong>Nothing is uploaded to any server or cloud.</span>
+        <span class="label"><strong>For your own device only</strong>An anti-theft tool. Do not install on a device you do not own.</span>
       </div>
       <div class="summary-item">
         <span class="icon">🚫</span>
-        <span class="label"><strong>No accounts required</strong>We don't collect your name, email, or any identity.</span>
+        <span class="label"><strong>Nothing leaves your device</strong>No cloud, no server, no account, no email collected.</span>
       </div>
       <div class="summary-item">
         <span class="icon">🔒</span>
-        <span class="label"><strong>Photos are encrypted</strong>Stored in a biometric-protected vault on your device only.</span>
+        <span class="label"><strong>Photos stay encrypted</strong>Stored in a vault on your device, accessible only with fingerprint or face.</span>
       </div>
       <div class="summary-item">
         <span class="icon">🎯</span>
-        <span class="label"><strong>No ads, no tracking</strong>We don't show ads or share data with advertisers.</span>
+        <span class="label"><strong>No ads, no tracking</strong>No advertisers. No analytics SDKs. Standard Android crash reporting only.</span>
       </div>
     </div>
+  </div>
+
+  <!-- INTENDED USE WARNING -->
+  <div class="warn-card">
+    <h2>⚠ Intended Use</h2>
+    <p>
+      Security SPY is designed to protect <strong>your own personal device</strong> against unauthorized access by thieves, snoops, or anyone who handles your phone without your permission.
+    </p>
+    <p>
+      <strong>Do not install this app on any device you do not own.</strong> Using this app to capture photographs of another person without their knowledge and consent may violate stalking laws, biometric privacy statutes (such as Illinois BIPA, Texas CUBI, EU GDPR Article 9, Brazil LGPD), wiretap laws, and other applicable regulations in your jurisdiction. You, the user, are solely responsible for the legal context in which you deploy this app.
+    </p>
   </div>
 
   <!-- SECTION 1 -->
   <div class="section">
     <h2 class="section-title">1. About This Policy</h2>
     <p>
-      This Privacy Policy explains how Security SPY ("the app"), developed by RORE Tech, handles information on your device. Security SPY is a personal device security application for Android that silently captures photographs when user-configured applications are opened, helping device owners identify unauthorized use.
+      This Privacy Policy explains how Security SPY ("the app"), developed by RORE Tech, handles information on your device. Security SPY is a personal anti-theft and device security application for Android. It captures a single photograph from the front-facing camera when an app or system screen the device owner has marked sensitive is opened, allowing the owner to identify unauthorized access to their device.
     </p>
     <p>
       This policy applies to all versions of the Security SPY app available on the Google Play Store under the package name <strong>com.rore.securityspy</strong>.
@@ -307,6 +353,10 @@
   <!-- SECTION 2 -->
   <div class="section">
     <h2 class="section-title">2. Data We Collect and Store</h2>
+
+    <p>
+      All data Security SPY collects stays on your device. RORE Tech operates no servers that receive or store user data from this app.
+    </p>
 
     <table class="data-table">
       <thead>
@@ -319,21 +369,33 @@
       </thead>
       <tbody>
         <tr>
-          <td>Photographs (front camera)</td>
+          <td>Photographs (front camera, captured at the moment a tagged item is opened)</td>
           <td><span class="tag-yes">Yes — locally</span></td>
           <td>Encrypted on-device vault</td>
           <td><span class="tag-no">Never</span></td>
         </tr>
         <tr>
-          <td>Facial geometry ratios</td>
+          <td>Owner facial geometry ratios (numerical, derived on device)</td>
           <td><span class="tag-yes">Yes — locally</span></td>
           <td>Device SharedPreferences</td>
           <td><span class="tag-no">Never</span></td>
         </tr>
         <tr>
-          <td>App event log (timestamps)</td>
+          <td>Event log (timestamp + name of tagged item that was opened)</td>
           <td><span class="tag-yes">Yes — locally</span></td>
-          <td>On-device database (Room)</td>
+          <td>Local file in app private storage</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>List of apps and system screens you have tagged</td>
+          <td><span class="tag-yes">Yes — locally</span></td>
+          <td>Device SharedPreferences</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>Your PIN for app entry</td>
+          <td><span class="tag-yes">Yes — locally</span></td>
+          <td>Device SharedPreferences (hashed)</td>
           <td><span class="tag-no">Never</span></td>
         </tr>
         <tr>
@@ -343,13 +405,25 @@
           <td><span class="tag-no">Never</span></td>
         </tr>
         <tr>
-          <td>Device identifiers (IMEI, Ad ID)</td>
+          <td>Device identifiers (IMEI, Advertising ID)</td>
           <td><span class="tag-no">No</span></td>
           <td>—</td>
           <td><span class="tag-no">Never</span></td>
         </tr>
         <tr>
-          <td>Contact information</td>
+          <td>Contact information (name, email, phone)</td>
+          <td><span class="tag-no">No</span></td>
+          <td>—</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>Screen content from other apps</td>
+          <td><span class="tag-no">No</span></td>
+          <td>—</td>
+          <td><span class="tag-no">Never</span></td>
+        </tr>
+        <tr>
+          <td>Keystrokes, audio, video, or text from other apps</td>
           <td><span class="tag-no">No</span></td>
           <td>—</td>
           <td><span class="tag-no">Never</span></td>
@@ -358,7 +432,7 @@
           <td>Crash reports</td>
           <td><span class="tag-yes">Yes — anonymized</span></td>
           <td>Google Play Services (Android Vitals)</td>
-          <td>Standard Android crash reporting only</td>
+          <td>Standard Android crash reporting only — no personal data</td>
         </tr>
       </tbody>
     </table>
@@ -368,79 +442,152 @@
   <div class="section">
     <h2 class="section-title">3. How the App Uses Your Camera</h2>
     <p>
-      Security SPY uses the device's front-facing camera exclusively to capture photographs when a user-configured application is opened or when the device lock screen is accessed. This is the core security function of the app.
+      Security SPY uses the device's front-facing camera to capture a single photograph when an app or system screen the owner has marked sensitive is opened. This is the core anti-theft function of the app.
     </p>
     <p>
-      Camera access is initiated only when a monitored event occurs. The app does not record video, does not stream to any external service, and does not access the camera at any other time.
+      Camera access is initiated only at the moment a tagged item is opened. The camera does not stay on, the app does not record video, the app does not stream the camera to any service, and the camera is not accessed at any other time.
+    </p>
+    <p>
+      <strong>Camera indicator visibility.</strong> Whenever the camera is active, Android displays a green camera indicator at the top of the screen. This is a system-level Android privacy feature (Android 12 and later) and Security SPY does not — and cannot — disable it. On most devices the camera shutter sound also plays when a photo is captured; this is enforced by Android (and required by law in some regions such as Korea and Japan). Security SPY does not, and cannot, suppress the shutter sound or the visual indicator.
     </p>
     <p>
       All photographs are stored immediately in an encrypted, biometric-protected vault on your device. No photograph is ever transmitted off the device under any circumstances.
+    </p>
+    <p>
+      <strong>Owner skip.</strong> If you have registered your face as the device owner, photographs that match your face are detected on-device using Google ML Kit and discarded immediately. Only photographs that do not match the registered owner's face are saved to the vault.
     </p>
   </div>
 
   <!-- SECTION 4 -->
   <div class="section">
-    <h2 class="section-title">4. Biometric Data</h2>
+    <h2 class="section-title">4. Biometric Data — Owner Face Registration</h2>
     <p>
-      During owner registration, the app processes a photograph of the device owner's face using Google ML Kit, which runs entirely on-device. The app computes a set of numerical facial geometry ratios (not a photograph or raw biometric template) and stores only those ratios in your device's local storage.
+      During owner registration, the app processes a photograph of the device owner's face using Google ML Kit, which runs entirely on-device. The app computes a set of numerical facial geometry ratios (not a photograph and not a raw biometric template) and stores only those ratios in your device's local storage.
     </p>
     <p>
-      The photograph taken during registration is processed in memory and is never stored in raw form. Raw biometric data is never transmitted to RORE Tech, Google, or any third party.
+      The photograph taken during owner registration is processed in memory and is never stored in raw form. Raw biometric data is never transmitted to RORE Tech, Google, or any third party.
     </p>
     <p>
-      The stored geometry ratios are used only to determine whether to skip a capture when the owner opens a monitored app. They cannot be reverse-engineered into a photograph.
+      The stored geometry ratios are used only to determine whether to discard a captured photograph (because it matches the owner) or save it (because it does not match). The ratios cannot be reverse-engineered into a photograph of the owner's face.
+    </p>
+    <p>
+      <strong>Deletion.</strong> Owner geometry ratios are deleted when you clear app data, uninstall the app, or factory-reset the device. RORE Tech cannot recover this data because we do not hold a server-side copy.
+    </p>
+    <p>
+      <strong>Jurisdictional notice.</strong> Some jurisdictions (including Illinois under BIPA, Texas under CUBI, the European Union under GDPR Article 9, and Brazil under LGPD) regulate the collection and processing of biometric data. Although Security SPY processes biometric data exclusively on your own device and transmits nothing externally, you remain responsible for understanding and complying with biometric privacy laws applicable to you.
     </p>
   </div>
 
   <!-- SECTION 5 -->
   <div class="section">
-    <h2 class="section-title">5. Accessibility Service</h2>
+    <h2 class="section-title">5. Photographs of Persons Other Than the Owner</h2>
     <p>
-      The app uses Android's Accessibility Service API (<code>BIND_ACCESSIBILITY_SERVICE</code>) to detect when a user-configured application is brought to the foreground. This is the only Android API that provides this capability.
+      When the camera captures a photograph and the face does not match the registered owner, the photograph is saved to the on-device vault. This may include photographs of persons other than the device owner.
     </p>
     <p>
-      The Accessibility Service used by Security SPY does not read screen content, does not interact with other apps, does not capture keystrokes or input, and does not transmit any information. It is used solely to detect app foreground events for the purpose of triggering the security capture function.
+      <strong>RORE Tech receives none of these photographs.</strong> They are stored only on your device and are visible only to you after you authenticate with your fingerprint or face.
+    </p>
+    <p>
+      <strong>Your responsibility regarding third-party photographs.</strong> Many jurisdictions regulate the photographing of individuals without their consent, particularly in private settings or when biometric data is involved. You are solely responsible for ensuring that your use of Security SPY complies with all applicable consent, privacy, biometric, wiretap, and stalking laws in your location. RORE Tech provides this app as a personal device security tool intended for use on the owner's own device against unauthorized access; the legal responsibility for the captured content rests with you, the device owner.
+    </p>
+    <p>
+      Do not use Security SPY to capture photographs of any person you do not have a lawful basis to photograph. Do not install this app on any device you do not own.
     </p>
   </div>
 
   <!-- SECTION 6 -->
   <div class="section">
-    <h2 class="section-title">6. Third-Party Services</h2>
+    <h2 class="section-title">6. Accessibility Service Use</h2>
     <p>
-      Security SPY uses the following on-device libraries and services:
+      The app uses Android's Accessibility Service API (<code>BIND_ACCESSIBILITY_SERVICE</code>) for one purpose only: to detect the package name of the application or system screen that is currently in the foreground.
+    </p>
+    <p>
+      This is the only Android API that reliably provides this capability across all Android versions and device manufacturers. The app does not use any other capability of the Accessibility Service.
+    </p>
+    <p>
+      Specifically, the Accessibility Service used by Security SPY:
+    </p>
+    <ul>
+      <li>Does NOT read screen content of any kind</li>
+      <li>Does NOT capture text, passwords, or any user input</li>
+      <li>Does NOT log keystrokes</li>
+      <li>Does NOT record what you do inside any application</li>
+      <li>Does NOT interact with, click, or otherwise control other apps</li>
+      <li>Does NOT transmit any information to any server</li>
+    </ul>
+    <p>
+      The package name detected by the service is checked in memory against your tagged-items list. If the detected package matches a tagged item, the camera capture function is triggered. If it does not match, nothing happens. The package name is then discarded — it is not stored or logged.
+    </p>
+    <p>
+      Before any monitoring is enabled, the app shows you a separate in-app consent dialog explaining what the Accessibility Service accesses and how it is used. You must affirmatively consent before the monitoring function is activated. Camera capture requires its own separate consent dialog. You can revoke either consent at any time by disabling the Accessibility Service in Android Settings, by re-opening the camera consent dialog from the dashboard, or by clearing app data.
+    </p>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section">
+    <h2 class="section-title">7. What Security SPY Does NOT Do</h2>
+    <p>
+      To remove ambiguity, Security SPY does not include any of the following functionality:
+    </p>
+    <ul>
+      <li>No remote control of the device</li>
+      <li>No remote camera access</li>
+      <li>No remote location tracking</li>
+      <li>No SMS, call log, contacts, or message access</li>
+      <li>No screen recording or screenshots of other apps</li>
+      <li>No keystroke logging</li>
+      <li>No microphone or audio recording</li>
+      <li>No persistent background monitoring of activity inside any app — the app captures only at the moment a tagged item is opened, then stops</li>
+      <li>No cloud sync or cloud backup of any data</li>
+      <li>No exfiltration of data to RORE Tech, advertisers, analytics services, or any third party</li>
+      <li>No hidden mode, no app-icon hiding, no disguised UI</li>
+      <li>No alerts or notifications to anyone other than the device owner via the on-device app</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section">
+    <h2 class="section-title">8. Third-Party Libraries</h2>
+    <p>
+      Security SPY uses the following on-device libraries. None of them transmit user data to external services as used in this app:
     </p>
     <table class="data-table">
       <thead>
-        <tr><th>Service</th><th>Purpose</th><th>Data Shared</th></tr>
+        <tr><th>Library</th><th>Purpose</th><th>Data Shared with the Library Vendor</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td>Google ML Kit (Face Detection)</td>
-          <td>On-device face detection and geometry analysis</td>
-          <td>None — runs entirely on device</td>
+          <td>Google ML Kit (Face Detection — bundled model)</td>
+          <td>On-device face detection and geometry computation</td>
+          <td>None — runs entirely on device, no network access</td>
         </tr>
         <tr>
-          <td>CameraX (AndroidX)</td>
-          <td>Camera capture and image analysis</td>
+          <td>AndroidX CameraX</td>
+          <td>Camera capture</td>
           <td>None — local only</td>
         </tr>
         <tr>
-          <td>Android BiometricPrompt</td>
-          <td>Vault authentication (fingerprint / face unlock)</td>
-          <td>None — handled by Android OS</td>
+          <td>AndroidX Biometric</td>
+          <td>Vault authentication (fingerprint / face unlock via Android OS)</td>
+          <td>None — handled entirely by the Android OS</td>
+        </tr>
+        <tr>
+          <td>Google Play Billing Library</td>
+          <td>Pro subscription purchases through Google Play</td>
+          <td>Standard Google Play purchase data — handled by Google</td>
         </tr>
         <tr>
           <td>Google Play Services (Android Vitals)</td>
-          <td>Standard crash reporting</td>
-          <td>Anonymized crash data only</td>
+          <td>Standard anonymous crash reporting</td>
+          <td>Anonymized crash data only — no personal information</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- SECTION 7 -->
+  <!-- SECTION 9 -->
   <div class="section">
-    <h2 class="section-title">7. Subscription Billing and Payments</h2>
+    <h2 class="section-title">9. Subscription Billing and Payments</h2>
     <p>
       Security SPY offers an optional Pro subscription. All subscription purchases,
       renewals, refunds, and cancellations are processed and managed exclusively
@@ -462,17 +609,15 @@
          target="_blank" rel="noopener">play.google.com/store/account/subscriptions</a>.
     </p>
     <p>
-      The app receives only an anonymous entitlement signal from Google Play
-      indicating whether your subscription is active. This signal contains no
-      personal information.
+      Subscriptions auto-renew unless cancelled. You can cancel at any time through Google Play. The app receives only an anonymous entitlement signal from Google Play indicating whether your subscription is active. This signal contains no personal information.
     </p>
   </div>
 
-  <!-- SECTION 8 -->
+  <!-- SECTION 10 -->
   <div class="section" id="deletion">
-    <h2 class="section-title">8. Data Retention and Deletion</h2>
+    <h2 class="section-title">10. Data Retention and Deletion</h2>
     <p>
-      All data stored by Security SPY — including photographs in the vault, the event log, and owner geometry ratios — is stored exclusively on your device and remains entirely under your control.
+      All data stored by Security SPY — including photographs in the vault, the event log, owner geometry ratios, your PIN, and your list of tagged items — is stored exclusively on your device and remains entirely under your control.
     </p>
     <p>
       RORE Tech has no ability to access, retrieve, or delete data stored on your device, as we do not have any server-side copy of your data.
@@ -482,12 +627,12 @@
       <p style="margin-bottom:12px;"><strong>How to delete your data</strong></p>
       <p style="margin-bottom:8px;">To delete all data stored by Security SPY, use either of the following methods:</p>
       <p style="margin-bottom:6px;"><strong>Option 1 — Clear app data:</strong><br>
-      Android Settings → Apps → Security SPY - Silent Lens → Storage → Clear Data<br>
-      This deletes all photographs, the event log, owner geometry ratios, and your PIN.</p>
+      Android Settings → Apps → Security SPY → Storage → Clear Data<br>
+      This deletes all photographs, the event log, owner geometry ratios, your PIN, and all tagged-item settings.</p>
       <p style="margin-bottom:6px;"><strong>Option 2 — Uninstall the app:</strong><br>
       Long-press the Security SPY icon → Uninstall<br>
       This removes the app and all associated data permanently.</p>
-      <p style="margin-bottom:0;"><strong>Data types deleted:</strong> All captured photographs, facial geometry ratios, app event log, PIN, and app settings. No data is retained after deletion as RORE Tech holds no server-side copy.</p>
+      <p style="margin-bottom:0;"><strong>Data types deleted:</strong> All captured photographs, facial geometry ratios, event log, PIN, tagged-items list, and all app settings. No data is retained after deletion as RORE Tech holds no server-side copy.</p>
     </div>
 
     <p>
@@ -495,25 +640,25 @@
     </p>
   </div>
 
-  <!-- SECTION 9 -->
+  <!-- SECTION 11 -->
   <div class="section">
-    <h2 class="section-title">9. Children's Privacy</h2>
+    <h2 class="section-title">11. Children's Privacy</h2>
     <p>
-      Security SPY is not directed at children under the age of 13. We do not knowingly collect personal information from children. Because all data is stored locally on the device and we collect no personal information whatsoever, this app poses no known privacy risk to minors.
+      Security SPY is not directed at children. We do not knowingly collect personal information from children. The app is intended for adults to protect their own personal devices. Parents and guardians should not install Security SPY on a child's device for the purpose of monitoring the child — Google Play offers a separate category of parental control applications designed for that purpose.
     </p>
   </div>
 
-  <!-- SECTION 10 -->
+  <!-- SECTION 12 -->
   <div class="section">
-    <h2 class="section-title">10. Changes to This Policy</h2>
+    <h2 class="section-title">12. Changes to This Policy</h2>
     <p>
       We may update this Privacy Policy from time to time. Any changes will be reflected by an updated "Last updated" date at the top of this page. We encourage you to review this policy periodically. Continued use of the app after changes constitutes acceptance of the updated policy.
     </p>
   </div>
 
-  <!-- SECTION 11 -->
+  <!-- SECTION 13 -->
   <div class="section">
-    <h2 class="section-title">11. Contact Us</h2>
+    <h2 class="section-title">13. Contact Us</h2>
     <p>
       If you have any questions about this Privacy Policy or how Security SPY handles data on your device, please contact us:
     </p>
